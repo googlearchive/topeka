@@ -1,0 +1,163 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="../components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/core-icon/core-icon.html">
+<link rel="import" href="../components/paper-progress/paper-progress.html">
+
+<polymer-element name="topeka-categories" attributes="user categories category narrow" vertical layout>
+<template>
+
+  <style>
+  
+    core-toolbar {
+      height: 80px;
+    }
+    
+    core-toolbar::shadow #topBar {
+      height: 76px;
+    }
+    
+    core-toolbar::shadow #bottomBar {
+      height: 4px;
+      padding: 0;
+    }
+    
+    .bottom {
+      margin: 0 !important;
+    }
+    
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f1f1f1;
+    }
+    
+    .badges {
+      font-size: 0.6em;
+    }
+    
+    .heading {
+      height: 60px;
+      line-height: 60px;
+      padding: 10px 20px 0;
+      font-size: 1.3em;
+      font-weight: 300;
+    }
+    
+    .category-item {
+      height: 60px;
+      padding: 0 20px;
+      cursor: default;
+    }
+    
+    .category-item:not(.core-selected) {
+      fill: #aaa;
+    }
+    
+    .category-item.core-selected {
+      font-weight: bold;
+    }
+    
+    .category-item > div {
+      padding-left: 28px;
+    }
+  
+  </style>
+
+  <core-scroll-header-panel id="panel" flex>
+  
+    <core-toolbar class="{{ {tall: !narrow} | tokenList }}">
+    
+      <div class="avatar"></div>
+    
+      <div vertical layout>
+        <div>{{user.name}}</div>
+        <div class="badges">{{badges}}</div>
+      </div>
+      
+      <paper-progress class="bottom" value="{{completed}}" max="{{categories.length}}" self-end flex></paper-progress>
+    
+    </core-toolbar>
+    
+    <div class="content">
+    
+      <div class="heading">Categories</div>
+      
+      <core-selector selected="{{selected}}">
+      
+        <template repeat="{{cat in categories}}">
+        
+          <div class="category-item" horizontal center layout>
+            <core-icon class="theme-icon" icon="{{ user.scores[cat.name].length >= cat.quizzes.length ? 'done' : 'check-circle-outline-blank' }}"></core-icon>
+            <div flex>{{cat.name}}</div>
+            <core-icon icon="chevron-right"></core-icon>
+          </div>
+        
+        </template>
+      
+      </core-selector>
+      
+    </div>
+    
+  </core-scroll-header-panel>
+
+</template>
+<script>
+
+  Polymer('topeka-categories', {
+    
+    narrow: false,
+    
+    observe: {
+      'user categories': 'updateStatus'
+    },
+    
+    selectedChanged: function() {
+      this.category = this.categories[this.selected];
+    },
+    
+    narrowChanged: function() {
+      this.async(function() {
+        // inform scroll-header-panel that toolbar's height has changed
+        this.$.panel.measureHeaderHeight();
+      });
+    },
+    
+    updateStatus: function() {
+      this.completed = 0;
+      this.badges = '';
+      if (this.user && this.user.scores && this.categories) {
+        for (var i = 0, c; c = this.categories[i]; i++) {
+          var s = this.user.scores[c.name];
+          if (s && s.length === c.quizzes.length) {
+            this.completed++;
+            if (this.sumScores(s) >= c.badgeScore) {
+              this.badges += c.badge + ' ';
+            }
+          }
+        }
+      }
+    },
+    
+    sumScores: function(s) {
+      var score = 0;
+      for (var i = 0; i < s.length; i++) {
+        score += s[i];
+      }
+      return score;
+    }
+    
+  });
+
+</script>
+</polymer-element>

@@ -1,0 +1,130 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="topeka-quiz-view.html">
+<link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="../components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/paper-progress/paper-progress.html">
+
+<polymer-element name="topeka-quizzes" attributes="scores category narrow" vertical layout>
+<template>
+
+  <style>
+  
+    core-toolbar {
+      font-size: 1.2em;
+      line-height: 1.6em;
+    }
+    
+    core-toolbar::shadow #bottomBar {
+      height: 20px;
+      padding: 0;
+    }
+    
+    .question {
+      padding: 6px 0 0 10px;
+    }
+    
+    .bottom {
+      margin: 0 !important;
+    }
+    
+    #quizViews > * {
+      display: none;
+    }
+    
+    #quizViews > .core-selected {
+      display: block;
+    }
+    
+    topeka-quiz-view {
+      padding: 26px;
+    }
+    
+    .wide-mode .quiz-content {
+      background: white;
+      max-width: 600px;
+      margin: -64px 64px 64px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    
+    core-scroll-header-panel.wide-mode::shadow #mainContainer {
+      z-index: 1;
+    }
+    
+    .quiz-content > .question {
+      font-size: 1.3em;
+      line-height: 1.4em;
+      padding: 26px;
+    }
+    
+  </style>
+  
+  <core-scroll-header-panel flex minHeaderHeight="{{narrow ? 128 : 192}}" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
+  
+    <core-toolbar class="tall">
+    
+      <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
+      <div flex></div>
+      <div>{{scores.length}} / {{category.quizzes.length}}</div>
+      
+      <div class="middle question" hidden?={{!narrow}} self-start>{{quiz.question}}</div>
+      
+      <paper-progress class="bottom" value="{{scores.length}}" max="{{category.quizzes.length}}" hidden?="{{!narrow}}" self-end flex></paper-progress>
+      
+    </core-toolbar>
+    
+    <div class="content quiz-content">
+    
+      <div class="question" hidden?={{narrow}}>{{quiz.question}}</div>
+      
+      <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" on-quiz-done="{{quizDone}}">
+      
+        <template repeat="{{category.quizzes}}">
+          <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
+        </template>
+        
+      </core-selector>
+      
+    </div>
+    
+  </core-scroll-header-panel>
+  
+</template>
+<script>
+
+  Polymer('topeka-quizzes', {
+    
+    narrow: false,
+    
+    observe: {
+      'scores category': 'update'
+    },
+    
+    update: function() {
+      if (this.scores && this.category) {
+        this.selected = this.scores.length;
+      }
+    },
+    
+    menuAction: function() {
+      this.fire('menu');
+    },
+    
+    quizDone: function(e, detail) {
+      this.scores[this.selected] = detail.score;
+      this.selected++;
+    }
+    
+  });
+
+</script>
+</polymer-element>

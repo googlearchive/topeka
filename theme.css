@@ -1,0 +1,57 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+body /deep/ core-toolbar {
+  background-color: #7e57c2;
+  color: #f1f1f1;
+  fill: #f1f1f1;
+  font-weight: 300;
+  transition: none;
+}
+
+body /deep/ .theme-icon {
+  fill: #7e57c2;
+}
+
+body /deep/ .theme-color {
+  color: #7e57c2;
+}
+
+body /deep/ paper-progress::shadow #progressContainer {
+  background-color: #b388ff;
+}
+
+body /deep/ paper-progress::shadow #activeProgress {
+  background-color: #fdd835;
+}
+
+/* green theme */
+/* body /deep/ core-toolbar {
+  background-color: #0f9d58;
+  color: #f1f1f1;
+  fill: #f1f1f1;
+  font-weight: 300;
+  transition: none;
+}
+
+body /deep/ .theme-icon {
+  fill: #0f9d58;
+}
+
+body /deep/ .theme-color {
+  color: #0f9d58;
+}
+
+body /deep/ paper-progress::shadow #progressContainer {
+  background-color: #b9f6ca;
+}
+
+body /deep/ paper-progress::shadow #activeProgress {
+  background-color: #ffeb3b;
+} */

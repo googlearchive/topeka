@@ -1,0 +1,142 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="../components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/core-icon/core-icon.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+
+<polymer-element name="topeka-results" attributes="scores category narrow" vertical layout>
+<template>
+
+  <style>
+  
+    core-toolbar {
+      height: 256px;
+    }
+    
+    core-toolbar::shadow #bottomBar {
+      padding: 0;
+    }
+  
+    .heading {
+      height: 64px;
+      margin: 0 !important;
+      padding: 0 26px;
+      background-color: #3949ab;
+      font-size: 24px;
+      font-weight: 300;
+      color: #f1f1f1;
+    }
+    
+    .results-label {
+      font-size: 0.8em;
+    }
+    
+    .result-item {
+      height: 60px;
+      font-size: 1.1em;
+      font-weight: 300;
+      padding: 0 26px;
+    }
+    
+    core-icon {
+      padding-right: 30px;
+    }
+    
+    core-icon {
+      fill: #00e56f;
+    }
+    
+    core-icon.fail {
+      fill: #f50055;
+    }
+    
+    .wide-mode .results-content {
+      background: white;
+      max-width: 600px;
+      margin: -64px 64px 64px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    
+    core-scroll-header-panel.wide-mode::shadow #mainContainer {
+      z-index: 1;
+    }
+    
+    .wide-mode core-toolbar {
+      height: 192px;
+    }
+    
+    [hidden] {
+      display: none !important;
+    }
+    
+  </style>
+  
+  <core-scroll-header-panel id="panel" flex minHeaderHeight="66" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
+  
+    <core-toolbar>
+    
+      <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
+      
+      <div class="heading bottom" hidden?="{{!narrow}}" flex self-end horizontal center layout>
+        <div flex>{{category.name}}</div>
+        <div class="results-label">Results</div>
+      </div>
+      
+    </core-toolbar>
+    
+    <div class="content results-content">
+    
+      <div class="heading" hidden?="{{narrow}}" flex self-end horizontal center layout>
+        <div flex>{{category.name}}</div>
+        <div class="results-label">Results</div>
+      </div>
+      
+      <core-selector selected="{{selected}}">
+
+        <template repeat="{{score, index in scores}}">
+        
+          <div class="result-item" horizontal center layout>
+            <core-icon icon="{{score ? 'done' : 'clear'}}" class="{{ {fail: !score} | tokenList }}"></core-icon>
+            <div flex>Question {{index + 1}}</div>
+            <div class="theme-color">{{score ? '+' + score : ':('}}</div>
+          </div>
+        
+        </template>
+      
+      </core-selector>
+      
+    </div>
+    
+  </core-scroll-header-panel>
+  
+</template>
+<script>
+
+  Polymer('topeka-results', {
+    
+    narrow: false,
+    
+    narrowChanged: function() {
+      this.async(function() {
+        // inform scroll-header-panel that toolbar's height has changed
+        this.$.panel.measureHeaderHeight();
+      });
+    },
+    
+    menuAction: function() {
+      this.fire('menu');
+    }
+    
+  });
+
+</script>
+</polymer-element>

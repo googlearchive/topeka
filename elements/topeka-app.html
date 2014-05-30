@@ -1,0 +1,58 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="topeka-categories.html">
+<link rel="import" href="topeka-category.html">
+<link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
+
+<polymer-element name="topeka-app" attributes="user categories" vertical layout>
+<template>
+
+  <style>
+  
+    [drawer] {
+      background-color: #f1f1f1;
+    } 
+    
+    [main] {
+      height: 100%;
+      background-color: #f1f1f1;
+    }
+    
+  </style>
+
+  <core-drawer-panel id="panel" flex defaultSelected="drawer" responsiveWidth="800px" class="no-peek" selected="{{selected}}" narrow="{{narrow}}">
+  
+    <topeka-categories id="categories" drawer user="{{user}}" categories="{{categories}}" category="{{category}}" narrow="{{narrow}}" on-core-activate="{{closeDrawer}}"></topeka-categories>
+    
+    <topeka-category main user="{{user}}" category="{{category}}" narrow="{{narrow}}" on-menu="{{openDrawer}}" on-results="{{updateStatus}}"></topeka-category>
+  
+  </core-drawer-panel>
+
+</template>
+<script>
+
+  Polymer('topeka-app', {
+    
+    closeDrawer: function() {
+      this.$.panel.closeDrawer();
+    },
+    
+    openDrawer: function() {
+      this.$.panel.openDrawer();
+    },
+    
+    updateStatus: function() {
+      this.$.categories.updateStatus();
+    }
+    
+  });
+
+</script>
+</polymer-element>
