@@ -60,13 +60,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     
     .wide-mode .results-content {
-      background: white;
+      background-color: #fff;
       max-width: 600px;
-      margin: -64px 64px 64px;
+      margin: 128px 64px 64px;
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     }
     
     core-scroll-header-panel.wide-mode::shadow #mainContainer {
+      top: 0 !important;
       z-index: 1;
     }
     
@@ -74,13 +75,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 192px;
     }
     
-    [hidden] {
-      display: none !important;
-    }
-    
   </style>
   
-  <core-scroll-header-panel id="panel" flex minHeaderHeight="66" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
+  <core-scroll-header-panel id="panel" flex fixed="{{!narrow}}" minHeaderHeight="66" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
   
     <core-toolbar>
     

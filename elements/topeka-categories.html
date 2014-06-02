@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #f1f1f1;
+      background-repeat: no-repeat;
     }
     
     .badges {
@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <core-toolbar class="{{ {tall: !narrow} | tokenList }}">
     
-      <div class="avatar"></div>
+      <div class="avatar" style="background-image: url(avatars/avatar-{{user.avatar || 1}}.svg);"></div>
     
       <div vertical layout>
         <div>{{user.name}}</div>

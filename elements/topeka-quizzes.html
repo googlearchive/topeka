@@ -50,13 +50,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     
     .wide-mode .quiz-content {
-      background: white;
+      background-color: #fff;
       max-width: 600px;
-      margin: -64px 64px 64px;
+      margin: 128px 64px 64px;
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     }
     
     core-scroll-header-panel.wide-mode::shadow #mainContainer {
+      top: 0 !important;
       z-index: 1;
     }
     
@@ -68,13 +69,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
   
-  <core-scroll-header-panel flex minHeaderHeight="{{narrow ? 128 : 192}}" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
+  <core-scroll-header-panel flex fixed="{{!narrow}}" minHeaderHeight="128" keepMinHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
   
     <core-toolbar class="tall">
     
       <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
       <div flex></div>
-      <div>{{scores.length}} / {{category.quizzes.length}}</div>
+      <div hidden?="{{!category}}">{{scores.length}} / {{category.quizzes.length}}</div>
       
       <div class="middle question" hidden?={{!narrow}} self-start>{{quiz.question}}</div>
       
@@ -82,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </core-toolbar>
     
-    <div class="content quiz-content">
+    <div class="content quiz-content" hidden?="{{!category}}">
     
       <div class="question" hidden?={{narrow}}>{{quiz.question}}</div>
       
