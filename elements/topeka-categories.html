@@ -18,21 +18,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <style>
   
+    /* adjust toolbar's height instead of using the default */
     core-toolbar {
       height: 80px;
     }
     
     core-toolbar::shadow #topBar {
       height: 76px;
-    }
-    
-    core-toolbar::shadow #bottomBar {
-      height: 4px;
-      padding: 0;
-    }
-    
-    .bottom {
-      margin: 0 !important;
     }
     
     .avatar {
@@ -85,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="badges">{{badges}}</div>
       </div>
       
-      <paper-progress class="bottom" value="{{completed}}" max="{{categories.length}}" self-end flex></paper-progress>
+      <paper-progress class="bottom fit" value="{{completed}}" max="{{categories.length}}"></paper-progress>
     
     </core-toolbar>
     

@@ -24,17 +24,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       line-height: 1.6em;
     }
     
-    core-toolbar::shadow #bottomBar {
-      height: 20px;
-      padding: 0;
-    }
-    
     .question {
       padding: 6px 0 0 10px;
-    }
-    
-    .bottom {
-      margin: 0 !important;
     }
     
     #quizViews > * {
@@ -49,6 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 26px;
     }
     
+    /* in wide layout, makes quiz content a floating card on top of the toolbar */
     .wide-mode .quiz-content {
       background-color: #fff;
       max-width: 600px;
@@ -79,7 +71,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="middle question" hidden?={{!narrow}} self-start>{{quiz.question}}</div>
       
-      <paper-progress class="bottom" value="{{scores.length}}" max="{{category.quizzes.length}}" hidden?="{{!narrow}}" self-end flex></paper-progress>
+      <paper-progress class="bottom fit" value="{{scores.length}}" max="{{category.quizzes.length}}" hidden?="{{!narrow}}"></paper-progress>
       
     </core-toolbar>
     

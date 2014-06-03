@@ -22,13 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 256px;
     }
     
-    core-toolbar::shadow #bottomBar {
-      padding: 0;
-    }
-  
     .heading {
       height: 64px;
-      margin: 0 !important;
       padding: 0 26px;
       background-color: #3949ab;
       font-size: 24px;
@@ -59,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fill: #f50055;
     }
     
+    /* in wide layout, makes results content a floating card on top of the toolbar */
     .wide-mode .results-content {
       background-color: #fff;
       max-width: 600px;
@@ -77,13 +73,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
   
-  <core-scroll-header-panel id="panel" flex fixed="{{!narrow}}" condensedHeaderHeight="66" keepCondensedHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
+  <core-scroll-header-panel id="panel" flex fixed="{{!narrow}}" condensedHeaderHeight="64" keepCondensedHeader class="{{ {'wide-mode': !narrow} | tokenList }}">
   
     <core-toolbar>
     
       <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
       
-      <div class="heading bottom" hidden?="{{!narrow}}" flex self-end horizontal center layout>
+      <div class="heading bottom fit" hidden?="{{!narrow}}" horizontal center layout>
         <div flex>{{category.name}}</div>
         <div class="results-label">Results</div>
       </div>
