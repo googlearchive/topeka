@@ -37,25 +37,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <topeka-data url="categories.json"></topeka-data>
+  <template is="auto-binding">
+
+    <topeka-data url="categories.json" user="{{user}}" categories="{{categories}}"></topeka-data>
+    <topeka-app fit user="{{user}}" categories="{{categories}}"></topeka-app>
   
-  <topeka-app fit></topeka-app>
-  
-  <script>
-  
-    addEventListener('polymer-ready', function() {
-  
-      var data = document.querySelector('topeka-data');
-      var app = document.querySelector('topeka-app');
-      
-      data.addEventListener('core-response', function() {
-        app.user = data.user;
-        app.categories = data.categories;
-      });
-      
-    });
-  
-  </script>
+  </template>
   
 </body>
 </html>
