@@ -30,18 +30,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     selected: 0,
     narrow: false,
     
-    observe: {
-      'user category': 'update'
+    computed: {
+      'scores': 'computeScores(user, category, dirty)'
     },
     
-    update: function() {
-      if (this.user && this.category) {
-        this.scores = null;
-        if (!this.user.scores) {
-          this.user.scores = {};
+    computeScores: function(user, category) {
+      if (user && category) {
+        if (!user.scores) {
+          user.scores = {};
         }
-        var n = this.category.name;
-        this.scores = this.user.scores[n] = this.user.scores[n] || [];
+        var n = category.name;
+        return user.scores[n] = user.scores[n] || [];
+      } else {
+        return null;
       }
     },
     
