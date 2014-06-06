@@ -9,31 +9,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>Topeka</title>
+  <title>topeka-user-score</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <script src="components/platform/platform.js"></script>
+  <script src="../components/platform/platform.js"></script>
   
-  <link rel="stylesheet" href="theme.css" shim-shadowdom>
+  <script src="sampleData.js"></script>
   
-  <link rel="import" href="components/font-roboto2/roboto2.html">
-  <link rel="import" href="components/core-icons/core-icons.html">
-  <link rel="import" href="components/core-icons/iconsets/av-icons.html">
-  <link rel="import" href="elements/topeka-datasource.html">
-  <link rel="import" href="elements/topeka-app.html">
+  <link rel="stylesheet" href="../theme.css" shim-shadowdom>
+  
+  <link rel="import" href="../components/font-roboto2/roboto2.html">
+  <link rel="import" href="../components/core-icons/core-icons.html">
+  <link rel="import" href="../elements/topeka-user-score.html">
   
 </head>
 <body unresolved>
 
-  <template is="auto-binding">
-
-    <topeka-datasource url="categories.json" user="{{user}}" categories="{{categories}}"></topeka-datasource>
-    <topeka-app fit user="{{user}}" categories="{{categories}}"></topeka-app>
+  <topeka-user-score fit></topeka-user-score>
   
-  </template>
+  <script>
+  
+    addEventListener('polymer-ready', function() {
+  
+      var s = document.querySelector('topeka-user-score');
+      s.user = {
+        name: 'Frankie F',
+        avatar: 1,
+        scores: {
+          'I/O Trivia': [1, 1]
+        }
+      };
+      s.category = window.categories[0];
+      
+    });
+  
+  </script>
   
 </body>
 </html>

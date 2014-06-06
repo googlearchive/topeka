@@ -26,14 +26,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../components/core-media-query/core-media-query.html">
   <link rel="import" href="../elements/topeka-quizzes.html">
   
-  <style>
-
-    body {
-      font-family: Roboto2, sans-serif;
-    }
-    
-  </style>
-
 </head>
 <body unresolved>
 
@@ -52,8 +44,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         q.narrow = m.queryMatches;
       });
       
+      q.avatar = 1;
       q.scores = [];
       q.category = window.categories[0];
+      
     });
   
   </script>

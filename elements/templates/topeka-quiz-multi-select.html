@@ -7,9 +7,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="topeka-quiz-base.html">
-<link rel="import" href="../components/core-selector/core-selector.html">
-<link rel="import" href="../components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../topeka-quiz-base.html">
+<link rel="import" href="../../components/core-selector/core-selector.html">
+<link rel="import" href="../../components/paper-checkbox/paper-checkbox.html">
 
 <polymer-element name="topeka-quiz-multi-select" extends="topeka-quiz-base">
 <template>
@@ -32,8 +32,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </div>
   
-  <shadow></shadow>
-  
   <core-selector target="{{$.choices}}" multi itemsSelector="paper-checkbox" selected="{{selected}}" selectedProperty="checked"></core-selector>
   
 </template>
@@ -41,9 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-quiz-multi-select', {
     
-    done: function() {
+    verify: function() {
       this.value = this.selected && this.selected.sort();
-      this.super();
+      return this.super();
     }
   
   });

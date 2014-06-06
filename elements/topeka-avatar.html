@@ -7,15 +7,30 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<polymer-element name="topeka-quiz-base" attributes="quiz" block>
-<script>
+<link rel="import" href="../components/polymer/polymer.html">
 
-  Polymer('topeka-quiz-base', {
-    
-    verify: function() {
-      return (this.value == this.quiz.answer) ? 1 : 0;
+<polymer-element name="topeka-avatar" attributes="avatar">
+<template>
+
+  <style>
+  
+    :host {
+      display: inline-block;
+      background-repeat: no-repeat;
     }
     
+  </style>
+
+</template>
+<script>
+
+  Polymer('topeka-avatar', {
+    
+    avatarChanged: function() {
+      var url = this.resolvePath('../avatars/avatar-' + this.avatar + '.svg');
+      this.style.backgroundImage = 'url(' + url + ')';
+    }
+  
   });
 
 </script>

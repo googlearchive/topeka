@@ -1,0 +1,65 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+core-toolbar {
+  font-size: 1.2em;
+  line-height: 1.3em;
+}
+
+.question {
+  padding: 6px 0 0 10px;
+}
+
+#quizViews > * {
+  display: none;
+}
+
+#quizViews > .core-selected {
+  display: block;
+}
+
+topeka-quiz-view {
+  padding: 26px;
+}
+
+paper-fab {
+  position: absolute;
+  top: 160px;
+  right: 12px;
+  background-color: #e7e6e4;
+  /* fill: #5c5c5b; */
+}
+
+/* FIXME: paper-fab should not hard-coded the icon's fill color */
+paper-fab::shadow /deep/ #icon {
+  fill: #5c5c5b;
+}
+
+topeka-status-bar {
+  border-top: 1px solid #dedede;
+}
+
+/* in wide layout, makes quiz content a floating card on top of the toolbar */
+core-scroll-header-panel.wide-mode::shadow #mainContainer {
+  top: 0 !important;
+  z-index: 1;
+}
+
+.wide-mode .quiz-content {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 128px 64px 64px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.quiz-content > .question {
+  font-size: 1.3em;
+  line-height: 1.4em;
+  padding: 26px;
+}

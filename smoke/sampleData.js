@@ -3,8 +3,7 @@
   window.categories = [
     {
       name: 'April Fools!',
-      badge: 'Prankster',
-      badgeScore: 2,
+      theme: 'yellow',
       quizzes: [
         {
           type: 'fill-blank', 
@@ -190,7 +189,7 @@
           type: 'fill-blank', 
           question: 'Can you name the Google product from a 2006 April Fools day prank?',
           start: 'Love is just another search problem. Solve it with Google',
-          end: '.',
+          end: '',
           answer: 'Romance'
         },
         {
@@ -234,9 +233,8 @@
       ]
     },
     {
-      name: 'I/O Trivia', 
-      badge: 'I/O Expert',
-      badgeScore: 1,
+      name: 'I/O Trivia',
+      theme: 'green',
       quizzes: [
         {
           type: 'single-select', 

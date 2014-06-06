@@ -1,0 +1,69 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/paper-fab/paper-fab.html">
+
+<polymer-element name="topeka-category-front-page" attributes="category" vertical layout>
+<template>
+
+  <link rel="stylesheet" href="topeka-category-themes.css">
+  
+  <style>
+  
+    paper-icon-button {
+      padding: 16px;
+    }
+  
+    .bottom-bar {
+      position: relative;
+      height: 86px;
+      padding: 0 20px;
+      font-size: 24px;
+    }
+    
+    paper-fab {
+      position: absolute;
+      top: -28px;
+      right: 16px;
+      background-color: #ff4081;
+    }
+  
+  </style>
+
+  <div class="{{category.theme}}-theme" flex vertical layout>
+  
+    <div class="theme-bg-a100" flex>
+      <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
+    </div>
+    
+    <div class="bottom-bar theme-bg" horizontal center layout>
+      <div>{{category.name}}</div>
+      <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
+    </div>
+  
+  </div>
+
+</template>
+<script>
+
+  Polymer('topeka-category-front-page', {
+    
+    previousAction: function() {
+      this.fire('previous');
+    },
+    
+    nextAction: function() {
+      this.fire('next');
+    }
+    
+  });
+
+</script>
+</polymer-element>

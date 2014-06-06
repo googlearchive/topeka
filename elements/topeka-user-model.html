@@ -1,0 +1,49 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="topeka-user-model" attributes="user totalPoints">
+<script>
+
+  Polymer('topeka-user-model', {
+    
+    computed: {
+      'totalPoints': 'computeTotalPoints(user, dirty)'
+    },
+    
+    dirty: 0,
+    
+    update: function() {
+      this.dirty++;
+    },
+    
+    computeTotalPoints: function() {
+      var pts = 0;
+      if (this.user) {
+        var ss = this.user.scores;
+        for (var n in ss) {
+          pts += this.sumPts(ss[n]);
+        }
+      }
+      return pts;
+    },
+    
+    sumPts: function(s) {
+      var pts = 0;
+      for (var i = 0; i < s.length; i++) {
+        pts += s[i];
+      }
+      return pts;
+    }
+    
+  });
+
+</script>
+</polymer-element>

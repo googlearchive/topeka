@@ -1,14 +1,13 @@
 [
   {
     "name": "April Fools!",
-    "badge": "Prankster",
-    "badgeScore": 1,
+    "theme": "yellow",
     "quizzes": [
       {
         "type": "fill-blank",
         "question": "Can you name the Google product from a 2006 April Fools day prank?",
         "start": "Love is just another search problem. Solve it with Google",
-        "end": ".",
+        "end": "",
         "answer": "Romance"
       },
       {
@@ -37,8 +36,7 @@
   },
   {
     "name": "I/O Trivia",
-    "badge": "I/O Expert",
-    "badgeScore": 1,
+    "theme": "green",
     "quizzes": [
       {
         "type": "single-select",
@@ -68,8 +66,7 @@
   },
   {
     "name": "Company History",
-    "badge": "History Expert",
-    "badgeScore": 1,
+    "theme": "red",
     "quizzes": [
       {
         "type": "single-select",
@@ -99,6 +96,23 @@
           "1000"
         ],
         "answer": 0
+      }
+    ]
+  },
+  {
+    "name": "Products",
+    "theme": "blue",
+    "quizzes": [
+      {
+        "type": "single-select",
+        "question": "Chromebook is made for?",
+        "options": [
+          "Grandma",
+          "Kids",
+          "Classroom",
+          "Everyone"
+        ],
+        "answer": 3
       }
     ]
   }

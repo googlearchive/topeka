@@ -25,14 +25,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../components/core-icons/core-icons.html">
   <link rel="import" href="../elements/topeka-categories.html">
   
-  <style>
-
-    body {
-      font-family: Roboto2, sans-serif;
-    }
-    
-  </style>
-
 </head>
 <body unresolved>
 
@@ -43,14 +35,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     addEventListener('polymer-ready', function() {
   
       var c = document.querySelector('topeka-categories');
-      
       c.user = {
         name: 'Frankie F',
+        avatar: 1,
         scores: {
-          'April Fools!': [0, 1, 2]
+          'I/O Trivia': [1, 1]
         }
       };
-      
       c.categories = window.categories;
       
     });

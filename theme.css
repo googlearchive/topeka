@@ -7,8 +7,14 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+body {
+  font-family: Roboto, sans-serif;
+  color: #444;
+  fill: #444;
+}
+
 body /deep/ core-toolbar {
-  background-color: #7e57c2;
+  background-color: #00bbd3;
   color: #f1f1f1;
   fill: #f1f1f1;
   font-weight: 300;
@@ -16,42 +22,17 @@ body /deep/ core-toolbar {
 }
 
 body /deep/ .theme-icon {
-  fill: #7e57c2;
+  fill: #00bbd3;
 }
 
 body /deep/ .theme-color {
-  color: #7e57c2;
+  color: #00bbd3;
 }
 
 body /deep/ paper-progress::shadow #progressContainer {
-  background-color: #b388ff;
+  background-color: transparent;
 }
 
 body /deep/ paper-progress::shadow #activeProgress {
-  background-color: #fdd835;
+  background-color: #ff4081;
 }
-
-/* green theme */
-/* body /deep/ core-toolbar {
-  background-color: #0f9d58;
-  color: #f1f1f1;
-  fill: #f1f1f1;
-  font-weight: 300;
-  transition: none;
-}
-
-body /deep/ .theme-icon {
-  fill: #0f9d58;
-}
-
-body /deep/ .theme-color {
-  color: #0f9d58;
-}
-
-body /deep/ paper-progress::shadow #progressContainer {
-  background-color: #b9f6ca;
-}
-
-body /deep/ paper-progress::shadow #activeProgress {
-  background-color: #ffeb3b;
-} */

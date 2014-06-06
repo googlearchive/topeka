@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>topeka-data</title>
+  <title>topeka-status-bar</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
@@ -17,24 +17,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../components/platform/platform.js"></script>
   
-  <link rel="import" href="../elements/topeka-data.html">
+  <script src="sampleData.js"></script>
+  
+  <link rel="stylesheet" href="../theme.css" shim-shadowdom>
+  
+  <link rel="import" href="../components/font-roboto2/roboto2.html">
+  <link rel="import" href="../elements/topeka-status-bar.html">
   
 </head>
 <body unresolved>
 
-  <topeka-data></topeka-data>
+  <topeka-status-bar></topeka-status-bar>
   
   <script>
   
     addEventListener('polymer-ready', function() {
   
-      var data = document.querySelector('topeka-data');
-      
-      data.addEventListener('core-response', function(e) {
-        console.log(data.user, data.categories);
-      });
-      
-      data.url = '../categories.json';
+      var s = document.querySelector('topeka-status-bar');
+
+      s.avatar = 1;
+      s.scores = [0, 1, 1, 0];
+      s.category = window.categories[0];
       
     });
   

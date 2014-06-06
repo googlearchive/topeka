@@ -9,31 +9,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>Topeka</title>
+  <title>topeka-avatar</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <script src="components/platform/platform.js"></script>
+  <script src="../components/platform/platform.js"></script>
   
-  <link rel="stylesheet" href="theme.css" shim-shadowdom>
+  <script src="sampleData.js"></script>
   
-  <link rel="import" href="components/font-roboto2/roboto2.html">
-  <link rel="import" href="components/core-icons/core-icons.html">
-  <link rel="import" href="components/core-icons/iconsets/av-icons.html">
-  <link rel="import" href="elements/topeka-datasource.html">
-  <link rel="import" href="elements/topeka-app.html">
+  <link rel="stylesheet" href="../theme.css" shim-shadowdom>
+  
+  <link rel="import" href="../elements/topeka-avatar.html">
+  
+  <style>
+  
+    topeka-avatar {
+      width: 100px;
+      height: 100px;
+    }
+  
+  </style>
   
 </head>
 <body unresolved>
 
-  <template is="auto-binding">
-
-    <topeka-datasource url="categories.json" user="{{user}}" categories="{{categories}}"></topeka-datasource>
-    <topeka-app fit user="{{user}}" categories="{{categories}}"></topeka-app>
+  <topeka-avatar></topeka-avatar>
   
-  </template>
+  <script>
+  
+    addEventListener('polymer-ready', function() {
+  
+      var a = document.querySelector('topeka-avatar');
+      a.avatar = 1;
+      
+    });
+  
+  </script>
   
 </body>
 </html>

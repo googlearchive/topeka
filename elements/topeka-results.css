@@ -1,0 +1,69 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+core-toolbar {
+  height: 256px;
+}
+
+.heading {
+  height: 64px;
+  padding: 0 26px;
+  background-color: #1de9b6;
+  font-size: 24px;
+  font-weight: 300;
+  color: #f1f1f1;
+}
+
+.results-label {
+  font-size: 0.8em;
+}
+
+.result-item {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 300;
+  padding: 0 26px;
+}
+
+core-icon {
+  padding-right: 30px;
+}
+
+core-icon {
+  fill: #00e676;
+}
+
+core-icon.fail {
+  fill: #f50057;
+}
+
+.next-button-container {
+  padding: 26px;
+}
+
+.next-button-container > paper-button {
+  color: #ff4081;
+}
+
+/* in wide layout, makes results content a floating card on top of the toolbar */
+.wide-mode .results-content {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 128px 64px 64px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+core-scroll-header-panel.wide-mode::shadow #mainContainer {
+  top: 0 !important;
+  z-index: 1;
+}
+
+.wide-mode core-toolbar {
+  height: 192px;
+}

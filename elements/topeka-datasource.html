@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../components/core-ajax/core-ajax.html">
 
-<polymer-element name="topeka-data" attributes="user categories url">
+<polymer-element name="topeka-datasource" attributes="user categories url" noscript>
 <template>
 
   <core-ajax auto handleAs="json" url="{{url}}" response="{{categories}}"></core-ajax>
@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </template>
 <script>
 
-  Polymer('topeka-data', {
+  Polymer('topeka-datasource', {
     
     ready: function() {
       this.user = {

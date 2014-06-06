@@ -7,8 +7,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="topeka-quiz-base.html">
-<link rel="import" href="../components/paper-input/paper-input.html">
+<link rel="import" href="../topeka-quiz-base.html">
+<link rel="import" href="../../components/paper-input/paper-input.html">
 
 <polymer-element name="topeka-quiz-fill-blank" extends="topeka-quiz-base" noscript>
 <template>
@@ -17,27 +17,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     .sentence {
       font-size: 1.5em;
-      line-height: 1.9em;
+      line-height: 1.8em;
       font-weight: 300;
     }
     
     paper-input {
       width: 140px;
-      padding: 0 8px;
       vertical-align: top;
-    }
-    
-    paper-input::shadow #floatedLabel {
-      display: none;
     }
     
   </style>
   
-  <span class="sentence theme-color">{{quiz.start}}</span>
+  <div class="sentence">{{quiz.start}}</div>
   <paper-input value="{{value}}" label="Fill in the Blank"></paper-input>
-  <span class="sentence theme-color">{{quiz.end}}</span>
+  <div class="sentence">{{quiz.end}}</div>
 
-  <shadow></shadow>
-  
 </template>
 </polymer-element>

@@ -20,16 +20,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="../theme.css" shim-shadowdom>
   
   <link rel="import" href="../components/font-roboto2/roboto2.html">
-  <link rel="import" href="../elements/topeka-quiz-multi-select.html">
+  <link rel="import" href="../components/paper-button/paper-button.html">
+  <link rel="import" href="../elements/templates/topeka-quiz-multi-select.html">
 
   <style>
 
     body {
-      font-family: Roboto2, sans-serif;
-    }
-    
-    topeka-quiz-multi-select {
-      padding: 30px;
+      padding: 20px;
     }
     
   </style>
@@ -39,16 +36,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <topeka-quiz-multi-select></topeka-quiz-multi-select>
   
+  <br><br><br>
+  
+  <paper-button raisedButton label="verify" onclick="verify()"></paper-button>
+  
   <script>
+  
+    var q = document.querySelector('topeka-quiz-multi-select');
   
     addEventListener('polymer-ready', function() {
   
-      var q = document.querySelector('topeka-quiz-multi-select');
-      
-      q.addEventListener('quiz-done', function(e) {
-        alert('score: ' + e.detail.score);
-      });
-      
       q.quiz = {
         question: 'Which of the following April Fools jokes has Google actually done?',
         options: [
@@ -61,6 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       
     });
+    
+    function verify() {
+      alert('score: ' + q.verify());
+    }
   
   </script>
   

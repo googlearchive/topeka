@@ -1,0 +1,68 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="topeka-avatar.html">
+<link rel="import" href="../components/paper-progress/paper-progress.html">
+
+<polymer-element name="topeka-status-bar" attributes="avatar scores category" horizontal layout>
+<template>
+
+  <style>
+  
+    :host {
+      display: block;
+    }
+  
+    topeka-avatar {
+      width: 60px;
+      height: 60px;
+    }
+    
+    paper-progress {
+      width: 100%;
+    }
+    
+    .num, .pts {
+      padding: 0 16px;
+    }
+    
+  </style>
+
+  <topeka-avatar avatar="{{avatar}}"></topeka-avatar>
+  
+  <div flex vertical layout>
+  
+    <paper-progress value="{{scores.length + 1}}" max="{{category.quizzes.length}}"></paper-progress>
+    
+    <div flex horizontal center layout>
+    
+      <div class="num">{{scores.length + 1}}</div>
+      <div flex>{{category.name}}</div>
+      <div class="pts">{{pts}} pts.</div>
+      
+    </div>
+    
+  </div>
+
+</template>
+<script>
+
+  Polymer('topeka-status-bar', {
+    
+    scoresChanged: function() {
+      this.pts = 0;
+      for (var i = 0; i < this.scores.length; i++) {
+        this.pts += this.scores[i];
+      }
+    }
+  
+  });
+
+</script>
+</polymer-element>

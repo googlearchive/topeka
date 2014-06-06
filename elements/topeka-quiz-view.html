@@ -7,9 +7,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="topeka-quiz-fill-blank.html">
-<link rel="import" href="topeka-quiz-single-select.html">
-<link rel="import" href="topeka-quiz-multi-select.html">
+<link rel="import" href="templates/topeka-quiz-fill-blank.html">
+<link rel="import" href="templates/topeka-quiz-single-select.html">
+<link rel="import" href="templates/topeka-quiz-multi-select.html">
 
 <polymer-element name="topeka-quiz-view" attributes="quiz" block>
 <script>
@@ -21,6 +21,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.view = document.createElement('topeka-quiz-' + this.quiz.type);
       this.appendChild(this.view);
       this.view.quiz = this.quiz;
+    },
+    
+    verify: function() {
+      return this.view.verify();
     }
     
   });

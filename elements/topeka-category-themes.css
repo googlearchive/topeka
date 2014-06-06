@@ -1,0 +1,64 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+/* yellow theme */
+.yellow-theme .theme-bg {
+  background-color: #ffeb3b;
+  color: #444;
+}
+
+.yellow-theme .theme-bg-a100 {
+  background-color: #ffff8d;
+}
+
+.yellow-theme .theme-icon {
+  fill: #ffeb3b;
+}
+
+/* green theme */
+.green-theme .theme-bg {
+  background-color: #0f9d58;
+  color: #f1f1f1;
+}
+
+.green-theme .theme-bg-a100 {
+  background-color: #b9f6ca;
+}
+
+.green-theme .theme-icon {
+  fill: #0f9d58;
+}
+
+/* red theme */
+.red-theme .theme-bg {
+  background-color: #db4437;
+  color: #f1f1f1;
+}
+
+.red-theme .theme-bg-a100 {
+  background-color: #ff8a80;
+}
+
+.red-theme .theme-icon {
+  fill: #db4437;
+}
+
+/* blue theme */
+.blue-theme .theme-bg {
+  background-color: #4285f4;
+  color: #f1f1f1;
+}
+
+.blue-theme .theme-bg-a100 {
+  background-color: #82b1ff;
+}
+
+.blue-theme .theme-icon {
+  fill: #4285f4;
+}

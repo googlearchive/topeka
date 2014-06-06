@@ -7,19 +7,25 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<link rel="import" href="topeka-category-front-page.html">
 <link rel="import" href="topeka-quizzes.html">
 <link rel="import" href="topeka-results.html">
+<link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-pages/core-pages.html">
 
-<polymer-element name="topeka-category" attributes="user category narrow" vertical layout>
+<polymer-element name="topeka-category" attributes="user category selected narrow" vertical layout>
 <template>
   
   <core-pages selected="{{selected}}" flex>
   
-    <topeka-quizzes scores="{{scores}}" category="{{category}}" narrow="{{narrow}}"></topeka-quizzes>
-    
-    <topeka-results scores="{{scores}}" category="{{category}}" narrow="{{narrow}}"></topeka-results>
+    <topeka-category-front-page name="front" category="{{category}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
   
+    <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" narrow="{{narrow}}"></topeka-quizzes>
+    
+    <topeka-results name="results" scores="{{scores}}" category="{{category}}" narrow="{{narrow}}" on-next="{{showScores}}"></topeka-results>
+  
+    <topeka-user-score name="scores" user="{{user}}" category="{{category}}" on-next="{{mainAction}}"></topeka-user-score>
+    
   </core-pages>
   
 </template>
@@ -27,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-category', {
     
-    selected: 0,
+    selected: 'front',
     narrow: false,
     
     computed: {
@@ -47,13 +53,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     scoresChanged: function() {
-      this.selected = this.scores.length < this.category.quizzes.length ? 0 : 1;
+      var l = this.scores.length;
+      this.selected = l ? (l < this.category.quizzes.length ? 
+          'quizzes' : 'results') : 'front';
     },
     
     selectedChanged: function() {
-      if (this.selected === 1) {
+      if (this.selected === 'results') {
         this.fire('results');
       }
+    },
+    
+    showQuizzes: function() {
+      this.selected = 'quizzes';
+    },
+    
+    showScores: function() {
+      this.selected = 'scores';
+    },
+    
+    mainAction: function() {
+      this.fire('main');
     }
     
   });

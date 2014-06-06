@@ -1,0 +1,55 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+topeka-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.category-list {
+  display: block;
+  padding: 2px;
+}
+
+.category-item {
+  position: relative;
+  float: left;
+  vertical-align: top;
+  width: 50%;
+  height: 180px;
+}
+
+.tile {
+  margin: 2px;
+}
+
+.completed > .tile {
+  opacity: 0.18;
+}
+
+.tile > paper-progress {
+  width: 100%;
+}
+
+.cat-name {
+  height: 42px;
+  padding: 0 8px;
+}
+
+.checked-icon {
+  display: none;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.completed > .checked-icon {
+  display: inline-block;
+}

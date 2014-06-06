@@ -9,31 +9,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>Topeka</title>
+  <title>topeka-user-model</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <script src="components/platform/platform.js"></script>
+  <script src="../components/platform/platform.js"></script>
   
-  <link rel="stylesheet" href="theme.css" shim-shadowdom>
-  
-  <link rel="import" href="components/font-roboto2/roboto2.html">
-  <link rel="import" href="components/core-icons/core-icons.html">
-  <link rel="import" href="components/core-icons/iconsets/av-icons.html">
-  <link rel="import" href="elements/topeka-datasource.html">
-  <link rel="import" href="elements/topeka-app.html">
+  <link rel="import" href="../elements/topeka-user-model.html">
   
 </head>
 <body unresolved>
 
-  <template is="auto-binding">
-
-    <topeka-datasource url="categories.json" user="{{user}}" categories="{{categories}}"></topeka-datasource>
-    <topeka-app fit user="{{user}}" categories="{{categories}}"></topeka-app>
+  <topeka-user-model></topeka-user-model>
   
-  </template>
+  <script>
+  
+    addEventListener('polymer-ready', function() {
+  
+      var u = document.querySelector('topeka-user-model');
+      u.user = {
+        name: 'Frankie F',
+        avatar: 1,
+        scores: {
+          'I/O Trivia': [1, 1]
+        }
+      };
+      
+    });
+  
+  </script>
   
 </body>
 </html>
