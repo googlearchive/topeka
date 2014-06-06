@@ -22,24 +22,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <topeka-user-model></topeka-user-model>
+  <polymer-element name="x-test">
+  <template>
   
+    <topeka-user-model totalPoints="{{pts}}" user="{{user}}"></topeka-user-model>
+    <div>points: {{pts}}</div>
+  
+  </template>
   <script>
   
-    addEventListener('polymer-ready', function() {
-  
-      var u = document.querySelector('topeka-user-model');
-      u.user = {
-        name: 'Frankie F',
-        avatar: 1,
-        scores: {
-          'I/O Trivia': [1, 1]
-        }
-      };
+    Polymer('x-test', {
       
+      ready: function() {
+        this.user = {
+          name: 'Frankie F',
+          avatar: 1,
+          scores: {
+            'I/O Trivia': [1, 1]
+          }
+        }
+      }
+    
     });
   
   </script>
-  
+  </polymer-element>
+
+  <x-test></x-test>
 </body>
 </html>
