@@ -53,3 +53,12 @@ topeka-avatar {
 .completed > .checked-icon {
   display: inline-block;
 }
+
+.leaderboard.tile {
+  background-color: #ccc;
+  color: #f1f1f1;
+}
+
+.leaderboard .cat-name {
+  background-color: #aaa;
+}

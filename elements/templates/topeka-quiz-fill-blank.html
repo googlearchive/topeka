@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../topeka-quiz-base.html">
 <link rel="import" href="../../components/paper-input/paper-input.html">
 
-<polymer-element name="topeka-quiz-fill-blank" extends="topeka-quiz-base" noscript>
+<polymer-element name="topeka-quiz-fill-blank" extends="topeka-quiz-base">
 <template>
 
   <style>
@@ -33,4 +33,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div class="sentence">{{quiz.end}}</div>
 
 </template>
+<script>
+
+  Polymer('topeka-quiz-fill-blank', {
+    
+    isCorrect: function() {
+      return this.value && this.value.toLowerCase() == this.quiz.answer.toLowerCase();
+    }
+    
+  });
+
+</script>
 </polymer-element>

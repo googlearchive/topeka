@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </core-scroll-header-panel>
   
-  <paper-fab icon="check" on-tap="{{quizDone}}"></paper-fab>
+  <paper-fab class="check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
   
   <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" hidden?="{{!narrow}}"></topeka-status-bar>
   
@@ -75,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     quizDone: function() {
-      this.scores[this.selected] = this.quizView.verify();
+      this.scores[this.selected] = this.quizView.getScore();
       this.selected++;
     }
     

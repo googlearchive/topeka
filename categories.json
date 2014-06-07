@@ -115,5 +115,22 @@
         "answer": 3
       }
     ]
+  },
+  {
+    "name": "Sports",
+    "theme": "purple",
+    "quizzes": [
+      {
+        "type": "single-select",
+        "question": "Chromebook is made for?",
+        "options": [
+          "Grandma",
+          "Kids",
+          "Classroom",
+          "Everyone"
+        ],
+        "answer": 3
+      }
+    ]
   }
 ]

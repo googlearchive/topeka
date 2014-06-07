@@ -34,12 +34,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       right: 16px;
       background-color: #ff4081;
     }
+    
+    /* FIXME: icon in paper-fab not aligned correctly */
+    paper-fab::shadow core-icon > svg {
+      display: block;
+    }
   
   </style>
 
   <div class="{{category.theme}}-theme" flex vertical layout>
   
-    <div class="theme-bg-a100" flex>
+    <div class="theme-bg-a" flex>
       <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
     </div>
     

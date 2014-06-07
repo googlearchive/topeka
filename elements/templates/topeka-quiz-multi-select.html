@@ -39,9 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-quiz-multi-select', {
     
-    verify: function() {
-      this.value = this.selected && this.selected.sort();
-      return this.super();
+    isCorrect: function() {
+      var v = this.selected && this.selected.sort();
+      return v == this.quiz.answer;
     }
   
   });

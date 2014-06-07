@@ -28,7 +28,7 @@ topeka-quiz-view {
   padding: 26px;
 }
 
-paper-fab {
+.check-button {
   position: absolute;
   top: 160px;
   right: 12px;
@@ -37,7 +37,7 @@ paper-fab {
 }
 
 /* FIXME: paper-fab should not hard-coded the icon's fill color */
-paper-fab::shadow /deep/ #icon {
+paper-fab.check-button::shadow /deep/ #icon {
   fill: #5c5c5b;
 }
 

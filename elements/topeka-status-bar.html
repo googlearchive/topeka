@@ -57,8 +57,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     scoresChanged: function() {
       this.pts = 0;
-      for (var i = 0; i < this.scores.length; i++) {
-        this.pts += this.scores[i];
+      if (this.scores) {
+        for (var i = 0; i < this.scores.length; i++) {
+          this.pts += this.scores[i];
+        }
       }
     }
   

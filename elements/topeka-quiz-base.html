@@ -10,13 +10,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name="topeka-quiz-base" attributes="quiz" block>
 <script>
 
-  Polymer('topeka-quiz-base', {
+  (function() {
     
-    verify: function() {
-      return (this.value == this.quiz.answer) ? 1 : 0;
-    }
+    var DEFAULT_POINT = 8;
+
+    Polymer('topeka-quiz-base', {
+      
+      isCorrect: function() {
+        return this.value == this.quiz.answer;
+      },
+      
+      getScore: function() {
+        return this.isCorrect() ? (this.quiz.point || DEFAULT_POINT) : 0;
+      }
+      
+    });
     
-  });
+  })();
 
 </script>
 </polymer-element>

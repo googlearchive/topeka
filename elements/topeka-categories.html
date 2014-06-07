@@ -8,6 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="topeka-avatar.html">
+<link rel="import" href="topeka-user-model.html">
 <link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
@@ -32,13 +33,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div class="content">
     
-      <core-selector class="category-list" selected="{{selected}}">
+      <core-selector id="categoryList" class="category-list" selected="{{selected}}">
+      
+        <div class="category-item" vertical layout>
+          <div class="tile leaderboard" flex vertical layout>
+            <div flex></div>
+            <div class="cat-name" horizontal center layout>Leaderboard</div>
+          </div>
+        </div>
       
         <template repeat="{{cat in categories}}">
         
           <template bind="{{user.scores[cat.name] as scores}}">
             <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length >= cat.quizzes.length} | tokenList }}" vertical layout>
-              <div class="tile theme-bg-a100" flex vertical layout>
+              <div class="tile theme-bg-a" flex vertical layout>
                 <div flex></div>
                 <paper-progress value="{{scores ? scores.length : 0}}" max="{{cat.quizzes.length}}"></paper-progress>
                 <div class="cat-name theme-bg" horizontal center layout>{{cat.name}}</div>
@@ -54,6 +62,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     
   </core-scroll-header-panel>
+  
+  <topeka-user-model id="userModel" user="{{user}}" totalPoints="{{totalPts}}"></topeka-user-model>
 
 </template>
 <script>
@@ -62,30 +72,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     narrow: false,
     
-    observe: {
-      'user': 'updateStatus'
-    },
-    
     selectedChanged: function() {
-      this.category = this.categories[this.selected];
+      // first one is leaderboard
+      this.category = this.selected ? this.categories[this.selected - 1] : null;
     },
     
     updateStatus: function() {
-      this.totalPts = 0;
-      if (this.user) {
-        var ss = this.user.scores;
-        for (var n in ss) {
-          this.totalPts += this.sumPts(ss[n]);
-        }
-      }
-    },
-    
-    sumPts: function(s) {
-      var pts = 0;
-      for (var i = 0; i < s.length; i++) {
-        pts += s[i];
-      }
-      return pts;
+      this.$.userModel.update();
     }
     
   });

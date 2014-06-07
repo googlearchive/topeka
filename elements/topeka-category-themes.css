@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   color: #444;
 }
 
-.yellow-theme .theme-bg-a100 {
+.yellow-theme .theme-bg-a {
   background-color: #ffff8d;
 }
 
@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   color: #f1f1f1;
 }
 
-.green-theme .theme-bg-a100 {
+.green-theme .theme-bg-a {
   background-color: #b9f6ca;
 }
 
@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   color: #f1f1f1;
 }
 
-.red-theme .theme-bg-a100 {
+.red-theme .theme-bg-a {
   background-color: #ff8a80;
 }
 
@@ -55,10 +55,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   color: #f1f1f1;
 }
 
-.blue-theme .theme-bg-a100 {
+.blue-theme .theme-bg-a {
   background-color: #82b1ff;
 }
 
 .blue-theme .theme-icon {
   fill: #4285f4;
+}
+
+/* purple theme */
+.purple-theme .theme-bg {
+  background-color: #7e57c2;
+  color: #f1f1f1;
+}
+
+.purple-theme .theme-bg-a {
+  background-color: #b388ff;
+}
+
+.purple-theme .theme-icon {
+  fill: #7e57c2;
 }

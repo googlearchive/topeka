@@ -53,9 +53,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     scoresChanged: function() {
-      var l = this.scores.length;
-      this.selected = l ? (l < this.category.quizzes.length ? 
-          'quizzes' : 'scores') : 'front';
+      if (this.scores) {
+        var l = this.scores.length;
+        this.selected = l ? (l < this.category.quizzes.length ? 
+            'quizzes' : 'results') : 'front';
+      }
     },
     
     selectedChanged: function() {

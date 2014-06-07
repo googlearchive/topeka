@@ -14,25 +14,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-user-model', {
     
-    computed: {
-      'totalPoints': 'computeTotalPoints(user, dirty)'
+    observe: {
+      'user user.scores': 'update'
     },
-    
-    dirty: 0,
     
     update: function() {
-      this.dirty++;
-    },
-    
-    computeTotalPoints: function() {
-      var pts = 0;
+      this.totalPoints = 0;
       if (this.user) {
         var ss = this.user.scores;
         for (var n in ss) {
-          pts += this.sumPts(ss[n]);
+          this.totalPoints += this.sumPts(ss[n]);
         }
       }
-      return pts;
     },
     
     sumPts: function(s) {

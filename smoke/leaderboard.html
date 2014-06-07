@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>topeka-quiz-single-select</title>
+  <title>topeka-leaderboard</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
@@ -17,51 +17,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../components/platform/platform.js"></script>
   
+  <script src="sampleData.js"></script>
+  
   <link rel="stylesheet" href="../theme.css" shim-shadowdom>
   
   <link rel="import" href="../components/font-roboto2/roboto2.html">
-  <link rel="import" href="../components/paper-button/paper-button.html">
-  <link rel="import" href="../elements/templates/topeka-quiz-single-select.html">
-
-  <style>
-
-    body {
-      padding: 20px;
-    }
-    
-  </style>
-
+  <link rel="import" href="../components/core-icons/core-icons.html">
+  <link rel="import" href="../elements/topeka-leaderboard.html">
+  
 </head>
 <body unresolved>
 
-  <topeka-quiz-single-select></topeka-quiz-single-select>
-  
-  <br><br><br>
-  
-  <paper-button raisedButton label="verify" onclick="verify()"></paper-button>
+  <topeka-leaderboard fit></topeka-leaderbaord>
   
   <script>
   
-    var q = document.querySelector('topeka-quiz-single-select');
-  
     addEventListener('polymer-ready', function() {
-
-      q.quiz = {
-        question: 'Which real Google product launched on April Fools Day in 2004?',
-        options: [
-          'Drive',
-          'Calendar',
-          'Gmail',
-          'Chrome'
-        ],
-        answer: 2
-      }
+  
+      var l = document.querySelector('topeka-leaderboard');
+      l.user = {
+        name: 'Frankie F',
+        avatar: 1,
+        scores: {
+          'I/O Trivia': [0, 8, 8, 0, 8, 8, 0, 8, 8, 0, 8, 0]
+        }
+      };
       
     });
-    
-    function verify() {
-      alert('score: ' + q.getScore());
-    }
   
   </script>
   

@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-menu.html">
 <link rel="import" href="topeka-categories.html">
 <link rel="import" href="topeka-category.html">
+<link rel="import" href="topeka-leaderboard.html">
 <link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../components/core-pages/core-pages.html">
 
@@ -18,22 +19,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <style>
   
-    /* adjust drawer's width instead of using the default */
-    core-drawer-panel::shadow #drawer {
-      width: 300px;
-    }
-    
-    core-drawer-panel::shadow #main {
-      left: 300px;
-    }
-  
     [drawer], [main] {
       background-color: #f1f1f1;
     } 
     
   </style>
 
-  <core-drawer-panel id="panel" flex responsiveWidth="800px" narrow="{{narrow}}">
+  <core-drawer-panel id="panel" flex responsiveWidth="5000px" narrow="{{narrow}}">
   
     <topeka-menu id="menu" drawer on-core-activate="{{menuSelect}}"></topeka-menu>
   
@@ -41,11 +33,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       <topeka-categories id="categories" name="categories" user="{{user}}" 
         categories="{{categories}}" category="{{category}}" narrow="{{narrow}}" 
-        on-core-activate="{{showCategory}}"></topeka-categories>
+        on-core-activate="{{categorySelect}}"></topeka-categories>
     
       <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" 
         narrow="{{narrow}}" on-menu="{{openDrawer}}" on-results="{{updateStatus}}" 
         on-main="{{showCategories}}"></topeka-category>
+        
+      <topeka-leaderboard name="leaderboard" user="{{user}}" on-previous="{{showCategories}}"></topeka-leaderboard>
       
     </core-pages>
   
@@ -74,13 +68,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.selected = 'category';
     },
     
+    showLeaderboard: function() {
+      this.selected = 'leaderboard';
+    },
+    
+    categorySelect: function() {
+      if (this.category) {
+        this.showCategory();
+      } else {
+        this.showLeaderboard();
+      }
+    },
+    
     updateStatus: function() {
       this.$.categories.updateStatus();
     },
     
     menuSelect: function() {
       this.closeDrawer();
-      this.showCategories();
+      this.selected = this.$.menu.selected;
     }
     
   });
