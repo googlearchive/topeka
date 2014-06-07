@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .top-bar {
   height: 64px;
-  padding: 0 16px;
+  padding: 0 17px;
 }
 
 topeka-avatar {
@@ -25,7 +25,8 @@ topeka-avatar {
 
 .top-bar > div {
   padding-left: 16px;
-  font-size: 24px;
+  font-size: 21px;
+  font-weight: 300;
   color: #f1f1f1;
 }
 
