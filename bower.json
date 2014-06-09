@@ -1,0 +1,30 @@
+{
+  "name": "topeka",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Polymer/topeka",
+  "authors": [],
+  "description": "",
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform",
+    "polymer": "Polymer/polymer",
+    "core-icons": "Polymer/core-icons",
+    "core-drawer-panel": "Polymer/core-drawer-panel",
+    "core-icon-button": "Polymer/core-icon-button",
+    "core-scroll-header-panel": "Polymer/core-scroll-header-panel",
+    "paper-checkbox": "Polymer/paper-checkbox",
+    "paper-radio-group": "Polymer/paper-radio-group",
+    "paper-radio-button": "Polymer/paper-radio-button",
+    "paper-item": "Polymer/paper-item",
+    "paper-sampler": "Polymer/paper-sampler",
+    "font-roboto2": "Polymer/font-roboto2"
+  }
+}
