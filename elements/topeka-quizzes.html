@@ -29,6 +29,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="middle question" hidden?={{!narrow}} self-start>{{quiz.question}}</div>
       
+      <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
+      
     </core-toolbar>
     
     <div class="content quiz-content" hidden?="{{!category}}">
@@ -48,8 +50,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     
   </core-scroll-header-panel>
-  
-  <paper-fab class="check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
   
   <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" hidden?="{{!narrow}}"></topeka-status-bar>
   

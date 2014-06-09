@@ -30,8 +30,8 @@ topeka-quiz-view {
 
 .check-button {
   position: absolute;
-  top: 160px;
-  right: 12px;
+  bottom: -28px;
+  right: 16px;
   background-color: #e7e6e4;
   /* fill: #5c5c5b; */
 }

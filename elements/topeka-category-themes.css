@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* yellow theme */
 .yellow-theme .theme-bg {
   background-color: #ffeb3b;
-  color: #444;
+  color: #616161;
 }
 
 .yellow-theme .theme-bg-a {
@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* green theme */
 .green-theme .theme-bg {
   background-color: #0f9d58;
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .green-theme .theme-bg-a {
@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* red theme */
 .red-theme .theme-bg {
   background-color: #db4437;
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .red-theme .theme-bg-a {
@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* blue theme */
 .blue-theme .theme-bg {
   background-color: #4285f4;
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .blue-theme .theme-bg-a {
@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* purple theme */
 .purple-theme .theme-bg {
   background-color: #7e57c2;
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .purple-theme .theme-bg-a {
