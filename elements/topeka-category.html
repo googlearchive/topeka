@@ -15,14 +15,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="topeka-category" attributes="user category selected narrow" vertical layout>
 <template>
+
+  <link rel="stylesheet" href="topeka-category-themes.css">
   
-  <core-pages selected="{{selected}}" flex>
+  <core-pages selected="{{selected}}" class="{{category.theme}}-theme" flex>
   
     <topeka-category-front-page name="front" category="{{category}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
   
     <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" narrow="{{narrow}}"></topeka-quizzes>
     
-    <topeka-results name="results" scores="{{scores}}" category="{{category}}" narrow="{{narrow}}" on-next="{{showScores}}"></topeka-results>
+    <topeka-results name="results" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" on-next="{{showScores}}"></topeka-results>
   
     <topeka-user-score name="scores" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
     

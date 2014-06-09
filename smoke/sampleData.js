@@ -9,7 +9,7 @@
           type: 'fill-blank', 
           question: 'Can you name the Google product from a 2006 April Fools day prank?',
           start: 'Love is just another search problem. Solve it with Google',
-          end: '.',
+          end: '',
           answer: 'Romance'
         },
         {
@@ -54,7 +54,7 @@
           type: 'fill-blank', 
           question: 'Can you name the Google product from a 2006 April Fools day prank?',
           start: 'Love is just another search problem. Solve it with Google',
-          end: '.',
+          end: '',
           answer: 'Romance'
         },
         {
@@ -99,7 +99,7 @@
           type: 'fill-blank', 
           question: 'Can you name the Google product from a 2006 April Fools day prank?',
           start: 'Love is just another search problem. Solve it with Google',
-          end: '.',
+          end: '',
           answer: 'Romance'
         },
         {
@@ -144,7 +144,7 @@
           type: 'fill-blank', 
           question: 'Can you name the Google product from a 2006 April Fools day prank?',
           start: 'Love is just another search problem. Solve it with Google',
-          end: '.',
+          end: '',
           answer: 'Romance'
         },
         {

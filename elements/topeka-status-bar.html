@@ -10,43 +10,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-avatar.html">
 <link rel="import" href="../components/paper-progress/paper-progress.html">
 
-<polymer-element name="topeka-status-bar" attributes="avatar scores category" horizontal layout>
+<polymer-element name="topeka-status-bar" attributes="avatar scores category" vertical layout>
 <template>
 
   <style>
   
     :host {
       display: block;
+      height: 64px;
+      background-color: #fff;
     }
   
     topeka-avatar {
-      width: 60px;
-      height: 60px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
     }
     
     paper-progress {
       width: 100%;
     }
     
-    .num, .pts {
+    .info {
       padding: 0 16px;
     }
     
+    .cat-info {
+      padding: 0 16px;
+    }
+    
+    .cat-info > .title {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    
+    .pts {
+      font-size: 30px;
+      font-weight: 300;
+    }
+    
   </style>
+  
+  <paper-progress value="{{scores.length + 1}}" max="{{category.quizzes.length}}"></paper-progress>
+  
+  <div class="info" flex horizontal center layout>
 
-  <topeka-avatar avatar="{{avatar}}"></topeka-avatar>
-  
-  <div flex vertical layout>
-  
-    <paper-progress value="{{scores.length + 1}}" max="{{category.quizzes.length}}"></paper-progress>
+    <topeka-avatar avatar="{{avatar}}"></topeka-avatar>
     
-    <div flex horizontal center layout>
-    
-      <div class="num">{{scores.length + 1}}</div>
-      <div flex>{{category.name}}</div>
-      <div class="pts">{{pts}} pts.</div>
-      
+    <div class="cat-info" flex vertical layout>
+      <div class="title">{{category.name}}</div>
+      <div>{{scores.length}} / {{category.quizzes.length}}</div>
     </div>
+    
+    <div class="pts">{{pts}}</div>
     
   </div>
 

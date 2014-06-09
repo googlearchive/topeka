@@ -7,9 +7,21 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+:host {
+  background-color: #424242;
+}
+
+core-toolbar {
+  height: 95px;
+}
+
+core-toolbar::shadow #topBar {
+  height: 95px;
+}
+
 topeka-avatar {
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 }
 
@@ -23,7 +35,7 @@ topeka-avatar {
   float: left;
   vertical-align: top;
   width: 50%;
-  height: 180px;
+  height: 224px;
 }
 
 .category-item.completed {
@@ -43,26 +55,25 @@ topeka-avatar {
 }
 
 .cat-name {
-  height: 42px;
-  padding: 0 8px;
+  height: 48px;
+  padding: 0 16px;
 }
 
-.checked-icon {
-  display: none;
+.category-icon {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 14px;
+  bottom: 14px;
 }
 
-.completed > .checked-icon {
-  display: inline-block;
-}
-
-.leaderboard.tile {
-  background-color: #ccc;
+.leaderboard {
   color: #fff;
+  fill: #fff;
+}
+
+.leaderboard .tile {
+  background-color: #f5f5f5;
 }
 
 .leaderboard .cat-name {
-  background-color: #aaa;
+  background-color: #999;
 }

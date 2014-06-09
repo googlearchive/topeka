@@ -20,16 +20,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="sampleData.js"></script>
   
   <link rel="stylesheet" href="../theme.css" shim-shadowdom>
+  <link rel="stylesheet" href="../elements/topeka-category-themes.css" shim-shadowdom>
   
   <link rel="import" href="../components/font-roboto2/roboto2.html">
   <link rel="import" href="../components/core-icons/core-icons.html">
-  <link rel="import" href="../components/core-media-query/core-media-query.html">
   <link rel="import" href="../elements/topeka-results.html">
   
 </head>
-<body unresolved>
-
-  <core-media-query query="max-width: 800px"></core-media-query>
+<body unresolved class="yellow-theme">
 
   <topeka-results fit></topeka-results>
   
@@ -38,14 +36,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     addEventListener('polymer-ready', function() {
       
       var r = document.querySelector('topeka-results');
-      var m = document.querySelector('core-media-query');
-      
-      m.addEventListener('core-media-change', function() {
-        r.narrow = m.queryMatches;
-      });
-      
       r.scores = [1,0,1,1,0,1,1,0,1,1,0,1,1,0,1];
       r.category = window.categories[0];
+      r.avatar = 1;
       
     });
   

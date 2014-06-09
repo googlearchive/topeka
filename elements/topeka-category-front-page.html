@@ -13,8 +13,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name="topeka-category-front-page" attributes="category" vertical layout>
 <template>
 
-  <link rel="stylesheet" href="topeka-category-themes.css">
-  
   <style>
   
     paper-icon-button {
@@ -23,21 +21,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     .bottom-bar {
       position: relative;
-      height: 86px;
+      height: 56px;
+      line-height: 56px;
       padding: 0 20px;
-      font-size: 24px;
+      font-size: 20px;
     }
     
     paper-fab {
       position: absolute;
       top: -28px;
       right: 16px;
-      background-color: #ff4081;
+      background-color: #fff;
+      /* fill: #616161; */
     }
     
-    /* FIXME: icon in paper-fab not aligned correctly */
+    /* FIXME: icon in paper-fab not aligned correctly and hard-coded fill color */
     paper-fab::shadow core-icon > svg {
       display: block;
+      fill: #616161;
     }
   
   </style>

@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="topeka-avatar.html">
 <link rel="import" href="topeka-user-model.html">
+<link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
 <polymer-element name="topeka-user-score" attributes="user scores" vertical layout>
@@ -16,15 +17,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="stylesheet" href="topeka-user-score.css">
 
-  <div class="top-bar" horizontal center layout>
+  <core-toolbar>
+    
     <topeka-avatar avatar="{{user.avatar}}"></topeka-avatar>
-    <div>{{user.name}}</div>
-  </div>
+    <div flex>{{user.name}}</div>
+    <div>{{totalPts}} pts</div>
+      
+  </core-toolbar>
 
-  <div class="main" flex vertical center-justified layout>
+  <div class="main theme-bg-a" flex vertical layout>
   
     <div class="category">
-      <div>{{correct}}/{{scores.length}} correct!</div>
+      <div>{{correct}} / {{scores.length}} correct!</div>
       <div class="big">+{{pts}}</div>
     </div>
     

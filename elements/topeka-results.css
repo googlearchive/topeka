@@ -7,21 +7,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-core-toolbar {
-  height: 256px;
-}
-
-.heading {
-  height: 64px;
-  padding: 0 26px;
-  background-color: #1de9b6;
-  font-size: 24px;
-  font-weight: 300;
-  color: #fff;
-}
-
-.results-label {
-  font-size: 0.8em;
+.results-content {
+  background-color: #eee;
+  overflow: auto;
+  padding-bottom: 72px;
 }
 
 .result-item {
@@ -43,27 +32,15 @@ core-icon.fail {
   fill: #f50057;
 }
 
-.next-button-container {
-  padding: 26px;
+paper-fab {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background-color: #f5f5f5;
+  /* fill: #626262; */
 }
 
-.next-button-container > paper-button {
-  color: #ff4081;
-}
-
-/* in wide layout, makes results content a floating card on top of the toolbar */
-.wide-mode .results-content {
-  background-color: #fff;
-  max-width: 600px;
-  margin: 128px 64px 64px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
-
-core-scroll-header-panel.wide-mode::shadow #mainContainer {
-  top: 0 !important;
-  z-index: 1;
-}
-
-.wide-mode core-toolbar {
-  height: 192px;
+/* FIXME: paper-fab should not hard-coded the icon's fill color */
+paper-fab::shadow /deep/ #icon {
+  fill: #626262;
 }

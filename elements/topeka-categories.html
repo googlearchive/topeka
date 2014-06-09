@@ -13,7 +13,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
 <link rel="import" href="../components/core-icon/core-icon.html">
-<link rel="import" href="../components/paper-progress/paper-progress.html">
 
 <polymer-element name="topeka-categories" attributes="user categories category narrow" vertical layout>
 <template>
@@ -23,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <core-scroll-header-panel flex fixed>
   
-    <core-toolbar class="tall">
+    <core-toolbar>
     
       <topeka-avatar avatar="{{user.avatar}}"></topeka-avatar>
       <div flex>{{user.name}}</div>
@@ -35,23 +34,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       <core-selector id="categoryList" class="category-list" selected="{{selected}}">
       
-        <div class="category-item" vertical layout>
-          <div class="tile leaderboard" flex vertical layout>
+        <div class="category-item leaderboard" vertical layout>
+          <div class="tile" flex vertical layout>
             <div flex></div>
             <div class="cat-name" horizontal center layout>Leaderboard</div>
           </div>
+          <core-icon class="category-icon" icon="arrow-forward"></core-icon>
         </div>
       
         <template repeat="{{cat in categories}}">
         
           <template bind="{{user.scores[cat.name] as scores}}">
-            <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length >= cat.quizzes.length} | tokenList }}" vertical layout>
+            <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" vertical layout>
               <div class="tile theme-bg-a" flex vertical layout>
                 <div flex></div>
-                <paper-progress value="{{scores ? scores.length : 0}}" max="{{cat.quizzes.length}}"></paper-progress>
                 <div class="cat-name theme-bg" horizontal center layout>{{cat.name}}</div>
               </div>
-              <core-icon class="checked-icon theme-icon" icon="check"></core-icon>
+              <core-icon class="category-icon {{ scores.length == cat.quizzes.length ? 'theme-icon' : 'theme-bg' }}" icon="{{ scores.length == cat.quizzes.length ? 'check' : 'av:play-arrow' }}"></core-icon>
             </div>
           </template>
         

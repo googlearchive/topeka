@@ -28,38 +28,22 @@ topeka-quiz-view {
   padding: 26px;
 }
 
-.check-button {
+paper-fab.check-button {
   position: absolute;
   bottom: -28px;
   right: 16px;
-  background-color: #e7e6e4;
-  /* fill: #5c5c5b; */
+  background-color: #f5f5f5;
+  /* fill: #626262; */
 }
 
 /* FIXME: paper-fab should not hard-coded the icon's fill color */
 paper-fab.check-button::shadow /deep/ #icon {
-  fill: #5c5c5b;
+  fill: #626262;
 }
 
 topeka-status-bar {
+  height: 64px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   border-top: 1px solid #dedede;
-}
-
-/* in wide layout, makes quiz content a floating card on top of the toolbar */
-core-scroll-header-panel.wide-mode::shadow #mainContainer {
-  top: 0 !important;
-  z-index: 1;
-}
-
-.wide-mode .quiz-content {
-  background-color: #fff;
-  max-width: 600px;
-  margin: 128px 64px 64px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
-
-.quiz-content > .question {
-  font-size: 1.3em;
-  line-height: 1.4em;
-  padding: 26px;
 }

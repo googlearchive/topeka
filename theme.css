@@ -18,7 +18,6 @@ body /deep/ core-toolbar {
   color: #fff;
   fill: #fff;
   font-weight: 300;
-  transition: none;
 }
 
 body /deep/ .theme-icon {
@@ -27,12 +26,4 @@ body /deep/ .theme-icon {
 
 body /deep/ .theme-color {
   color: #00bbd3;
-}
-
-body /deep/ paper-progress::shadow #progressContainer {
-  background-color: transparent;
-}
-
-body /deep/ paper-progress::shadow #activeProgress {
-  background-color: #ff4081;
 }

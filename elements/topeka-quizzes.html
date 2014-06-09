@@ -21,13 +21,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <core-scroll-header-panel flex fixed class="{{ {'wide-mode': !narrow} | tokenList }}">
+  <core-scroll-header-panel flex fixed class="{{category.theme}}-theme">
   
-    <core-toolbar class="tall">
+    <core-toolbar class="tall theme-bg">
     
       <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
       
-      <div class="middle question" hidden?={{!narrow}} self-start>{{quiz.question}}</div>
+      <div class="middle question" self-start>{{quiz.question}}</div>
       
       <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
       
@@ -35,8 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div class="content quiz-content" hidden?="{{!category}}">
     
-      <div class="question" hidden?={{narrow}}>{{quiz.question}}</div>
-      
       <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
       
         <template repeat="{{category.quizzes}}">
@@ -45,13 +43,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
       </core-selector>
       
-      <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" hidden?="{{narrow}}"></topeka-status-bar>
-      
     </div>
     
   </core-scroll-header-panel>
   
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" hidden?="{{!narrow}}"></topeka-status-bar>
+  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}"></topeka-status-bar>
   
 </template>
 <script>
