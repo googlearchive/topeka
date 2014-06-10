@@ -7,7 +7,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="topeka-avatar.html">
+<link rel="import" href="topeka-avatars.html">
 <link rel="import" href="topeka-user-model.html">
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <core-toolbar>
     
-    <topeka-avatar avatar="{{user.avatar}}"></topeka-avatar>
+    <core-icon icon="avatars:avatar-{{user.avatar}}" size="64"></core-icon>
     <div flex>{{user.name}}</div>
     <div>{{totalPts}} pts</div>
       
