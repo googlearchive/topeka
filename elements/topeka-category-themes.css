@@ -8,14 +8,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 /* yellow theme */
-.yellow-theme /deep/ .theme-bg {
+.yellow-theme /deep/ .theme-bg, 
+.yellow-theme.theme-bg {
   background-color: #ffeb3b;
   color: #616161;
   fill: #616161;
 }
 
-.yellow-theme /deep/ .theme-bg-a {
+.yellow-theme /deep/ .theme-bg-a,
+.yellow-theme.theme-bg-a {
   background-color: #ffff8d;
+}
+
+.yellow-theme /deep/ .theme-color {
   color: #616161;
   fill: #616161;
 }
@@ -33,14 +38,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* green theme */
-.green-theme /deep/ .theme-bg {
+.green-theme /deep/ .theme-bg,
+.green-theme.theme-bg {
   background-color: #1de9b6;
   color: #616161;
   fill: #616161;
 }
 
-.green-theme /deep/ .theme-bg-a {
+.green-theme /deep/ .theme-bg-a,
+.green-theme.theme-bg-a {
   background-color: #b9f6ca;
+}
+
+.green-theme /deep/ .theme-color {
   color: #616161;
   fill: #616161;
 }
@@ -58,14 +68,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* red theme */
-.red-theme /deep/ .theme-bg {
+.red-theme /deep/ .theme-bg,
+.red-theme.theme-bg {
   background-color: #db4437;
   color: #fff;
   fill: #fff;
 }
 
-.red-theme /deep/ .theme-bg-a {
+.red-theme /deep/ .theme-bg-a,
+.red-theme.theme-bg-a {
   background-color: #ff8a80;
+}
+
+.red-theme /deep/ .theme-color {
   color: #fff;
   fill: #fff;
 }
@@ -83,16 +98,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* blue theme */
-.blue-theme /deep/ .theme-bg {
+.blue-theme /deep/ .theme-bg,
+.blue-theme.theme-bg {
   background-color: #00bcd4;
   color: #fff;
   fill: #fff;
 }
 
-.blue-theme /deep/ .theme-bg-a {
+.blue-theme /deep/ .theme-bg-a,
+.blue-theme.theme-bg-a {
   background-color: #84ffff;
-  color: #fff;
-  fill: #fff;
+}
+
+.blue-theme /deep/ .theme-color {
+  color: #616161;
+  fill: #616161;
 }
 
 .blue-theme /deep/ .theme-icon {
@@ -108,14 +128,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* purple theme */
-.purple-theme /deep/ .theme-bg {
+.purple-theme /deep/ .theme-bg,
+.purple-theme.theme-bg {
   background-color: #7e57c2;
   color: #fff;
   fill: #fff;
 }
 
-.purple-theme /deep/ .theme-bg-a {
+.purple-theme /deep/ .theme-bg-a,
+.purple-theme.theme-bg-a {
   background-color: #b388ff;
+}
+
+.purple-theme /deep/ .theme-color {
   color: #fff;
   fill: #fff;
 }

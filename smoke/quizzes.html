@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved class="yellow-theme">
 
-  <core-media-query query="max-width: 800px"></core-media-query>
+  <core-media-query query="min-width: 900px"></core-media-query>
 
   <topeka-quizzes fit></topeka-quizzes>
   
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var m = document.querySelector('core-media-query');
       
       m.addEventListener('core-media-change', function() {
-        q.narrow = m.queryMatches;
+        q.wide = m.queryMatches;
       });
       
       q.avatar = 1;

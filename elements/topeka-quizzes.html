@@ -15,16 +15,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-quizzes" attributes="scores category avatar narrow" vertical layout>
+<polymer-element name="topeka-quizzes" attributes="scores category avatar wide" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <core-scroll-header-panel fixed flex>
+  <core-scroll-header-panel fixed flex headerHeight="192">
   
     <core-toolbar class="tall theme-bg">
     
-      <paper-icon-button icon="menu" hidden?="{{!narrow}}" on-tap="{{menuAction}}"></paper-icon-button>
+      <paper-icon-button icon="menu" hidden?="{{wide}}" on-tap="{{menuAction}}"></paper-icon-button>
       
       <div class="middle question" self-start>{{quiz.question}}</div>
       
@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-quizzes', {
     
-    narrow: false,
+    wide: false,
     
     observe: {
       'scores category': 'update'

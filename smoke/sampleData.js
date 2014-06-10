@@ -2,8 +2,8 @@
   
   window.categories = [
     {
-      name: 'April Fools!',
-      theme: 'yellow',
+      name: 'Food & Drink',
+      theme: 'green',
       quizzes: [
         {
           type: 'fill-blank', 
@@ -233,8 +233,8 @@
       ]
     },
     {
-      name: 'I/O Trivia',
-      theme: 'green',
+      name: 'General Knowledge',
+      theme: 'yellow',
       quizzes: [
         {
           type: 'single-select', 
@@ -259,6 +259,125 @@
             'Decode'
           ],
           answer: '1,3,4'
+        }
+      ]
+    },
+    {
+      name: "History",
+      theme: "blue",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Geography",
+      theme: "red",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Science & Nature",
+      theme: "green",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Movies",
+      theme: "purple",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Music",
+      theme: "blue",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Entertainment",
+      theme: "red",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
+        }
+      ]
+    },
+    {
+      name: "Sports",
+      theme: "purple",
+      quizzes: [
+        {
+          type: "single-select",
+          question: "Chromebook is made for?",
+          options: [
+            "Grandma",
+            "Kids",
+            "Classroom",
+            "Everyone"
+          ],
+          answer: 3
         }
       ]
     }

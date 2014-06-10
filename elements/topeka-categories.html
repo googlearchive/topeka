@@ -14,13 +14,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-selector/core-selector.html">
 <link rel="import" href="../components/core-icon/core-icon.html">
 
-<polymer-element name="topeka-categories" attributes="user categories category narrow" vertical layout>
+<polymer-element name="topeka-categories" attributes="user categories category wide" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-categories.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
 
-  <core-scroll-header-panel flex fixed hero-p>
+  <core-scroll-header-panel fixed flex hero-p>
   
     <core-toolbar>
     
@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </core-toolbar>
     
-    <div class="content" hero-p>
+    <div class="content {{ {wide: wide} | tokenList }}" hero-p>
     
       <core-selector id="categoryList" class="category-list" selected="{{selected}}" hero-p>
       
@@ -69,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-categories', {
     
-    narrow: false,
+    wide: false,
     
     selectedChanged: function() {
       // first one is leaderboard

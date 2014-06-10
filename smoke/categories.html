@@ -24,11 +24,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../components/font-roboto2/roboto2.html">
   <link rel="import" href="../components/core-icons/core-icons.html">
   <link rel="import" href="../components/core-icons/iconsets/av-icons.html">
+  <link rel="import" href="../components/core-media-query/core-media-query.html">
   <link rel="import" href="../elements/topeka-categories.html">
   
 </head>
 <body unresolved>
 
+  <core-media-query query="min-width: 900px"></core-media-query>
+  
   <topeka-categories fit></topeka-categories>
   
   <script>
@@ -36,11 +39,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     addEventListener('polymer-ready', function() {
   
       var c = document.querySelector('topeka-categories');
+      var m = document.querySelector('core-media-query');
+      
+      m.addEventListener('core-media-change', function() {
+        c.wide = m.queryMatches;
+      });
+      
       c.user = {
         name: 'Frankie F',
         avatar: 1,
         scores: {
-          'I/O Trivia': [1, 1]
+          'History': [1],
+          'Sports': [0]
         }
       };
       c.categories = window.categories;

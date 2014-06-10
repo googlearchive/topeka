@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-leaderboard.html">
 <link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
 
 <polymer-element name="topeka-app" attributes="user categories" vertical layout>
 <template>
@@ -25,18 +26,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
 
-  <core-drawer-panel id="panel" flex responsiveWidth="5000px" narrow="{{narrow}}">
+  <core-drawer-panel id="panel" flex responsiveWidth="5000px">
   
     <topeka-menu id="menu" drawer on-core-activate="{{menuSelect}}"></topeka-menu>
   
     <core-animated-pages main selected="{{selected}}" transitions="cross-fade-all,hero-transition">
     
       <topeka-categories id="categories" name="categories" user="{{user}}" 
-        categories="{{categories}}" category="{{category}}" narrow="{{narrow}}" 
+        categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
         on-core-activate="{{categorySelect}}"></topeka-categories>
     
       <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" 
-        narrow="{{narrow}}" on-menu="{{openDrawer}}" on-results="{{updateStatus}}" 
+        wide="{{wide}}" on-menu="{{openDrawer}}" on-results="{{updateStatus}}" 
         on-main="{{showCategories}}"></topeka-category>
         
       <topeka-leaderboard name="leaderboard" user="{{user}}" on-previous="{{showCategories}}"></topeka-leaderboard>
@@ -44,6 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </core-pages>
   
   </core-drawer-panel>
+  
+  <core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
 
 </template>
 <script>
@@ -51,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-app', {
     
     selected: 'categories',
+    responsiveWidth: '900px',
     
     closeDrawer: function() {
       this.$.panel.closeDrawer();

@@ -13,22 +13,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-pages/core-pages.html">
 
-<polymer-element name="topeka-category" attributes="user category selected narrow" vertical layout>
+<polymer-element name="topeka-category" attributes="user category selected wide" vertical layout>
 <template>
 
+  <link rel="stylesheet" href="topeka-category.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
   
-  <core-pages selected="{{selected}}" hero-id="punch" hero class="{{category.theme}}-theme" flex>
+  <div class="{{category.theme}}-theme theme-bg-a {{ {wide: wide} | tokenList }}" flex vertical layout>
   
-    <topeka-category-front-page name="front" hero category="{{category}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
-  
-    <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" narrow="{{narrow}}"></topeka-quizzes>
+    <core-pages id="categoryPages" selected="{{selected}}" hero-id="punch" hero flex>
     
-    <topeka-results name="results" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" on-next="{{showScores}}"></topeka-results>
-  
-    <topeka-user-score name="scores" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
+      <topeka-category-front-page name="front" hero category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
-  </core-pages>
+      <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}"></topeka-quizzes>
+      
+      <topeka-results name="results" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" on-next="{{showScores}}"></topeka-results>
+    
+      <topeka-user-score name="scores" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
+      
+    </core-pages>
+  
+  </div>
   
 </template>
 <script>
@@ -36,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-category', {
     
     selected: 'front',
-    narrow: false,
+    wide: false,
     
     computed: {
       'scores': 'computeScores(user, category, dirty)'

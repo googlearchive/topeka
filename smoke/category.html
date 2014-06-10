@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <core-media-query query="max-width: 800px"></core-media-query>
+  <core-media-query query="min-width: 900px"></core-media-query>
 
   <topeka-category fit></topeka-category>
   
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var m = document.querySelector('core-media-query');
       
       m.addEventListener('core-media-change', function() {
-        c.narrow = m.queryMatches;
+        c.wide = m.queryMatches;
       });
       
       c.user = {
