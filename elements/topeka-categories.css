@@ -12,11 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 core-toolbar {
-  height: 95px;
+  height: 96px;
 }
 
 core-toolbar::shadow #topBar {
-  height: 95px;
+  height: 96px;
 }
 
 .topeka-avatar {
@@ -28,7 +28,6 @@ core-toolbar::shadow #topBar {
   display: block;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  padding: 2px;
 }
 
 .category-item {
@@ -67,16 +66,16 @@ core-toolbar::shadow #topBar {
   bottom: 14px;
 }
 
-.leaderboard {
+.leaderboard, .profile {
   color: #fff;
   fill: #fff;
 }
 
-.leaderboard .tile {
+.leaderboard .tile, .profile .tile {
   background-color: #f5f5f5;
 }
 
-.leaderboard .cat-name {
+.leaderboard .cat-name, .profile .cat-name {
   background-color: #999;
 }
 
@@ -108,9 +107,16 @@ core-toolbar::shadow #topBar {
   height: calc(100% / 3 * 2);
 }
 
-.wide .category-item:nth-of-type(10) {
+.wide .category-item:nth-of-type(9) {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: calc(100% / 3);
+  width: calc(100% / 6);
+}
+
+.wide .category-item:nth-of-type(10) {
+  position: absolute;
+  bottom: 0;
+  left: calc(100% / 6);;
+  width: calc(100% / 6);
 }

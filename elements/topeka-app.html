@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-categories.html">
 <link rel="import" href="topeka-category.html">
 <link rel="import" href="topeka-leaderboard.html">
+<link rel="import" href="topeka-profile.html">
 <link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
@@ -41,6 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-main="{{showCategories}}"></topeka-category>
         
       <topeka-leaderboard name="leaderboard" user="{{user}}" on-previous="{{showCategories}}"></topeka-leaderboard>
+      
+      <topeka-profile name="profile" user="{{user}}" on-previous="{{showCategories}}"></topeka-profile>
       
     </core-pages>
   
@@ -76,11 +79,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.selected = 'leaderboard';
     },
     
+    showProfile: function() {
+      this.selected = 'profile';
+    },
+    
     categorySelect: function() {
       if (this.category) {
-        this.showCategory();
-      } else {
-        this.showLeaderboard();
+        var n = this.category.name;
+        if (n === 'leaderboard') {
+          this.showLeaderboard();
+        } else if (n === 'profile') {
+          this.showProfile();
+        } else {
+          this.showCategory();
+        }
       }
     },
     

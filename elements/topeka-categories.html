@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="topeka-categories.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
 
-  <core-scroll-header-panel fixed flex hero-p>
+  <core-scroll-header-panel fixed headerHeight="96" flex hero-p>
   
     <core-toolbar>
     
@@ -55,6 +55,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </template>
         
         </template>
+        
+        <div class="category-item profile" vertical layout>
+          <div class="tile" flex vertical layout>
+            <div flex></div>
+            <div class="cat-name" horizontal center layout>Profile</div>
+          </div>
+          <core-icon class="category-icon" icon="arrow-forward"></core-icon>
+        </div>
       
       </core-selector>
       
@@ -72,8 +80,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     wide: false,
     
     selectedChanged: function() {
-      // first one is leaderboard
-      this.category = this.selected ? this.categories[this.selected - 1] : null;
+      // first one is leaderboard, last one is profile
+      if (this.selected === 0) {
+        this.category = {name: 'leaderboard'};
+      } else if (this.selected === this.categories.length + 1) {
+        this.category = {name: 'profile'};
+      } else {
+        this.category = this.categories[this.selected - 1];
+      }
     },
     
     updateStatus: function() {
