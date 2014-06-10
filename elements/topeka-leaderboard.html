@@ -16,15 +16,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
   
     :host {
-      background-color: #ddd;
+      /*background-color: silver;*/
+    }
+
+    [hero-id] {
+      background-color: #fff;
     }
   
   </style>
-
-  <core-toolbar>
-    <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
-    <div>Leaderboard</div>
-  </core-toolbar>
+  <div flex hero-id="punch" hero>
+    <core-toolbar>
+      <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
+      <div>Leaderboard</div>
+    </core-toolbar>
+  </div>
 
 </template>
 <script>
