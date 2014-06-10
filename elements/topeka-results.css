@@ -7,10 +7,18 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+.results-panel.wide {
+  margin: 64px 0;
+}
+
 .results-content {
   background-color: #eee;
   overflow: auto;
-  padding-bottom: 72px;
+  padding-bottom: 120px;
+}
+
+.results-panel.wide > .results-content {
+  position: relative;
 }
 
 .result-item {

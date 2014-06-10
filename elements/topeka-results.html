@@ -12,30 +12,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-icon/core-icon.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-results" attributes="scores category avatar" vertical layout>
+<polymer-element name="topeka-results" attributes="scores category avatar wide" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-results.css">
 
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}"></topeka-status-bar>
-    
-  <div class="results-content" flex>
-  
-    <core-selector selected="{{selected}}">
+  <div class="results-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}">
 
-      <template repeat="{{score, index in scores}}">
+    <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}"></topeka-status-bar>
       
-        <div class="result-item" horizontal center layout>
-          <core-icon icon="{{score ? 'done' : 'clear'}}" class="{{ {fail: !score} | tokenList }}"></core-icon>
-          <div flex>Question {{index + 1}}</div>
-          <div>{{score ? score : ':('}}</div>
-        </div>
+    <div class="results-content" flex>
+    
+      <core-selector selected="{{selected}}">
+  
+        <template repeat="{{score, index in scores}}">
+        
+          <div class="result-item" horizontal center layout>
+            <core-icon icon="{{score ? 'done' : 'clear'}}" class="{{ {fail: !score} | tokenList }}"></core-icon>
+            <div flex>Question {{index + 1}}</div>
+            <div>{{score ? score : ':('}}</div>
+          </div>
+        
+        </template>
       
-      </template>
-    
-    </core-selector>
-    
-    <paper-fab icon="check" on-tap="{{nextAction}}"></paper-fab>
+      </core-selector>
+      
+      <paper-fab icon="check" on-tap="{{nextAction}}"></paper-fab>
+      
+    </div>
     
   </div>
     

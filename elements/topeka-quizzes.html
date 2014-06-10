@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="topeka-status-bar.html">
 <link rel="import" href="topeka-quiz-view.html">
-<link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
@@ -20,19 +19,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <core-scroll-header-panel fixed flex headerHeight="192">
+  <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}">
   
     <core-toolbar class="tall theme-bg">
     
       <paper-icon-button icon="menu" hidden?="{{wide}}" on-tap="{{menuAction}}"></paper-icon-button>
-      
       <div class="middle question" self-start>{{quiz.question}}</div>
-      
       <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
       
     </core-toolbar>
     
-    <div class="content" hidden?="{{!category}}">
+    <div class="quizzes-content" hidden?="{{!category}}" flex>
     
       <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
       
@@ -44,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </div>
     
-  </core-scroll-header-panel>
+  </div>
   
   <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}"></topeka-status-bar>
   

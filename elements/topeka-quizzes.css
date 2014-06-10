@@ -7,17 +7,26 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-:host {
-  background-color: #eee;
+.quizzes-panel {
+  overflow: auto;
 }
 
-core-toolbar {
+.quizzes-panel > core-toolbar {
   font-size: 18px;
   line-height: 26px;
 }
 
+.quizzes-panel.wide core-toolbar {
+  margin-top: 64px;
+}
+
 .question {
   padding: 6px 0 0 10px;
+}
+
+.quizzes-content {
+  background-color: #eee;
+  overflow: auto;
 }
 
 #quizViews > * {
@@ -47,7 +56,4 @@ paper-fab.check-button::shadow /deep/ #icon {
 
 topeka-status-bar {
   height: 64px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  border-top: 1px solid #dedede;
 }
