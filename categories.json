@@ -118,7 +118,7 @@
   },
   {
     "name": "Science & Nature",
-    "theme": "green",
+    "theme": "purple",
     "quizzes": [
       {
         "type": "single-select",
@@ -135,7 +135,7 @@
   },
   {
     "name": "Movies",
-    "theme": "purple",
+    "theme": "green",
     "quizzes": [
       {
         "type": "single-select",
