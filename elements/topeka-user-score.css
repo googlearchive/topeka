@@ -19,10 +19,9 @@ core-toolbar::shadow #topBar {
   height: 95px;
 }
 
-topeka-avatar {
-  width: 64px;
-  height: 64px;
+.topeka-avatar {
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .main {
