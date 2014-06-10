@@ -8,8 +8,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 core-toolbar {
-  font-size: 1.2em;
-  line-height: 1.3em;
+  font-size: 18px;
+  line-height: 26px;
 }
 
 .question {

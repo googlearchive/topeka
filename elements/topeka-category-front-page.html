@@ -43,17 +43,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   </style>
 
-  <div class="{{category.theme}}-theme" flex vertical layout>
+  <div class="theme-bg-a" flex>
+    <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
+  </div>
   
-    <div class="theme-bg-a" flex>
-      <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
-    </div>
-    
-    <div class="bottom-bar theme-bg" horizontal center layout>
-      <div>{{category.name}}</div>
-      <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
-    </div>
-  
+  <div class="bottom-bar theme-bg" horizontal center layout>
+    <div>{{category.name}}</div>
+    <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
   </div>
 
 </template>

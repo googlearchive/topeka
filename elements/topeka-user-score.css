@@ -43,4 +43,11 @@ paper-fab {
   position: absolute;
   bottom: 16px;
   right: 16px;
+   background-color: #f5f5f5;
+  /* fill: #626262; */
+}
+
+/* FIXME: paper-fab should not hard-coded the icon's fill color */
+paper-fab::shadow /deep/ #icon {
+  fill: #626262;
 }

@@ -15,9 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .result-item {
   height: 60px;
-  font-size: 1.1em;
-  font-weight: 300;
-  padding: 0 26px;
+  padding: 0 16px;
 }
 
 core-icon {

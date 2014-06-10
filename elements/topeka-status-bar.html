@@ -44,8 +44,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       line-height: 24px;
     }
     
+    .cat-info > .progress {
+      font-weight: 300;
+    }
+    
     .pts {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 300;
     }
     
@@ -59,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div class="cat-info" flex vertical layout>
       <div class="title">{{category.name}}</div>
-      <div>{{scores.length}} / {{category.quizzes.length}}</div>
+      <div class="progress">{{scores.length + (scores.length == category.quizzes.length ? 0 : 1)}} / {{category.quizzes.length}}</div>
     </div>
     
     <div class="pts">{{pts}}</div>

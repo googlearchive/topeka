@@ -14,14 +14,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-selector/core-selector.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
-<link rel="import" href="../components/paper-progress/paper-progress.html">
 
 <polymer-element name="topeka-quizzes" attributes="scores category avatar narrow" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <core-scroll-header-panel flex fixed class="{{category.theme}}-theme">
+  <core-scroll-header-panel fixed flex>
   
     <core-toolbar class="tall theme-bg">
     
@@ -33,7 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </core-toolbar>
     
-    <div class="content quiz-content" hidden?="{{!category}}">
+    <div class="content" hidden?="{{!category}}">
     
       <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
       
