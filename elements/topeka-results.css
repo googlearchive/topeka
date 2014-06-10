@@ -18,8 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 0 16px;
 }
 
-core-icon {
-  padding-right: 30px;
+.result-item > core-icon {
+  padding-right: 40px;
 }
 
 core-icon {

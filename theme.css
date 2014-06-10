@@ -14,16 +14,8 @@ body {
 }
 
 body /deep/ core-toolbar {
-  background-color: #00bbd3;
+  background-color: #00bad2;
   color: #fff;
   fill: #fff;
   font-weight: 300;
-}
-
-body /deep/ .theme-icon {
-  fill: #00bbd3;
-}
-
-body /deep/ .theme-color {
-  color: #00bbd3;
 }
