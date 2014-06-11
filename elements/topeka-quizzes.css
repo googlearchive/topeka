@@ -41,8 +41,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 0 8px;
 }
 
-.quizzes-content {
+.quizzes-bg {
   background-color: #eee;
+}
+
+.quizzes-content {
   overflow: auto;
 }
 
@@ -72,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 paper-fab.check-button {
   position: absolute;
-  bottom: -28px;
+  top: 148px;
   right: 8px;
   background-color: #f5f5f5;
   fill: #626262;

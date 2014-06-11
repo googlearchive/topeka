@@ -23,30 +23,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <div class="card" flex?="{{!wide}}" vertical layout?="{{!wide}}">
     
-      <core-toolbar class="theme-bg">
+      <core-toolbar class="theme-bg" hero-id="punch-bottom" hero>
       
         <div class="question">{{quiz.question}}</div>
-        <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
         
       </core-toolbar>
+
+      <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
+
+      <div class="quizzes-bg" flex layout vertical slide-up>
       
-      <div class="quizzes-content" hidden?="{{!category}}" flex>
-      
-        <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
+        <div class="quizzes-content" hidden?="{{!category}}" flex>
         
-          <template repeat="{{category.quizzes}}">
-            <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
-          </template>
+          <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
           
-        </core-selector>
-        
+            <template repeat="{{category.quizzes}}">
+              <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
+            </template>
+            
+          </core-selector>
+
+        </div>
+
+        <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" xslide-up></topeka-status-bar>
+
       </div>
       
     </div>
     
   </div>
-  
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
   
 </template>
 <script>

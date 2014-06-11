@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-quizzes.html">
 <link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../components/core-animated-pages/transitions/slide-up.html">
 
 <polymer-element name="topeka-category" attributes="user category selected wide" vertical layout>
 <template>
@@ -22,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="{{category.theme}}-theme {{ {wide: wide} | tokenList }}" flex vertical layout hero-p>
   
-    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade-all hero-transition" hero-p>
+    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade slide-up hero-transition" hero-p>
     
       <topeka-category-front-page name="front" category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}" hero-p></topeka-category-front-page>
     
