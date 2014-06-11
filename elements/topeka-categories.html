@@ -8,7 +8,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="topeka-avatars.html">
-<link rel="import" href="topeka-user-model.html">
 <link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
@@ -26,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       <core-icon icon="avatars:avatar-{{user.avatar}}" size="64" class="topeka-avatar"></core-icon>
       <div flex>{{user.name}}</div>
-      <div>{{totalPts}} pts</div>
+      <div>{{user.score}} pts</div>
       
     </core-toolbar>
     
@@ -66,8 +65,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </div>
     
-  <topeka-user-model id="userModel" user="{{user}}" totalPoints="{{totalPts}}"></topeka-user-model>
-
 </template>
 <script>
 
@@ -84,10 +81,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       } else {
         this.category = this.categories[this.selected - 1];
       }
-    },
-    
-    updateStatus: function() {
-      this.$.userModel.update();
     }
     
   });

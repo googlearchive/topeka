@@ -24,8 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
       on-core-activate="{{categorySelect}}"></topeka-categories>
   
-    <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" 
-      wide="{{wide}}" on-results="{{updateStatus}}"></topeka-category>
+    <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" wide="{{wide}}"></topeka-category>
       
     <topeka-leaderboard name="leaderboard" user="{{user}}"></topeka-leaderboard>
     
@@ -43,8 +42,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     selected: 'categories',
     responsiveWidth: '900px',
     
+    observe: {
+      'user': 'computeScore'
+    },
+    
     eventDelegates: {
-      'main': 'showCategories'
+      'main': 'showCategories',
+      'score-update': 'computeScore'
     },
     
     showCategories: function() {
@@ -76,8 +80,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
     
-    updateStatus: function() {
-      this.$.categories.updateStatus();
+    computeScore: function() {
+      var pts = 0;
+      if (this.user) {
+        var ss = this.user.scores;
+        for (var n in ss) {
+          pts += this.sumPts(ss[n]);
+        }
+      }
+      this.user.score = pts;
+    },
+    
+    sumPts: function(s) {
+      var pts = 0;
+      for (var i = 0; i < s.length; i++) {
+        pts += s[i];
+      }
+      return pts;
     }
     
   });
