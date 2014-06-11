@@ -7,6 +7,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+:host {
+  overflow: hidden;
+}
+
 .quizzes-panel {
   overflow: auto;
 }
@@ -41,11 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 0 8px;
 }
 
-.quizzes-bg {
-  background-color: #eee;
-}
-
 .quizzes-content {
+  background-color: #eee;
   overflow: auto;
 }
 
@@ -82,6 +83,7 @@ paper-fab.check-button {
 }
 
 .quizzes-panel.wide paper-fab.check-button {
+  top: 212px;
   right: 16px;
 }
 

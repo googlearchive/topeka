@@ -31,27 +31,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
 
-      <div class="quizzes-bg" flex layout vertical slide-up>
+      <div class="quizzes-content" hidden?="{{!category}}" flex slide-up>
       
-        <div class="quizzes-content" hidden?="{{!category}}" flex>
+        <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
         
-          <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
+          <template repeat="{{category.quizzes}}">
+            <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
+          </template>
           
-            <template repeat="{{category.quizzes}}">
-              <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
-            </template>
-            
-          </core-selector>
-
-        </div>
-
-        <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" xslide-up></topeka-status-bar>
+        </core-selector>
 
       </div>
       
     </div>
     
   </div>
+
+  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" slide-up></topeka-status-bar>
   
 </template>
 <script>
