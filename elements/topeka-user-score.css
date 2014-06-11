@@ -12,11 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 core-toolbar {
-  height: 95px;
+  height: 100px;
 }
 
 core-toolbar::shadow #topBar {
-  height: 95px;
+  height: 100px;
 }
 
 .topeka-avatar {

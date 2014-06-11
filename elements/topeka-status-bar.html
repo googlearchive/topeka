@@ -11,14 +11,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-icon/core-icon.html">
 <link rel="import" href="../components/paper-progress/paper-progress.html">
 
-<polymer-element name="topeka-status-bar" attributes="avatar scores category" vertical layout>
+<polymer-element name="topeka-status-bar" attributes="avatar scores category wide" vertical layout>
 <template>
 
   <style>
   
     :host {
       display: block;
-      height: 64px;
       background-color: #fff;
     }
   
@@ -33,6 +32,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     .info {
       padding: 0 16px;
+    }
+    
+    .wide.info {
+      padding: 0 24px;
     }
     
     .cat-info {
@@ -53,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <paper-progress value="{{scores.length}}" max="{{category.quizzes.length}}"></paper-progress>
   
-  <div class="info" flex horizontal center layout>
+  <div class="info {{ {wide: wide} | tokenList }}" flex horizontal center layout>
 
     <core-icon size="40" icon="avatars:avatar-{{avatar}}" class="topeka-avatar"></core-icon>
     
@@ -70,6 +73,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 
   Polymer('topeka-status-bar', {
+    
+    wide: false,
     
     scoresChanged: function() {
       this.pts = 0;

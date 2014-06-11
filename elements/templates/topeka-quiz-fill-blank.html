@@ -15,6 +15,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <style>
   
+    :host {
+      padding-top: 40px;
+    }
+  
     .sentence {
       font-size: 22px;
       line-height: 36px;
@@ -28,10 +32,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
   
-  <br>
   <div class="sentence">{{quiz.start}}</div>
   <paper-input value="{{value}}" label="Fill in the Blank"></paper-input>
   <div class="sentence">{{quiz.end}}</div>
+  <br>
 
 </template>
 <script>

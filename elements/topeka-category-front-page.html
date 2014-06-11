@@ -7,17 +7,12 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-category-front-page" attributes="category" vertical layout>
+<polymer-element name="topeka-category-front-page" attributes="category wide" vertical layout>
 <template>
 
   <style>
-  
-    paper-icon-button {
-      padding: 16px;
-    }
   
     .bottom-bar {
       position: relative;
@@ -27,12 +22,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-size: 18px;
     }
     
+    .bottom-bar.wide {
+      padding: 0 24px;
+    }
+    
     paper-fab {
       position: absolute;
       top: -28px;
       right: 16px;
       background-color: #fff;
       /* fill: #616161; */
+    }
+    
+    .wide > paper-fab {
+      right: 24px;
     }
     
     /* FIXME: icon in paper-fab not aligned correctly and hard-coded fill color */
@@ -49,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="theme-bg-a" flex></div>
   
-  <div class="bottom-bar theme-bg" horizontal center layout>
+  <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout>
     <div>{{category.name}}</div>
     <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
   </div>
@@ -58,6 +61,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 
   Polymer('topeka-category-front-page', {
+    
+    wide: false,
     
     nextAction: function() {
       this.fire('next');

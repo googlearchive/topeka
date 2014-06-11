@@ -111,8 +111,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .blue-theme /deep/ .theme-color {
-  color: #616161;
-  fill: #616161;
+  color: #fff;
+  fill: #fff;
 }
 
 .blue-theme /deep/ .theme-icon {
