@@ -16,26 +16,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
   
     :host {
-      padding-top: 40px;
-    }
-  
-    .sentence {
-      font-size: 22px;
-      line-height: 36px;
-      font-weight: 300;
+       padding: 40px;
     }
     
+    :host-context(.wide) {
+      width: 304px;
+      margin: 0 auto;
+    }
+  
     paper-input {
-      width: 140px;
-      vertical-align: top;
+      width: 100%;
+      height: 48px;
     }
     
   </style>
   
-  <div class="sentence">{{quiz.start}}</div>
+  <div>{{quiz.start}}</div>
   <paper-input value="{{value}}" label="Fill in the Blank"></paper-input>
-  <div class="sentence">{{quiz.end}}</div>
-  <br>
+  <div>{{quiz.end}}</div>
 
 </template>
 <script>

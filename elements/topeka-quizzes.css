@@ -62,13 +62,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: block;
 }
 
-topeka-quiz-view {
+/* topeka-quiz-view {
   padding: 0 16px;
 }
 
 .quizzes-panel.wide topeka-quiz-view {
   padding: 0 24px 24px;
-}
+} */
 
 paper-fab.check-button {
   position: absolute;

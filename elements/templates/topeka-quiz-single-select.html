@@ -8,35 +8,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../topeka-quiz-base.html">
+<link rel="import" href="../../components/core-selector/core-selector.html">
 <link rel="import" href="../../components/paper-radio-button/paper-radio-button.html">
-<link rel="import" href="../../components/paper-radio-group/paper-radio-group.html">
 
 <polymer-element name="topeka-quiz-single-select" extends="topeka-quiz-base" noscript>
 <template>
 
   <style>
   
-    :host {
-      padding-top: 40px;
+    .item {
+      height: 48px;
     }
-  
-    paper-radio-button {
-      display: block;
-      height: 40px;
-      padding: 10px 0 !important;
+    
+    .item > div {
+      padding-left: 32px;
     }
   
   </style>
   
-  <paper-radio-group selected="{{value}}">
+  <div id="choices">
       
     <template repeat="{{quiz.options}}">
-      
-      <paper-radio-button label="{{}}"></paper-radio-button>
+    
+      <div class="item" horizontal center layout>
+        <paper-radio-button></paper-radio-button>
+        <div>{{}}</div>
+      </div>
       
     </template>
     
-  </paper-radio-group>
+  </div>
+  
+  <core-selector target="{{$.choices}}" itemsSelector="paper-radio-button" selected="{{value}}" selectedProperty="checked"></core-selector>
   
 </template>
 </polymer-element>

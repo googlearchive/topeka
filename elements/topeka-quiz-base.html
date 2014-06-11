@@ -8,6 +8,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <polymer-element name="topeka-quiz-base" attributes="quiz" block>
+<template>
+
+  <style>
+  
+    /* default paddings for normal and wide layouts */
+    :host {
+      padding: 40px 16px;
+    }
+    
+    :host-context(.wide) {
+      padding: 40px 24px 48px;
+    }
+  
+  </style>
+
+</template>
 <script>
 
   (function() {
