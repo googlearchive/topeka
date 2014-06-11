@@ -13,6 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .categories-panel {
   position: relative;
+  /* TODO(sjmiles): why is this necessary? */
+  overflow-x: hidden;
 }
 
 .categories-panel > core-toolbar {
@@ -39,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   margin: 0 -2px;
   overflow-y: auto;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .category-item {
