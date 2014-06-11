@@ -20,13 +20,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="{{category.theme}}-theme theme-bg-a {{ {wide: wide} | tokenList }}" flex vertical layout>
   
-    <core-pages id="categoryPages" selected="{{selected}}" hero-id="punch" hero flex>
+    <core-pages class="category-pages" selected="{{selected}}" hero-id="punch" hero flex>
     
       <topeka-category-front-page name="front" hero category="{{category}}" wide="{{wide}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
       <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}"></topeka-quizzes>
       
-      <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
+      <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" categoryName="{{category.name}}" wide="{{wide}}" on-next="{{mainAction}}"></topeka-user-score>
       
     </core-pages>
     

@@ -7,10 +7,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-:host {
-  position: relative;
-}
-
 core-toolbar {
   height: 100px;
 }
@@ -24,29 +20,54 @@ core-toolbar::shadow #topBar {
   overflow: hidden;
 }
 
+.wide {
+  width: 512px;
+  margin: 0 auto;
+}
+
 .main {
+  position: relative;
   padding: 64px 16px;
   font-size: 24px;
   font-weight: 300;
+  overflow: auto;
 }
 
 .main .big {
   font-size: 100px;
 }
 
-.category {
+.category-info {
   padding-bottom: 30px;
+}
+
+.bottom-bar {
+  position: relative;
+  height: 64px;
+  line-height: 64px;
+  padding: 0 16px;
+  font-size: 18px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.bottom-bar.wide {
+  padding: 0 24px;
 }
 
 paper-fab {
   position: absolute;
-  bottom: 16px;
+  top: -28px;
   right: 16px;
-   background-color: #f5f5f5;
+  background-color: #f5f5f5;
   /* fill: #626262; */
 }
 
 /* FIXME: paper-fab should not hard-coded the icon's fill color */
 paper-fab::shadow /deep/ #icon {
+  display: block;
   fill: #626262;
+}
+
+paper-fab::shadow /deep/ svg {
+  display: block;
 }

@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-user-score" attributes="user scores" vertical layout>
+<polymer-element name="topeka-user-score" attributes="user scores categoryName wide" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-user-score.css">
@@ -25,28 +25,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
   </core-toolbar>
 
-  <div class="main theme-bg-a theme-color" flex vertical layout>
+  <div class="main theme-bg-a theme-color {{ {wide: wide} | tokenList }}" flex>
   
-    <div class="category">
+    <div class="category-info">
       <div>{{correct}} / {{scores.length}} correct!</div>
       <div class="big">+{{pts}}</div>
     </div>
     
-    <div class="total">
+    <div class="total-info">
       <div>Total:</div>
       <div class="big">{{totalPts}}</div>
     </div>
     
   </div>
   
-  <paper-fab icon="arrow-forward" on-tap="{{nextAction}}"></paper-fab>
-
+  <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout>
+    <div>{{categoryName}}</div>
+    <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
+  </div>
+  
   <topeka-user-model id="userModel" user="{{user}}" totalPoints="{{totalPts}}"></topeka-user-model>
 
 </template>
 <script>
 
   Polymer('topeka-user-score', {
+    
+    wide: false,
     
     scoresChanged: function() {
       this.pts = 0;
