@@ -14,18 +14,19 @@
     "tests"
   ],
   "dependencies": {
-    "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master",
-    "core-icons": "Polymer/core-icons#master",
+    "core-animated-pages": "Polymer/core-animated-pages#master",
     "core-drawer-panel": "Polymer/core-drawer-panel#master",
     "core-icon-button": "Polymer/core-icon-button#master",
+    "core-icons": "Polymer/core-icons#master",
     "core-scroll-header-panel": "Polymer/core-scroll-header-panel#master",
-    "paper-checkbox": "Polymer/paper-checkbox#master",
-    "paper-radio-group": "Polymer/paper-radio-group#master",
-    "paper-radio-button": "Polymer/paper-radio-button#master",
-    "paper-item": "Polymer/paper-item#master",
-    "paper-sampler": "Polymer/paper-sampler#master",
+    "core-style": "Polymer/core-style#master",
     "font-roboto2": "Polymer/font-roboto2#master",
-    "core-animated-pages": "Polymer/core-animated-pages#master"
+    "paper-checkbox": "Polymer/paper-checkbox#master",
+    "paper-item": "Polymer/paper-item#master",
+    "paper-radio-button": "Polymer/paper-radio-button#master",
+    "paper-radio-group": "Polymer/paper-radio-group#master",
+    "paper-sampler": "Polymer/paper-sampler#master",
+    "platform": "Polymer/platform#master",
+    "polymer": "Polymer/polymer#master"
   }
 }
