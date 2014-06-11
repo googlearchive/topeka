@@ -11,28 +11,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow: auto;
 }
 
-.quizzes-panel > core-toolbar {
+::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.quizzes-panel.wide > .card {
+  margin-top: 64px;
+}
+
+.card > core-toolbar {
   height: 176px;
   font-size: 16px;
   line-height: 26px;
 }
 
-.quizzes-panel > core-toolbar::shadow #topBar {
+.card > core-toolbar::shadow #topBar {
   height: 176px;
 }
 
-.quizzes-panel.wide core-toolbar {
-  margin-top: 64px;
+.quizzes-panel.wide > .card > core-toolbar {
   font-size: 18px;
 }
 
-.wide .question {
+.quizzes-panel.wide core-toolbar > .question {
   padding: 0 8px;
 }
 
 .quizzes-content {
   background-color: #eee;
   overflow: auto;
+}
+
+.quizzes-panel.wide .quizzes-content {
+  overflow: inherit;
 }
 
 #quizViews {
@@ -51,8 +66,8 @@ topeka-quiz-view {
   padding: 0 16px;
 }
 
-.wide topeka-quiz-view {
-  padding: 0 24px;
+.quizzes-panel.wide topeka-quiz-view {
+  padding: 0 24px 24px;
 }
 
 paper-fab.check-button {
@@ -63,7 +78,7 @@ paper-fab.check-button {
   /* fill: #626262; */
 }
 
-.wide paper-fab.check-button {
+.quizzes-panel.wide paper-fab.check-button {
   right: 16px;
 }
 

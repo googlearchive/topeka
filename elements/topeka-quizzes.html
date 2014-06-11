@@ -21,22 +21,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}">
   
-    <core-toolbar class="theme-bg">
+    <div class="card" flex?="{{!wide}}" vertical layout?="{{!wide}}">
     
-      <div class="question">{{quiz.question}}</div>
-      <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
+      <core-toolbar class="theme-bg">
       
-    </core-toolbar>
-    
-    <div class="quizzes-content" hidden?="{{!category}}" flex>
-    
-      <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
-      
-        <template repeat="{{category.quizzes}}">
-          <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
-        </template>
+        <div class="question">{{quiz.question}}</div>
+        <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
         
-      </core-selector>
+      </core-toolbar>
+      
+      <div class="quizzes-content" hidden?="{{!category}}" flex>
+      
+        <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
+        
+          <template repeat="{{category.quizzes}}">
+            <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
+          </template>
+          
+        </core-selector>
+        
+      </div>
       
     </div>
     
