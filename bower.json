@@ -25,6 +25,7 @@
     "paper-radio-button": "Polymer/paper-radio-button",
     "paper-item": "Polymer/paper-item",
     "paper-sampler": "Polymer/paper-sampler",
-    "font-roboto2": "Polymer/font-roboto2"
+    "font-roboto2": "Polymer/font-roboto2",
+    "core-animated-pages": "Polymer/core-animated-pages"
   }
 }
