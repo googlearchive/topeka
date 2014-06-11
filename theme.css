@@ -11,11 +11,12 @@ body {
   font-family: Roboto, sans-serif;
   color: #444;
   fill: #444;
+  font-weight: 300;
 }
 
 body /deep/ core-toolbar {
   background-color: #00bad2;
   color: #fff;
   fill: #fff;
-  font-weight: 300;
+  font-size: 24px;
 }

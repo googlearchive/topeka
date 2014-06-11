@@ -21,10 +21,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     .bottom-bar {
       position: relative;
-      height: 56px;
-      line-height: 56px;
-      padding: 0 20px;
-      font-size: 20px;
+      height: 64px;
+      line-height: 64px;
+      padding: 0 16px;
+      font-size: 18px;
     }
     
     paper-fab {
@@ -36,6 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     
     /* FIXME: icon in paper-fab not aligned correctly and hard-coded fill color */
+    paper-fab::shadow core-icon {
+      display: block;
+    }
+    
     paper-fab::shadow core-icon > svg {
       display: block;
       fill: #616161;

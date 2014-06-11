@@ -11,12 +11,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   background-color: #424242;
 }
 
-core-toolbar {
-  height: 96px;
+.categories-panel {
+  position: relative;
 }
 
-core-toolbar::shadow #topBar {
-  height: 96px;
+.categories-panel > core-toolbar {
+  height: 100px;
+}
+
+.categories-panel > core-toolbar::shadow #topBar {
+  height: 100px;
 }
 
 .topeka-avatar {
@@ -26,8 +30,15 @@ core-toolbar::shadow #topBar {
 
 .category-list {
   display: block;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2px 0;
+  margin: 0 -2px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .category-item {
@@ -50,10 +61,6 @@ core-toolbar::shadow #topBar {
   opacity: 0.18;
 }
 
-.tile > paper-progress {
-  width: 100%;
-}
-
 .cat-name {
   height: 48px;
   padding: 0 16px;
@@ -62,7 +69,7 @@ core-toolbar::shadow #topBar {
 
 .category-icon {
   position: absolute;
-  right: 14px;
+  right: 16px;
   bottom: 14px;
 }
 
@@ -80,12 +87,13 @@ core-toolbar::shadow #topBar {
 }
 
 /* wide layout */
-.wide {
-  height: 100%;
+.wide.category-list {
+  padding: 4px 0;
+  margin: 0 -4px;
 }
 
-.wide .category-list {
-  height: 100%;
+.wide .category-item > .tile {
+  margin: 4px;
 }
 
 .wide .category-item {
@@ -109,14 +117,16 @@ core-toolbar::shadow #topBar {
 
 .wide .category-item:nth-of-type(9) {
   position: absolute;
-  bottom: 0;
+  bottom: 6px;
   left: 0;
   width: calc(100% / 6);
+  height: calc(100% / 3 - 6px);
 }
 
 .wide .category-item:nth-of-type(10) {
   position: absolute;
-  bottom: 0;
+  bottom: 6px;
   left: calc(100% / 6);;
   width: calc(100% / 6);
+  height: calc(100% / 3 - 6px);
 }

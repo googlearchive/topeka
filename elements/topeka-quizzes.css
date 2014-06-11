@@ -12,21 +12,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .quizzes-panel > core-toolbar {
-  font-size: 18px;
+  height: 176px;
+  font-size: 16px;
   line-height: 26px;
+}
+
+.quizzes-panel > core-toolbar::shadow #topBar {
+  height: 176px;
 }
 
 .quizzes-panel.wide core-toolbar {
   margin-top: 64px;
-}
-
-.question {
-  padding: 6px 0 0 10px;
+  font-size: 18px;
 }
 
 .quizzes-content {
   background-color: #eee;
   overflow: auto;
+}
+
+#quizViews {
+  display: block;
 }
 
 #quizViews > * {
@@ -38,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 topeka-quiz-view {
-  padding: 26px;
+  padding: 16px;
 }
 
 paper-fab.check-button {

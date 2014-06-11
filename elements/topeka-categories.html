@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="topeka-categories.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
 
-  <core-scroll-header-panel fixed headerHeight="96" flex hero-p>
+  <div class="categories-panel" flex hero-p>
   
     <core-toolbar>
     
@@ -30,46 +30,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </core-toolbar>
     
-    <div class="content {{ {wide: wide} | tokenList }}" hero-p>
-    
-      <core-selector id="categoryList" class="category-list" selected="{{selected}}" hero-p>
+    <core-selector class="category-list content {{ {wide: wide} | tokenList }}" selected="{{selected}}" hero-p>
       
-        <div class="category-item leaderboard" hero-id="{{!category ? 'punch' : ''}}" hero?="{{!category}}" vertical layout>
-          <div class="tile" flex vertical layout hero?="{{!category}}">
-            <div flex></div>
-            <div class="cat-name" horizontal center layout>Leaderboard</div>
-          </div>
-          <core-icon class="category-icon" icon="arrow-forward"></core-icon>
+      <div class="category-item leaderboard" hero-id="{{!category ? 'punch' : ''}}" hero?="{{!category}}" vertical layout>
+        <div class="tile" flex vertical layout hero?="{{!category}}">
+          <div flex></div>
+          <div class="cat-name" horizontal center layout>Leaderboard</div>
         </div>
+        <core-icon class="category-icon" icon="arrow-forward"></core-icon>
+      </div>
+    
+      <template repeat="{{cat in categories}}">
       
-        <template repeat="{{cat in categories}}">
-        
-          <template bind="{{user.scores[cat.name] as scores}}">
-            <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" hero-id="{{category.name === cat.name ? 'punch' : ''}}" hero?="{{category.name === cat.name}}" vertical layout>
-              <div class="tile theme-bg-a" flex vertical layout hero?="{{category.name === cat.name}}">
-                <div flex></div>
-                <div class="cat-name theme-bg" horizontal center layout>{{cat.name}}</div>
-              </div>
-              <core-icon class="category-icon {{ scores.length == cat.quizzes.length ? 'theme-icon' : 'theme-bg' }}" icon="{{ scores.length == cat.quizzes.length ? 'check' : 'av:play-arrow' }}"></core-icon>
+        <template bind="{{user.scores[cat.name] as scores}}">
+          <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" hero-id="{{category.name === cat.name ? 'punch' : ''}}" hero?="{{category.name === cat.name}}" vertical layout>
+            <div class="tile theme-bg-a" flex vertical layout hero?="{{category.name === cat.name}}">
+              <div flex></div>
+              <div class="cat-name theme-bg" horizontal center layout>{{cat.name}}</div>
             </div>
-          </template>
-        
-        </template>
-        
-        <div class="category-item profile" vertical layout>
-          <div class="tile" flex vertical layout>
-            <div flex></div>
-            <div class="cat-name" horizontal center layout>Profile</div>
+            <core-icon class="category-icon {{ scores.length == cat.quizzes.length ? 'theme-icon' : 'theme-bg' }}" icon="{{ scores.length == cat.quizzes.length ? 'check' : 'av:play-arrow' }}"></core-icon>
           </div>
-          <core-icon class="category-icon" icon="arrow-forward"></core-icon>
+        </template>
+      
+      </template>
+      
+      <div class="category-item profile" vertical layout>
+        <div class="tile" flex vertical layout>
+          <div flex></div>
+          <div class="cat-name" horizontal center layout>Profile</div>
         </div>
-      
-      </core-selector>
-      
-    </div>
+        <core-icon class="category-icon" icon="arrow-forward"></core-icon>
+      </div>
     
-  </core-scroll-header-panel>
-  
+    </core-selector>
+    
+  </div>
+    
   <topeka-user-model id="userModel" user="{{user}}" totalPoints="{{totalPts}}"></topeka-user-model>
 
 </template>

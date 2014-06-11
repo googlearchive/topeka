@@ -21,9 +21,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}">
   
-    <core-toolbar class="tall theme-bg">
+    <core-toolbar class="theme-bg">
     
-      <div class="middle question" self-start>{{quiz.question}}</div>
+      <div class="question">{{quiz.question}}</div>
       <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
       
     </core-toolbar>

@@ -40,26 +40,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     
     .cat-info > .title {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 24px;
-    }
-    
-    .cat-info > .progress {
-      font-weight: 300;
+      font-weight: 400;
     }
     
     .pts {
-      font-size: 26px;
-      font-weight: 300;
+      font-size: 24px;
     }
     
   </style>
   
-  <paper-progress value="{{scores.length + 1}}" max="{{category.quizzes.length}}"></paper-progress>
+  <paper-progress value="{{scores.length}}" max="{{category.quizzes.length}}"></paper-progress>
   
   <div class="info" flex horizontal center layout>
 
-    <core-icon size="48" icon="avatars:avatar-{{avatar}}" class="topeka-avatar"></core-icon>
+    <core-icon size="40" icon="avatars:avatar-{{avatar}}" class="topeka-avatar"></core-icon>
     
     <div class="cat-info" flex vertical layout>
       <div class="title">{{category.name}}</div>
