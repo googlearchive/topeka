@@ -32,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <core-selector class="category-list content {{ {wide: wide} | tokenList }}" selected="{{selected}}" hero-p>
       
       <div class="category-item leaderboard" hero-id="{{!category ? 'punch' : ''}}" hero?="{{!category}}" vertical layout>
+        <div class="tile theme-bg-a" dummy fit></div>
         <div class="tile" flex vertical layout hero?="{{!category}}">
           <div flex></div>
           <div class="cat-name" horizontal center layout>Leaderboard</div>
@@ -43,6 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
         <template bind="{{user.scores[cat.name] as scores}}">
           <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" hero-id="{{category.name === cat.name ? 'punch' : ''}}" hero?="{{category.name === cat.name}}" vertical layout>
+            <div class="tile theme-bg-a" dummy fit></div>
             <div class="tile theme-bg-a" flex vertical layout hero?="{{category.name === cat.name}}">
               <div flex></div>
               <div class="cat-name theme-bg" horizontal center layout>{{cat.name}}</div>
@@ -54,6 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
       
       <div class="category-item profile" vertical layout>
+        <div class="tile theme-bg-a" dummy fit></div>
         <div class="tile" flex vertical layout>
           <div flex></div>
           <div class="cat-name" horizontal center layout>Profile</div>
