@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     paper-fab {
       position: absolute;
-      top: -28px;
+      bottom: 28px;
       right: 16px;
       background-color: #fff;
       fill: #616161;
@@ -41,12 +41,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
 
-  <div class="theme-bg-a" flex></div>
+  <div flex></div>
   
-  <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout>
+  <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout hero-id="punch-bottom" hero>
     <div>{{category.name}}</div>
-    <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
   </div>
+
+  <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}" scale-up></paper-fab>
 
 </template>
 <script>

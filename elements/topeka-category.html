@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-category-front-page.html">
 <link rel="import" href="topeka-quizzes.html">
 <link rel="import" href="topeka-user-score.html">
-<link rel="import" href="../components/core-pages/core-pages.html">
+<link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
 
 <polymer-element name="topeka-category" attributes="user category selected wide" vertical layout>
 <template>
@@ -18,22 +18,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="topeka-category.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
   
-  <div class="{{category.theme}}-theme theme-bg-a" dummy fit></div>
+  <div class="{{category.theme}}-theme theme-bg-a" dummy fit hero-id="punch" hero></div>
   
-  <div class="{{category.theme}}-theme {{ {wide: wide} | tokenList }}" flex vertical layout>
+  <div class="{{category.theme}}-theme {{ {wide: wide} | tokenList }}" flex vertical layout hero-p>
   
-    <core-pages class="category-pages" selected="{{selected}}" hero-id="punch" hero flex>
+    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade-all hero-transition" hero-p>
     
-      <topeka-category-front-page name="front" hero category="{{category}}" wide="{{wide}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
+      <topeka-category-front-page name="front" category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}" hero-p></topeka-category-front-page>
     
       <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}"></topeka-quizzes>
       
       <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" categoryName="{{category.name}}" wide="{{wide}}" on-next="{{mainAction}}"></topeka-user-score>
       
-    </core-pages>
+    </core-animated-pages>
     
     <paper-icon-button class="main-button {{ {'theme-color': !wide && selected == 'quizzes'} | tokenList }}" icon="arrow-back" hidden?="{{selected == 'score'}}" on-tap="{{mainAction}}"></paper-icon-button>
-  
+    
   </div>
   
 </template>
@@ -42,6 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-category', {
     
     selected: 'front',
+    selectedItem: null,
     wide: false,
     
     computed: {

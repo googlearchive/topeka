@@ -13,12 +13,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-profile.html">
 <link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../components/core-animated-pages/transitions/scale-up.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
 
 <polymer-element name="topeka-app" attributes="user categories" vertical layout>
 <template>
   
-  <core-animated-pages selected="{{selected}}" transitions="cross-fade-all hero-transition" flex>
+  <core-animated-pages selected="{{selected}}" transitions="cross-fade scale-up hero-transition" flex>
   
     <topeka-categories id="categories" name="categories" user="{{user}}" 
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
