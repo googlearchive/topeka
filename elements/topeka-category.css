@@ -11,3 +11,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 600px;
   margin: 0 auto;
 }
+
+.main-button {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}

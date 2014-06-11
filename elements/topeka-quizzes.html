@@ -23,7 +23,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <core-toolbar class="tall theme-bg">
     
-      <paper-icon-button icon="menu" hidden?="{{wide}}" on-tap="{{menuAction}}"></paper-icon-button>
       <div class="middle question" self-start>{{quiz.question}}</div>
       <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
       
@@ -60,10 +59,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this.scores && this.category) {
         this.selected = this.scores.length;
       }
-    },
-    
-    menuAction: function() {
-      this.fire('menu');
     },
     
     quizDone: function() {

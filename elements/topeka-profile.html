@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <div flex hero-id="punch" hero>
     <core-toolbar>
-      <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
+      <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
       <div>Profile</div>
     </core-toolbar>
   </div>
@@ -36,8 +36,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-profile', {
     
-    previousAction: function() {
-      this.fire('previous');
+    mainAction: function() {
+      this.fire('main');
     }
     
   });

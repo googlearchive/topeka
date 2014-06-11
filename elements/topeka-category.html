@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="topeka-category-front-page.html">
 <link rel="import" href="topeka-quizzes.html">
-<link rel="import" href="topeka-results.html">
 <link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-pages/core-pages.html">
 
@@ -23,15 +22,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <core-pages id="categoryPages" selected="{{selected}}" hero-id="punch" hero flex>
     
-      <topeka-category-front-page name="front" hero category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
+      <topeka-category-front-page name="front" hero category="{{category}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
       <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}"></topeka-quizzes>
       
-      <topeka-results name="results" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" on-next="{{showScores}}"></topeka-results>
-    
-      <topeka-user-score name="scores" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
+      <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" on-next="{{mainAction}}"></topeka-user-score>
       
     </core-pages>
+    
+    <paper-icon-button class="main-button" icon="arrow-back" hidden?="{{selected == 'score'}}" on-tap="{{mainAction}}"></paper-icon-button>
   
   </div>
   
@@ -63,22 +62,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this.scores) {
         var l = this.scores.length;
         this.selected = l ? (l < this.category.quizzes.length ? 
-            'quizzes' : 'results') : 'front';
+            'quizzes' : 'score') : 'front';
       }
     },
     
     selectedChanged: function() {
-      if (this.selected === 'results') {
+      if (this.selected === 'score') {
         this.fire('results');
       }
     },
     
     showQuizzes: function() {
       this.selected = 'quizzes';
-    },
-    
-    showScores: function() {
-      this.selected = 'scores';
     },
     
     mainAction: function() {

@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-category-front-page" attributes="category wide" vertical layout>
+<polymer-element name="topeka-category-front-page" attributes="category" vertical layout>
 <template>
 
   <style>
@@ -43,9 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   </style>
 
-  <div class="theme-bg-a" flex>
-    <paper-icon-button icon="arrow-back" on-tap="{{previousAction}}"></paper-icon-button>
-  </div>
+  <div class="theme-bg-a" flex></div>
   
   <div class="bottom-bar theme-bg" horizontal center layout>
     <div>{{category.name}}</div>
@@ -56,12 +54,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 
   Polymer('topeka-category-front-page', {
-    
-    wide: false,
-    
-    previousAction: function() {
-      this.fire('previous');
-    },
     
     nextAction: function() {
       this.fire('next');

@@ -7,7 +7,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="topeka-menu.html">
 <link rel="import" href="topeka-categories.html">
 <link rel="import" href="topeka-category.html">
 <link rel="import" href="topeka-leaderboard.html">
@@ -18,36 +17,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="topeka-app" attributes="user categories" vertical layout>
 <template>
-
-  <style>
   
-    [drawer], [main] {
-      background-color: #f1f1f1;
-    } 
-    
-  </style>
-
-  <core-drawer-panel id="panel" flex responsiveWidth="5000px">
+  <core-animated-pages selected="{{selected}}" transitions="cross-fade-all,hero-transition" flex>
   
-    <topeka-menu id="menu" drawer on-core-activate="{{menuSelect}}"></topeka-menu>
+    <topeka-categories id="categories" name="categories" user="{{user}}" 
+      categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
+      on-core-activate="{{categorySelect}}"></topeka-categories>
   
-    <core-animated-pages main selected="{{selected}}" transitions="cross-fade-all,hero-transition">
-    
-      <topeka-categories id="categories" name="categories" user="{{user}}" 
-        categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
-        on-core-activate="{{categorySelect}}"></topeka-categories>
-    
-      <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" 
-        wide="{{wide}}" on-menu="{{openDrawer}}" on-results="{{updateStatus}}" 
-        on-main="{{showCategories}}"></topeka-category>
-        
-      <topeka-leaderboard name="leaderboard" user="{{user}}" on-previous="{{showCategories}}"></topeka-leaderboard>
+    <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" 
+      wide="{{wide}}" on-results="{{updateStatus}}"></topeka-category>
       
-      <topeka-profile name="profile" user="{{user}}" on-previous="{{showCategories}}"></topeka-profile>
-      
-    </core-pages>
-  
-  </core-drawer-panel>
+    <topeka-leaderboard name="leaderboard" user="{{user}}"></topeka-leaderboard>
+    
+    <topeka-profile name="profile" user="{{user}}"></topeka-profile>
+    
+  </core-animated-pages>
   
   <core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
 
@@ -59,12 +43,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     selected: 'categories',
     responsiveWidth: '900px',
     
-    closeDrawer: function() {
-      this.$.panel.closeDrawer();
-    },
-    
-    openDrawer: function() {
-      this.$.panel.openDrawer();
+    eventDelegates: {
+      'main': 'showCategories'
     },
     
     showCategories: function() {
@@ -98,11 +78,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     updateStatus: function() {
       this.$.categories.updateStatus();
-    },
-    
-    menuSelect: function() {
-      this.closeDrawer();
-      this.selected = this.$.menu.selected;
     }
     
   });
