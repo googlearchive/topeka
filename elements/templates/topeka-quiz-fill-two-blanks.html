@@ -7,22 +7,12 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../topeka-quiz-base.html">
-<link rel="import" href="../../components/paper-input/paper-input.html">
+<link rel="import" href="topeka-quiz-fill-blank.html">
 
-<polymer-element name="topeka-quiz-fill-blank" extends="topeka-quiz-base">
+<polymer-element name="topeka-quiz-fill-two-blanks" extends="topeka-quiz-fill-blank">
 <template>
 
   <style>
-  
-    :host {
-       padding: 40px;
-    }
-    
-    :host-context(.wide) {
-      width: 304px;
-      margin: 0 auto;
-    }
   
     paper-input {
       width: 100%;
@@ -31,21 +21,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
   </style>
   
-  <div>{{quiz.start}}</div>
-  <paper-input value="{{value}}" label="Fill in the Blank"></paper-input>
-  <div>{{quiz.end}}</div>
+  <shadow></shadow>
+  <paper-input value="{{value2}}" label="Fill in the Blank"></paper-input>
 
 </template>
 <script>
 
-  Polymer('topeka-quiz-fill-blank', {
+  Polymer('topeka-quiz-fill-two-blanks', {
     
     isCorrect: function() {
-      return this.areEqual(this.value, this.quiz.answer);
-    },
-    
-    areEqual: function(s1, s2) {
-      return s1 && s2 && s1.toLowerCase() === s2.toLowerCase();
+      var a = this.quiz.answer;
+      if (a && a.length === 2) {
+        return this.areEqual(this.value, a[0]) && this.areEqual(this.value2, a[1]);
+      }
     }
     
   });

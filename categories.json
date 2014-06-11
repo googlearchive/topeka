@@ -31,6 +31,13 @@
           "Chrome"
         ],
         "answer": 2
+      },
+      {
+        "type": "fill-two-blanks",
+        "question": "Fill in the Blanks",
+        "start": "",
+        "end": "therefore",
+        "answer": ["I think", "I am"]
       }
     ]
   },
