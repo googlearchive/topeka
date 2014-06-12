@@ -7,29 +7,21 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-core-toolbar {
-  height: 100px;
-}
-
-core-toolbar::shadow #topBar {
-  height: 100px;
-}
-
-.topeka-avatar {
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.wide {
+.wide .card {
   width: 512px;
-  margin: 0 auto;
+  margin: 64px auto 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .main {
-  position: relative;
-  padding: 64px 16px;
-  font-size: 24px;
+  padding: 48px 16px;
+  background-color: #eee;
+  font-size: 20px;
   overflow: auto;
+}
+
+.wide .main {
+  padding: 48px 24px;
 }
 
 .main .big {
@@ -37,7 +29,7 @@ core-toolbar::shadow #topBar {
 }
 
 .category-info {
-  padding-bottom: 30px;
+  padding-bottom: 16px;
 }
 
 .bottom-bar {
@@ -51,14 +43,8 @@ core-toolbar::shadow #topBar {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
 }
 
-.bottom-bar.wide {
+.wide .bottom-bar {
+  width: 512px;
+  margin: 0 auto;
   padding: 0 24px;
-}
-
-paper-fab {
-  position: absolute;
-  top: -28px;
-  right: 16px;
-  background-color: #f5f5f5;
-  fill: #626262;
 }

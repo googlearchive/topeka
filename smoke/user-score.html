@@ -25,10 +25,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../components/font-roboto2/roboto2.html">
   <link rel="import" href="../components/core-icons/core-icons.html">
   <link rel="import" href="../components/core-icons/iconsets/av-icons.html">
+  <link rel="import" href="../components/core-media-query/core-media-query.html">
   <link rel="import" href="../elements/topeka-user-score.html">
   
 </head>
 <body unresolved class="yellow-theme">
+
+  <core-media-query query="min-width: 900px"></core-media-query>
 
   <topeka-user-score fit></topeka-user-score>
   
@@ -37,14 +40,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     addEventListener('polymer-ready', function() {
   
       var s = document.querySelector('topeka-user-score');
+      var m = document.querySelector('core-media-query');
+      
+      m.addEventListener('core-media-change', function() {
+        s.wide = m.queryMatches;
+      });
+      
       s.user = {
         name: 'Frankie F',
         avatar: 1,
         scores: {
           'Food & Drink': [0, 8, 8, 0, 8, 8, 0, 8, 8, 0, 8, 0]
-        }
+        },
+        score: 56
       };
       s.scores = [0, 8, 8, 0, 8, 8, 0, 8, 8, 0, 8, 0];
+      s.category = window.categories[0];
       
     });
   
