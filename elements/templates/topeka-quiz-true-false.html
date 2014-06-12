@@ -17,14 +17,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
   
     paper-button[raisedButton] {
-      margin: 64px;
+      font-size: 14px;
+      font-weight: 400;
+      width: 72px;
+      margin: 58px 12px;
       fill: #f1f1f1;
       background: #00bcd4;
       color: #f1f1f1;
-    }
-
-    paper-button[raisedButton]::shadow #clip {
-      padding: 4px 12px;
     }
 
     paper-button[raisedButton].core-selected {
@@ -47,10 +46,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   
  
-  <core-selector selected="{{value}}" horizontal center-justified layout>
-    <paper-button raisedButton label="False"></paper-button>
-    <paper-button raisedButton label="True"></paper-button>
-  </core-selector>
+  <div horizontal layout center center-justified layout>
+    <core-selector selected="{{value}}" horizontal layout>
+      <paper-button raisedButton label="False"></paper-button>
+      <paper-button raisedButton label="True"></paper-button>
+    </core-selector>
+  </div>
   
 </template>
 </polymer-element>
