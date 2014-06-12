@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>topeka-quizzes</title>
+  <title>topeka-quiz-score</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
@@ -23,9 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="../elements/topeka-category-themes.css" shim-shadowdom>
   
   <link rel="import" href="../components/font-roboto2/roboto2.html">
-  <link rel="import" href="../components/core-icons/core-icons.html">
   <link rel="import" href="../components/core-media-query/core-media-query.html">
-  <link rel="import" href="../elements/topeka-quizzes.html">
+  <link rel="import" href="../elements/topeka-quiz-score.html">
   
   <style>
   
@@ -38,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: #ffff8d;
     }    
   
-    topeka-quizzes {
+    topeka-quiz-score {
       max-width: 600px;
       margin: 0 auto;
     }
@@ -50,13 +49,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <core-media-query query="min-width: 900px"></core-media-query>
 
-  <topeka-quizzes fit></topeka-quizzes>
+  <topeka-quiz-score fit></topeka-quiz-score>
   
   <script>
   
     addEventListener('polymer-ready', function() {
   
-      var q = document.querySelector('topeka-quizzes');
+      var q = document.querySelector('topeka-quiz-score');
       var m = document.querySelector('core-media-query');
       
       m.addEventListener('core-media-change', function() {
@@ -64,8 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
       
       q.avatar = 1;
-      q.scores = [];
+      q.scores = [8];
       q.category = window.categories[0];
+      q.quizScore = 8;
       
     });
   
