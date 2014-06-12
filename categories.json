@@ -40,6 +40,18 @@
         "answer": ["I think", "I am"]
       },
       {
+        "type": "toggle-translate",
+        "question": "Toggle the words and select which landmark to American state pairings are correct.",
+        "options": [
+          ["Las Vegas", "Arizona"],
+          ["Death Valley", "California"],
+          ["Mount Rushmore", "North Dakota"],
+          ["Fort Knox", "Kentucky"],
+          ["Kennedy Space Centre", "Florida"]
+        ],
+        "answer": "1,3,4"
+      },
+      {
         "type": "picker",
         "question": "How many pieces are there in a set of Dominoes?",
         "min": 10,
