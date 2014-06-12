@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-icons/iconsets/icons.html">
 <link rel="import" href="topeka-avatars.html">
 
-<polymer-element name="topeka-profile" attributes="user userDefaults" layout vertical>
+<polymer-element name="topeka-profile" attributes="user userDefaults wide" center layout vertical>
 
 <template>
   
@@ -23,11 +23,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     core-toolbar {
       background-color: none;
     }
+
     .hero {
+      background-color: white;
+    }
+
+    .card {
       background-color: white;
       padding: 20px;
       box-sizing: border-box;
     }
+
+    .wide.card {
+      margin-top: 64px;
+      max-height: 576px;
+      max-width: 512px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
     .header {
       font-size: 1.5em;
       color: #00bbd3;
@@ -48,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: #00bbd3;
     }
     #avatarList {
-      margin-top: 20px;
+      margin: 24px 0 8px 0;
       overflow: auto;
     }
     #check {
@@ -58,26 +71,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fill: black;
     }
 
+    /* TODO(kschaaf): fix more generally */
+    paper-fab[disabled] {
+      pointer-events: none;
+    }
+
   </style>
 
-  <div flex hero-id="profile" class="hero" hero layout vertical>
-    <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
-    <paper-input label="First Name" id="first"></paper-input>
-    <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
-    <div class="header">Choose an Avatar</div>
-    <div id="avatarList" layout flex>
-      <core-selector selected="{{selectedAvatar}}">
-        <template repeat="{{i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}">
-          <div class="avatar-wrapper">
-            <core-icon size="60" icon="avatars:avatar-{{i}}" class="topeka-avatar"></core-icon>
-          </div>
-        </template>
-      </core-selector>
-    </div>
-    <div layout horizontal>
-      <paper-button on-tap="{{handleLogout}}" label="Sign out" raisedButton layout self-start hidden?="{{!user || !user.exists}}"></paper-button>
-      <div flex></div>
-      <paper-fab id="check" icon="check" layout self-end disabled?="{{!$.first.value.length || !$.last.value.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+  <div flex hero-id="profile" hero layout vertical>
+    <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical>
+      <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
+      <paper-input label="First Name" id="first"></paper-input>
+      <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
+      <div class="header">Choose an Avatar</div>
+      <div id="avatarList" layout flex>
+        <core-selector selected="{{selectedAvatar}}">
+          <template repeat="{{i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}">
+            <div class="avatar-wrapper">
+              <core-icon size="60" icon="avatars:avatar-{{i}}" class="topeka-avatar"></core-icon>
+            </div>
+          </template>
+        </core-selector>
+      </div>
+      <div horizontal center layout>
+        <paper-button on-tap="{{handleLogout}}" label="Sign out" raisedButton hidden?="{{!user || !user.exists}}"></paper-button>
+        <div flex></div>
+        <paper-fab id="check" icon="check" disabled?="{{!$.first.value.length || !$.last.value.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+      </div>
     </div>
   </div>
 
