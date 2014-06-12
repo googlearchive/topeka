@@ -25,6 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   fill: #616161;
 }
 
+.yellow-theme /deep/ .theme-primary-color {
+  color: #ffeb3b;
+}
+
 .yellow-theme /deep/ .theme-icon {
   fill: #ffeb3b;
 }
@@ -59,6 +63,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   fill: #0f9d58;
 }
 
+.green-theme /deep/ .theme-primary-color {
+  color: #1de9b6;
+}
+
 .green-theme /deep/ paper-progress::shadow #progressContainer {
   background-color: transparent;
 }
@@ -87,6 +95,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .red-theme /deep/ .theme-icon {
   fill: #db4437;
+}
+
+.red-theme /deep/ .theme-primary-color {
+  color: #db4437;
 }
 
 .red-theme /deep/ paper-progress::shadow #progressContainer {
@@ -119,6 +131,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   fill: #4285f4;
 }
 
+.blue-theme /deep/ .theme-primary-color {
+  color: #00bcd4;
+}
+
 .blue-theme /deep/ paper-progress::shadow #progressContainer {
   background-color: transparent;
 }
@@ -147,6 +163,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .purple-theme /deep/ .theme-icon {
   fill: #7e57c2;
+}
+
+.purple-theme /deep/ .theme-primary-color {
+  color: #7e57c2;
 }
 
 .purple-theme /deep/ paper-progress::shadow #progressContainer {

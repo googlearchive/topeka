@@ -1,0 +1,38 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="topeka-status-bar.html">
+
+<polymer-element name="topeka-quiz-score" attributes="scores category avatar quizScore wide" vertical layout noscript>
+<template>
+
+  <style>
+  
+    .score {
+      width: 176px;
+      height: 176px;
+      font-size: 76px;
+      margin: 100px auto;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    
+    topeka-status-bar {
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    }
+  
+  </style>
+  
+  <div flex>
+    <div class="score theme-bg font-light" vertical center center-justified layout>+{{quizScore || 0}}</div>
+  </div>
+
+  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" slide-up></topeka-status-bar>
+  
+</template>
+</polymer-element>

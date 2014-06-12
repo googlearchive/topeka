@@ -67,7 +67,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     quizDone: function() {
-      this.scores[this.selected] = this.quizView.getScore();
+      var s = this.quizView.getScore();
+      this.scores[this.selected] = s;
+      this.fire('quiz-done', {score: s});
       this.selected++;
     }
     

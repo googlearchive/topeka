@@ -8,7 +8,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 .wide > .category-pages > topeka-category-front-page,
-.wide > .category-pages > topeka-quizzes {
+.wide > .category-pages > topeka-quizzes,
+.wide > .category-pages > topeka-quiz-score {
   width: 512px;
   margin: 0 auto;
 }

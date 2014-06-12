@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="topeka-category-front-page.html">
 <link rel="import" href="topeka-quizzes.html">
+<link rel="import" href="topeka-quiz-score.html">
 <link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="../components/core-animated-pages/transitions/slide-up.html">
@@ -27,7 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       <topeka-category-front-page name="front" category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
-      <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}"></topeka-quizzes>
+      <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" on-quiz-done="{{quizDone}}"></topeka-quizzes>
+      
+      <topeka-quiz-score name="quizScore" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" quizScore="{{quizScore}}"></topeka-quiz-score>
       
       <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" categoryName="{{category.name}}" wide="{{wide}}" on-next="{{mainAction}}"></topeka-user-score>
       
@@ -83,6 +86,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     mainAction: function() {
       this.selected = 'front';
       this.fire('main');
+    },
+    
+    quizDone: function(e, detail) {
+      this.quizScore = detail.score;
     }
     
   });
