@@ -43,6 +43,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow-x: hidden;
 }
 
+.user-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .category-item {
   position: relative;
   float: left;
