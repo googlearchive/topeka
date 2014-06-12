@@ -29,7 +29,6 @@ core-toolbar::shadow #topBar {
   position: relative;
   padding: 64px 16px;
   font-size: 24px;
-  font-weight: 300;
   overflow: auto;
 }
 

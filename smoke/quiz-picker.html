@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>topeka-quiz-fill-two-blanks</title>
+  <title>topeka-quiz-picker</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <link rel="import" href="../components/font-roboto2/roboto2.html">
   <link rel="import" href="../components/paper-button/paper-button.html">
-  <link rel="import" href="../elements/templates/topeka-quiz-fill-two-blanks.html">
+  <link rel="import" href="../elements/templates/topeka-quiz-picker.html">
   
   <style>
 
@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
-  <topeka-quiz-fill-two-blanks></topeka-quiz-fill-two-blanks>
+  <topeka-quiz-picker></topeka-quiz-picker>
   
   <br><br><br>
   
@@ -42,21 +42,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <script>
   
-    var q = document.querySelector('topeka-quiz-fill-two-blanks');
+    var p = document.querySelector('topeka-quiz-picker');
   
     addEventListener('polymer-ready', function() {
   
-      q.quiz = {
-        question: The philosophical statement from Descartes.',
-        start: '',
-        end: 'therefore',
-        answer: ['I think', 'I am']
+      p.quiz = {
+        question: 'How many pieces are there in a set of Dominoes?',
+        min: 10,
+        max: 50,
+        answer: 28
       }
       
     });
     
     function verify() {
-      alert('score: ' + q.getScore());
+      alert('score: ' + p.getScore());
     }
   
   </script>

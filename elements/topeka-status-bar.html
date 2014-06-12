@@ -45,7 +45,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .cat-info > .title {
       font-size: 14px;
       line-height: 24px;
-      font-weight: 400;
     }
     
     .pts {
@@ -61,7 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <core-icon size="40" icon="avatars:avatar-{{avatar}}" class="topeka-avatar"></core-icon>
     
     <div class="cat-info" flex vertical layout>
-      <div class="title">{{category.name}}</div>
+      <div class="title font-medium">{{category.name}}</div>
       <div class="progress">{{scores.length + (scores.length == category.quizzes.length ? 0 : 1)}} / {{category.quizzes.length}}</div>
     </div>
     

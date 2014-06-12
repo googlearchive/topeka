@@ -34,10 +34,22 @@
       },
       {
         "type": "fill-two-blanks",
-        "question": "Fill in the Blanks",
+        "question": "The philosophical statement from Descartes.",
         "start": "",
         "end": "therefore",
         "answer": ["I think", "I am"]
+      },
+      {
+        "type": "picker",
+        "question": "How many pieces are there in a set of Dominoes?",
+        "min": 10,
+        "max": 50,
+        "answer": 28
+      },
+      {
+        "type": "alpha-picker",
+        "question": "Which letter other than X scores 8 in Scrabble?",
+        "answer": "J"
       }
     ]
   },
@@ -68,6 +80,23 @@
           "Decode"
         ],
         "answer": "1,3,4"
+      },
+      {
+        "type": "fill-two-blanks",
+        "question": "The philosophical statement from Descartes.",
+        "start": "",
+        "end": "therefore",
+        "answer": ["I think", "I am"]
+      },
+      {
+        "type": "picker",
+        "question": "How many pieces are there in a set of Dominoes?",
+        "answer": 28
+      },
+      {
+        "type": "alpha-picker",
+        "question": "Which letter other than X scores 8 in Scrabble?",
+        "answer": "J"
       }
     ]
   },

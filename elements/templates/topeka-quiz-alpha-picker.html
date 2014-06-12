@@ -1,30 +1,32 @@
-/*
+<!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
+-->
 
-body {
-  font-family: /* Roboto2, */sans-serif;
-  color: #444;
-  fill: #444;
-  font-weight: 400;
-}
+<link rel="import" href="topeka-quiz-picker.html">
 
-body /deep/ core-toolbar {
-  background-color: #00bad2;
-  color: #fff;
-  fill: #fff;
-  font-size: 24px;
-}
+<polymer-element name="topeka-quiz-alpha-picker" extends="topeka-quiz-picker">
+<template>
 
-body /deep/ .font-light {
-  font-weight: 300;
-}
+  <shadow></shadow>
 
-body /deep/ .font-medium {
-  font-weight: 500;
-}
+</template>
+<script>
+
+  Polymer('topeka-quiz-alpha-picker', {
+    
+    min: 0,
+    max: 25,
+    
+    immediateValueChanged: function() {
+      this.value = String.fromCharCode(65 + this.immediateValue);
+    }
+    
+  });
+
+</script>
+</polymer-element>
