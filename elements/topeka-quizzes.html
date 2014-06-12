@@ -29,9 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
       </core-toolbar>
 
-      <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
-
-      <div class="quizzes-content" hidden?="{{!category}}" flex slide-up>
+      <div class="quizzes-content" hidden?="{{!category}}" flex hero-id="quizzes-content" hero>
       
         <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
         
@@ -44,6 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
       
     </div>
+
+    <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
     
   </div>
 
