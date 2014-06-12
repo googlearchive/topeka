@@ -27,6 +27,8 @@
     "paper-radio-group": "Polymer/paper-radio-group#master",
     "paper-sampler": "Polymer/paper-sampler#master",
     "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "firebase": "firebase",
+    "firebase-simple-login": "firebse-simple-login"
   }
 }
