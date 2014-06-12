@@ -28,6 +28,7 @@
     "paper-sampler": "Polymer/paper-sampler#master",
     "platform": "Polymer/platform#master",
     "polymer": "Polymer/polymer#master",
+    "firebase-element": "Polymer/firebase-element#master",
     "firebase": "*",
     "firebase-simple-login": "*"
   }
