@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-animated-pages/transitions/slide-up.html">
 <link rel="import" href="../components/core-animated-pages/transitions/slide-down.html">
 
-<polymer-element name="topeka-category" attributes="user category selected wide" vertical layout>
+<polymer-element name="topeka-category" attributes="user category selected wide allScores" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-category.css">
@@ -51,16 +51,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     wide: false,
     
     computed: {
-      'scores': 'computeScores(user, category, dirty)'
+      'scores': 'computeScores(allScores, category, dirty)'
     },
     
     computeScores: function(user, category) {
-      if (user && category && category.quizzes) {
-        if (!user.scores) {
-          user.scores = {};
-        }
+      if (this.allScores && category && category.quizzes) {
         var n = category.name;
-        return user.scores[n] = user.scores[n] || [];
+        return this.allScores[n] = this.allScores[n] || [];
       } else {
         return null;
       }

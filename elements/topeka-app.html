@@ -16,18 +16,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-animated-pages/transitions/scale-up.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
 
-<polymer-element name="topeka-app" attributes="user categories score" vertical layout>
+<polymer-element name="topeka-app" attributes="user categories" vertical layout>
 <template>
   
   <core-animated-pages selected="{{selected}}" transitions="cross-fade scale-up hero-transition" flex>
     
     <topeka-profile id="profile" name="profile" user="{{user}}" wide="{{wide}}"></topeka-profile>
 
-    <topeka-categories id="categories" name="categories" user="{{user}}" 
+    <topeka-categories id="categories" name="categories" user="{{user}}" allScores="{{allScores}}"
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
       on-core-activate="{{categorySelect}}"></topeka-categories>
   
-    <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" wide="{{wide}}"></topeka-category>
+    <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" allScores="{{allScores}}" wide="{{wide}}"></topeka-category>
       
     <topeka-leaderboard name="leaderboard" user="{{user}}" wide="{{wide}}"></topeka-leaderboard>
     
@@ -78,16 +78,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     },
-    
+
+    loadScores: function() {
+      var pts = 0;
+      try {
+        this.allScores = JSON.parse(localStorage.getItem('topeka-scores'));
+        if (!this.allScores) {
+          this.resetScores();
+        } else {
+          for (var n in this.allScores) {
+            pts += this.sumPts(this.allScores[n]);
+          }
+          if (this.user.score != pts) {
+            this.resetScores();
+          }
+        }
+      } catch (e) {
+        this.resetScores();
+      }
+    },
+
     computeScore: function() {
       var pts = 0;
-      if (this.user) {
-        var ss = this.user.scores;
-        for (var n in ss) {
-          pts += this.sumPts(ss[n]);
-        }
-        this.user.score = pts;
+      for (var n in this.allScores) {
+        pts += this.sumPts(this.allScores[n]);
       }
+      this.user.score = pts;
+      localStorage.setItem('topeka-scores', JSON.stringify(this.allScores));
+    },
+
+    resetScores: function() {
+      localStorage.removeItem('topeka-scores');
+      if (this.user) {
+        this.user.score = 0;
+      }
+      this.allScores = {};
     },
     
     sumPts: function(s) {
@@ -100,9 +125,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     userChanged: function() {
       if (this.user && this.user.exists) {
+        this.loadScores();
         this.selected = 'categories';
-        this.computeScore();
       } else {
+        this.resetScores();
         this.selected = 'profile';
       }
     }

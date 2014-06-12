@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-selector/core-selector.html">
 <link rel="import" href="../components/core-icon/core-icon.html">
 
-<polymer-element name="topeka-categories" attributes="user categories category wide" vertical layout>
+<polymer-element name="topeka-categories" attributes="user categories category wide allScores" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-categories.css">
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       <template repeat="{{cat in categories}}">
       
-        <template bind="{{user.scores[cat.name] as scores}}">
+        <template bind="{{allScores[cat.name] as scores}}">
           <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" vertical layout>
             <div class="tile theme-bg-a" dummy fit hero-id="{{category.name === cat.name ? 'punch' : ''}}" hero?="{{category.name === cat.name}}"></div>
             <div class="tile" flex vertical layout>

@@ -119,7 +119,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     MAX: 1800,
 
     ready: function() {
-      this.offline = window.location.search.indexOf('offline') >= 0;
+      this.offline =
+        window.location.search.indexOf('offline') >= 0 ||
+        window.location.search.indexOf('test') >= 0;;
       if (this.offline) {
         this.leaderboard = {
           u1: { name: "Matt M",    avatar: 1, score: 100},

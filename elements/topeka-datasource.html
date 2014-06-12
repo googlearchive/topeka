@@ -24,7 +24,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-datasource', {
 
     ready: function() {
-      this.offline = window.location.search.indexOf('offline') >= 0;
+      this.test = window.location.search.indexOf('test') >= 0;
+      this.offline = this.test || window.location.search.indexOf('offline') >= 0;
+      if (this.test) {
+        this.user = {
+          name: "Test U",
+          avatar: 1,
+          exists: true,
+          score: 0
+        };
+      }
     },
     statusKnownChanged: function() {
       if (this.statusKnown && !this.offline && !this.fbUser) {
