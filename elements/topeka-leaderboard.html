@@ -56,10 +56,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     .name {
       padding-left: 48px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 16px;
     }
   </style>
 
-  <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-tests.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="5"></firebase-element>
+  <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-tests.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="20"></firebase-element>
 
   <div flex hero-id="leaderboard" hero class="hero">
     <core-toolbar>
