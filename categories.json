@@ -22,7 +22,7 @@
         "answer": "0,1,2"
       },
       {
-        "type": "single-select",
+        "type": "four-quarter",
         "question": "Which real Google product launched on April Fools Day in 2004?",
         "options": [
           "Drive",
