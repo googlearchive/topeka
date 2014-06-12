@@ -16,11 +16,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-animated-pages/transitions/scale-up.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
 
-<polymer-element name="topeka-app" attributes="user categories" vertical layout>
+<polymer-element name="topeka-app" attributes="user categories score" vertical layout>
 <template>
   
   <core-animated-pages selected="{{selected}}" transitions="cross-fade scale-up hero-transition" flex>
-  
+    
+    <topeka-profile id="profile" name="profile" user="{{user}}"></topeka-profile>
+
     <topeka-categories id="categories" name="categories" user="{{user}}" 
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
       on-core-activate="{{categorySelect}}"></topeka-categories>
@@ -28,8 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" wide="{{wide}}"></topeka-category>
       
     <topeka-leaderboard name="leaderboard" user="{{user}}"></topeka-leaderboard>
-    
-    <topeka-profile name="profile" user="{{user}}"></topeka-profile>
     
   </core-animated-pages>
   
@@ -40,12 +40,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-app', {
     
-    selected: 'categories',
+    selected: 'profile',
+
     responsiveWidth: '900px',
-    
-    observe: {
-      'user': 'computeScore'
-    },
     
     eventDelegates: {
       'main': 'showCategories',
@@ -66,6 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     showProfile: function() {
       this.selected = 'profile';
+      this.$.profile.userDefaults = this.user;
     },
     
     categorySelect: function() {
@@ -88,8 +86,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         for (var n in ss) {
           pts += this.sumPts(ss[n]);
         }
+        this.user.score = pts;
       }
-      this.user.score = pts;
     },
     
     sumPts: function(s) {
@@ -98,6 +96,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pts += s[i];
       }
       return pts;
+    },
+
+    userChanged: function() {
+      if (this.user && this.user.exists) {
+        this.selected = 'categories';
+        this.computeScore();
+      } else {
+        this.selected = 'profile';
+      }
     }
     
   });

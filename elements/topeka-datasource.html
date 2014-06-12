@@ -8,24 +8,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../components/core-ajax/core-ajax.html">
+<link rel="import" href="../components/firebase-element/firebase-element.html">
+<link rel="import" href="../components/firebase-element/firebase-login.html">
 
 <polymer-element name="topeka-datasource" attributes="user categories url" noscript hidden>
 <template>
-
+  
+  <firebase-login id="fbLogin" provider="anonymous" params='{"rememberMe": true}' location="https://polymer-tests.firebaseio.com" user="{{fbUser}}" statusKnown="{{statusKnown}}"></firebase-login>
+  <firebase-element id="fbUser" location="{{!offline && fbUser ? 'https://polymer-tests.firebaseio.com/users/' + fbUser.uid : null}}" priority="{{user.score}}" data="{{user}}"></firebase-element>
   <core-ajax auto handleAs="json" url="{{url}}" response="{{categories}}"></core-ajax>
 
 </template>
 <script>
 
   Polymer('topeka-datasource', {
-    
+
     ready: function() {
-      this.user = {
-        name: 'Frankie F',
-        avatar: 1
+      this.offline = window.location.search.indexOf('offline') >= 0;
+    },
+    statusKnownChanged: function() {
+      if (this.statusKnown && !this.offline && !this.fbUser) {
+        this.$.fbLogin.login();
       }
+    },
+    userChanged: function() {
+      if (!this.user) {
+        this.logout();
+      }
+    },
+    logout: function() {
+      this.$.fbLogin.logout();
+      this.$.fbLogin.login();
     }
-    
   });
 
 </script>

@@ -7,40 +7,117 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../components/core-toolbar/core-toolbar.html">
-<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/paper-input/paper-input.html">
+<link rel="import" href="../components/paper-fab/paper-fab.html">
+<link rel="import" href="../components/paper-button/paper-button.html">
+<link rel="import" href="../components/core-icons/iconsets/icons.html">
+<link rel="import" href="topeka-avatars.html">
 
-<polymer-element name="topeka-profile" attributes="user" vertical layout>
+<polymer-element name="topeka-profile" attributes="user userDefaults" layout vertical>
+
 <template>
-
+  
   <style>
   
-    :host {
-      /*background-color: silver;*/
+    core-toolbar {
+      background-color: none;
+    }
+    .hero {
+      background-color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .header {
+      font-size: 1.5em;
+      color: #00bbd3;
+      font-weight: lighter;
+    }
+    .topeka-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: inline-block;
+      overflow: hidden;
+    }
+    .avatar-wrapper {
+      display: inline-block;
+      padding: 5px;
+    }
+    .avatar-wrapper.core-selected {
+      background-color: #00bbd3;
+    }
+    #avatarList {
+      margin-top: 20px;
+      overflow: auto;
+    }
+    #check {
+      width: 56px;
+      height: 56px;
+      background-color: lightgray;
+      fill: black;
     }
 
-    [hero-id] {
-      background-color: #fff;
-    }
-  
   </style>
-  <div flex hero-id="profile" hero>
-    <core-toolbar>
-      <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
-      <div>Profile</div>
-    </core-toolbar>
+
+  <div flex hero-id="profile" class="hero" hero layout vertical>
+    <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
+    <paper-input label="First Name" id="first"></paper-input>
+    <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
+    <div class="header">Choose an Avatar</div>
+    <div id="avatarList" layout flex>
+      <core-selector selected="{{selectedAvatar}}">
+        <template repeat="{{i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}">
+          <div class="avatar-wrapper">
+            <core-icon size="60" icon="avatars:avatar-{{i}}" class="topeka-avatar"></core-icon>
+          </div>
+        </template>
+      </core-selector>
+    </div>
+    <div layout horizontal>
+      <paper-button on-tap="{{handleLogout}}" label="Sign out" raisedButton layout self-start hidden?="{{!user || !user.exists}}"></paper-button>
+      <div flex></div>
+      <paper-fab id="check" icon="check" layout self-end disabled?="{{!$.first.value.length || !$.last.value.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+    </div>
   </div>
 
 </template>
+
 <script>
 
   Polymer('topeka-profile', {
-    
-    mainAction: function() {
-      this.fire('main');
+
+    userDefaultsChanged: function() {
+      if (this.userDefaults) {
+        var n = this.userDefaults.name;
+        this.$.first.value = n.substring(0, n.length-2);
+        this.$.last.value = n[n.length-1];
+        this.selectedAvatar = this.userDefaults.avatar - 1;
+        this.score = this.userDefaults.score;
+      } else {
+        this.$.first.value = '';
+        this.$.last.value = '';
+        this.selectedAvatar = null;
+        this.score = 0;
+      }
+    },
+
+    handleLogin: function() {
+      this.user = {
+        name: this.$.first.value + ' ' + this.$.last.value.substring(0,1),
+        avatar: this.selectedAvatar + 1,
+        score: this.score || 0,
+        exists: true
+      };
+    },
+
+    handleLogout: function() {
+      this.user = null;
+      this.userDefaults = null;
     }
-    
+
   });
 
 </script>
+
 </polymer-element>

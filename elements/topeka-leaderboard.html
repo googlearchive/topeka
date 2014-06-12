@@ -8,34 +8,214 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/core-icon/core-icon.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../components/firebase-element/firebase-element.html">
+<link rel="import" href="topeka-avatars.html">
 
 <polymer-element name="topeka-leaderboard" attributes="user" vertical layout>
 <template>
 
   <style>
   
-    :host {
-      /*background-color: silver;*/
+    .hero {
+      background-color: #eee;
     }
-
-    [hero-id] {
-      background-color: #fff;
+    .item {
+      background-color: white;
+      height: 56px;
+      padding: 8px 16px;
+      border-radius: 3px;
+      box-sizing: border-box;
+      position: relative;
+      font-size: 18pt;
     }
-  
+    [animate] .item.rising {
+      box-shadow: 0px 2px 10px 0px rgba(50, 50, 50, 1);
+      z-index: 10001 !important;
+    }
+    [animate] .item.rising .rankNo {
+      display: none;
+    }
+    .arrow {
+      display: none;
+      -webkit-transform: rotate(90deg);
+    }
+    [animate] .item.rising .arrow {
+      display: inline-block;
+    }
+    .rank {
+      width: 56px;
+    }
+    .avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .name {
+      padding-left: 48px;
+    }
   </style>
-  <div flex hero-id="leaderboard" hero>
+
+  <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-tests.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="5"></firebase-element>
+
+  <div flex hero-id="leaderboard" hero class="hero">
     <core-toolbar>
       <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
       <div>Leaderboard</div>
     </core-toolbar>
+
+    <core-animated-pages id="pages" selected="{{selected}}" on-core-animated-pages-transition-end="{{done}}" transitions="hero-transition">
+
+      <section>
+        <template repeat="{{u,i in items1}}">
+          <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal>
+            <div class="rank">
+              <div class="rankNo">{{i+1}}</div>
+              <core-icon class="arrow" icon="arrow-back"></core-icon>
+            </div>
+            <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+            <div layout flex class="name">{{u.name}}</div>
+            <div>{{u.score}}</div>
+          </div>
+        </template>
+      </section>
+
+      <section>
+        <template repeat="{{u,i in items2}}">
+          <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" class="item" layout horizontal>
+            <div class="rank">
+              <div class="rankNo">{{i+1}}</div>
+              <core-icon class="arrow" icon="arrow-back"></core-icon>
+            </div>
+            <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+            <div layout flex class="name">{{u.name}}</div>
+            <div>{{u.score}}</div>
+          </div>
+        </template>
+      </section>
+
+    </core-animated-pages>
+
   </div>
 
 </template>
 <script>
 
   Polymer('topeka-leaderboard', {
+
+    publish: {
+      active: false
+    },
     
+    selected: 0,
+    offline: true,
+    MAX: 1800,
+
+    ready: function() {
+      this.offline = window.location.search.indexOf('offline') >= 0;
+      if (this.offline) {
+        this.leaderboard = {
+          u1: { name: "Matt M",    avatar: 1, score: 100},
+          u2: { name: "Frankie F", avatar: 2, score: 100},
+          u3: { name: "Steve O",   avatar: 3, score: 100},
+          u4: { name: "Scott M",   avatar: 4, score: 100},
+          u5: { name: "Kevin S",   avatar: 5, score: 100},
+          u6: { name: "Yvonne Y",  avatar: 6, score: 100},
+          u7: { name: "Susan O",   avatar: 7, score: 100},
+          u8: { name: "Timmy J",   avatar: 8, score: 100},
+          u9: { name: "Martin M",  avatar: 9, score: 100},
+          u10: { name: "Glenn B",   avatar: 10, score: 100},
+          u11: { name: "Sally S",   avatar: 11, score: 100},
+          u12: { name: "Michael J", avatar: 12, score: 100}
+        };
+      }
+    },
+
+    activeChanged: function() {
+      if (this.active) {
+        if (this.offline) {
+          this.bumpScores();
+        } else if (this.queuedItems) {
+          this.flipPages(this.queuedItems);
+          this.queuedItems = null;
+        }
+      }
+    },
+
+    userChanged: function() {
+      if (this.offline && this.user) {
+        this.leaderboard.me = {
+          name: this.user.name,
+          avatar: this.user.avatar,
+          score: this.user.score
+        };
+      }
+    },
+
+    bumpScores: function() {
+      for (uid in this.leaderboard) {
+        var u = this.leaderboard[uid];
+        if ((Math.random() > 0.7) && (!this.user || u.name != this.user.name)) {
+          u.score = Math.min(this.MAX, u.score + Math.round(Math.random() * 4) * 10);
+        }
+      }
+      this.leaderboardChange();
+      setTimeout(function() {
+        if (this.active) {
+          this.bumpScores();
+        }
+      }.bind(this), Math.random() * 5000);
+    },
+
+    leaderboardChange: function() {
+      var data = this.leaderboard;
+      var names = Object.keys(data);
+      var items = names.map(function(n) {
+        return { uid: n, name: data[n].name, avatar: data[n].avatar, score: data[n].score};
+      }).sort(function(a, b) {
+        return b.score - a.score;
+      });
+      if (this.$.pages.transitioning.length || !this.active) {
+        this.queuedItems = items;
+      } else {
+        this.flipPages(items);
+      }
+    },
+    flipPages: function(newItems) {
+      var order = newItems.map(function(u) {
+        return u.uid;
+      });
+      if (this.lastOrder) {
+        newItems.forEach(function(u, i) {
+          if (this.lastOrder.indexOf(u.uid) > i) {
+            u.rising = true;
+          }
+        }.bind(this));
+      }
+      this.lastOrder = order;
+      if (this.selected || !this.items1) {
+        this.items1 = newItems;
+      }
+      if (!this.selected || !this.items2) {
+        this.items2 = newItems;
+      }
+      this.selected = this.selected ? 0 : 1;
+    },
+    done: function() {
+      if (this.queuedItems) {
+        this.flipPages(this.queuedItems);
+        this.queuedItems = null;
+      } else {
+        if (this.selected) {
+          this.items1 = this.items2;
+        } else {
+          this.items2 = this.items1;
+        }
+      }
+    },
     mainAction: function() {
       this.fire('main');
     }
