@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-user-score.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="../components/core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="../components/core-animated-pages/transitions/slide-down.html">
 
 <polymer-element name="topeka-category" attributes="user category selected wide" vertical layout>
 <template>
@@ -24,13 +25,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="{{category.theme}}-theme {{ {wide: wide} | tokenList }}" flex vertical layout hero-p>
   
-    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade slide-up hero-transition" hero-p no-transition?="{{selected === 'front'}}">
+    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade slide-up slide-down hero-transition" hero-p no-transition?="{{selected === 'front'}}" on-core-animated-pages-transition-end="{{transitionEnd}}">
     
       <topeka-category-front-page name="front" category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
-      <topeka-quizzes name="quizzes" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" on-quiz-done="{{quizDone}}"></topeka-quizzes>
+      <topeka-quizzes name="quizzes" selectedPage="{{selected}}" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" on-quiz-done="{{quizDone}}"></topeka-quizzes>
       
-      <topeka-quiz-score name="quizScore" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" quizScore="{{quizScore}}"></topeka-quiz-score>
+      <topeka-quiz-score name="quizScore" selectedPage="{{selected}}" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" quizScore="{{quizScore}}"></topeka-quiz-score>
       
       <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" categoryName="{{category.name}}" wide="{{wide}}" on-next="{{mainAction}}"></topeka-user-score>
       
@@ -69,13 +70,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this.scores) {
         var l = this.scores.length;
         this.selected = l ? (l < this.category.quizzes.length ? 
-            'quizzes' : 'score') : 'front';
+            this.selected : 'score') : 'front';
       }
     },
     
     selectedChanged: function() {
       if (this.selected === 'score') {
         this.fire('score-update');
+      }
+    },
+
+    transitionEnd: function() {
+      if (this.selected === 'quizScore') {
+        this.async(function() {
+          this.showQuizzes();
+        }, null, 1200);
       }
     },
     
@@ -89,6 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     quizDone: function(e, detail) {
+      this.selected = 'quizScore';
       this.quizScore = detail.score;
     }
     

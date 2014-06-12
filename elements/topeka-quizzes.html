@@ -14,12 +14,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../components/paper-fab/paper-fab.html">
 
-<polymer-element name="topeka-quizzes" attributes="scores category avatar wide" vertical layout>
+<polymer-element name="topeka-quizzes" attributes="selectedPage scores category avatar wide" vertical layout>
 <template>
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}">
+  <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}" slide-up?="{{selectedPage === 'quizzes'}}">
   
     <div class="card" flex?="{{!wide}}" vertical layout?="{{!wide}}" hero-p>
     

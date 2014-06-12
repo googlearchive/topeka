@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="topeka-status-bar.html">
 
-<polymer-element name="topeka-quiz-score" attributes="scores category avatar quizScore wide" vertical layout noscript>
+<polymer-element name="topeka-quiz-score" attributes="selectedPage scores category avatar quizScore wide" vertical layout noscript>
 <template>
 
   <style>
@@ -28,11 +28,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   </style>
   
-  <div flex>
-    <div class="score theme-bg font-light" vertical center center-justified layout>+{{quizScore || 0}}</div>
+  <div flex slide-down?="{{selectedPage === 'quizzes'}}">
+    <div class="score theme-bg font-light" vertical center center-justified layout hero-id="punch-bottom" hero?="{{selectedPage !== 'quizzes'}}">
+      <span cross-fade>+{{quizScore || 0}}</span>
+    </div>
+    <div hero-id="quizzes-content" hero?="{{selectedPage !== 'quizzes'}}"></div>
   </div>
 
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" slide-up></topeka-status-bar>
+  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
   
 </template>
 </polymer-element>
