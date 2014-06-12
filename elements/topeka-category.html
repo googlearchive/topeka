@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="{{category.theme}}-theme {{ {wide: wide} | tokenList }}" flex vertical layout hero-p>
   
-    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade slide-up hero-transition" hero-p>
+    <core-animated-pages class="category-pages" selected="{{selected}}" selectedItem="{{selectedItem}}" flex transitions="cross-fade slide-up hero-transition" hero-p no-transition?="{{selected === 'front'}}">
     
       <topeka-category-front-page name="front" category="{{category}}" wide="{{wide}}" on-previous="{{mainAction}}" on-next="{{showQuizzes}}"></topeka-category-front-page>
     
@@ -81,6 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     mainAction: function() {
+      this.selected = 'front';
       this.fire('main');
     }
     
