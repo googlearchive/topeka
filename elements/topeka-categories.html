@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       </template>
       
-      <div class="category-item profile" vertical layout hero-id="profile" hero?="{{category.name === 'profile'}}">
+      <div class="category-item profile" vertical layout hero-id="profile" hero?="{{!category || category.name === 'profile'}}">
         <div class="tile theme-bg-a" dummy fit></div>
         <div class="tile" flex vertical layout>
           <div flex></div>
@@ -74,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-categories', {
     
     wide: false,
-    
+
     selectedChanged: function() {
       // first one is leaderboard, last one is profile
       if (this.selected === 0) {
