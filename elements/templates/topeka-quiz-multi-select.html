@@ -15,42 +15,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <template>
 
   <style>
-  
-    .item {
-      height: 48px;
+
+    paper-checkbox {
+      padding: 14px 0;
     }
-    
-    .item > div {
-      padding-left: 32px;
+
+    paper-checkbox::shadow #checkboxLabel {
+      padding-left: 24px;
     }
-  
+
   </style>
-  
+
   <div id="choices">
-      
+
     <template repeat="{{quiz.options}}">
-    
-      <div class="item" horizontal center layout>
-        <paper-checkbox></paper-checkbox>
-        <div>{{}}</div>
-      </div>
-      
+
+      <paper-checkbox label="{{}}"></paper-checkbox><br>
+
     </template>
-    
+
   </div>
-  
+
   <core-selector target="{{$.choices}}" multi itemsSelector="paper-checkbox" selected="{{selected}}" selectedProperty="checked"></core-selector>
-  
+
 </template>
 <script>
 
   Polymer('topeka-quiz-multi-select', {
-    
+
     isCorrect: function() {
       var v = this.selected && this.selected.sort();
       return v == this.quiz.answer;
     }
-  
+
   });
 
 </script>

@@ -15,31 +15,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <template>
 
   <style>
-  
-    .item {
-      height: 48px;
+
+    paper-radio-button {
+      padding: 14px 0;
     }
-    
-    .item > div {
-      padding-left: 32px;
+
+    paper-radio-button::shadow #radioLabel {
+      padding-left: 14px;
     }
-  
+
   </style>
-  
+
   <div id="choices">
-      
+
     <template repeat="{{quiz.options}}">
-    
-      <div class="item" horizontal center layout>
-        <paper-radio-button></paper-radio-button>
-        <div>{{}}</div>
-      </div>
-      
+
+      <paper-radio-button label="{{}}"></paper-radio-button><br>
+
     </template>
-    
+
   </div>
-  
+
   <core-selector target="{{$.choices}}" itemsSelector="paper-radio-button" selected="{{value}}" selectedProperty="checked"></core-selector>
-  
+
 </template>
 </polymer-element>
