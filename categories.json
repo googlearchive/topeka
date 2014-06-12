@@ -50,6 +50,11 @@
         "type": "alpha-picker",
         "question": "Which letter other than X scores 8 in Scrabble?",
         "answer": "J"
+      },
+      {
+        "type": "true-false",
+        "question": "There is a patron Saint of The Internet.",
+        "answer": true
       }
     ]
   },
@@ -97,6 +102,11 @@
         "type": "alpha-picker",
         "question": "Which letter other than X scores 8 in Scrabble?",
         "answer": "J"
+      },
+      {
+        "type": "true-false",
+        "question": "There is a patron Saint of The Internet.",
+        "answer": true
       }
     ]
   },
