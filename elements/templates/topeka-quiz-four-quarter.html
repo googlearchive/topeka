@@ -1,0 +1,56 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../topeka-quiz-base.html">
+<link rel="import" href="../../components/core-selector/core-selector.html">
+<link rel="import" href="../../components/paper-radio-button/paper-radio-button.html">
+
+<polymer-element name="topeka-quiz-four-quarter" extends="topeka-quiz-base" noscript relative>
+<template>
+
+  <style>
+  
+    .item {
+      width: 50%;
+      height: 50%;
+      box-sizing: border-box;
+    }
+    
+    .item:nth-of-type(2n+1) {
+      border-right: 1px solid orange;
+    }
+
+    .item::nth-of-type(2), .item::nth-of-type(3) {
+      border-bottom: 1px solid orange;
+    }
+
+    .item.core-selected {
+      background: blue;
+
+    }
+  
+  </style>
+  
+  <div id="choices" fit horizontal wrap layout>
+      
+    <template repeat="{{quiz.options}}">
+    
+      <div class="item" horizontal center-justified center layout relative value="{{}}">
+        <paper-ripple fit></paper-ripple>
+        <div>{{}}</div>
+      </div>
+      
+    </template>
+    
+  </div>
+  
+  <core-selector target="{{$.choices}}" itemsSelector="paper-radio-button" selected="{{value}}" valueAttr="value"></core-selector>
+  
+</template>
+</polymer-element>
