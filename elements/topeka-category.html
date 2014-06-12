@@ -68,9 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     scoresChanged: function() {
       if (this.scores) {
-        var l = this.scores.length;
-        this.selected = l ? (l < this.category.quizzes.length ? 
-            this.selected : 'score') : 'front';
+        this.selected = this.scores.length ? this.selected : 'front';
       }
     },
     
@@ -83,7 +81,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     transitionEnd: function() {
       if (this.selected === 'quizScore') {
         this.async(function() {
-          this.showQuizzes();
+          if (this.scores.length === this.category.quizzes.length) {
+            this.selected = 'score';
+          } else {
+            this.showQuizzes();
+          }
         }, null, 1200);
       }
     },

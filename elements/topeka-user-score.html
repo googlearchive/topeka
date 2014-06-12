@@ -16,31 +16,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="stylesheet" href="topeka-user-score.css">
 
-  <core-toolbar>
-    
-    <core-icon icon="avatars:avatar-{{user.avatar}}" size="64" class="topeka-avatar"></core-icon>
-    <div flex>{{user.name}}</div>
-    <div>{{user.score}} pts</div>
-      
-  </core-toolbar>
+  <div slide-up flex vertical layout>
 
-  <div class="main theme-bg-a theme-primary-color font-light {{ {wide: wide} | tokenList }}" flex>
-  
-    <div class="category-info">
-      <div>{{correct}} / {{scores.length}} correct!</div>
-      <div class="big">+{{pts}}</div>
-    </div>
+    <core-toolbar>
+      
+      <core-icon icon="avatars:avatar-{{user.avatar}}" size="64" class="topeka-avatar"></core-icon>
+      <div flex>{{user.name}}</div>
+      <div>{{user.score}} pts</div>
+        
+    </core-toolbar>
+
+    <div class="main theme-bg-a theme-primary-color font-light {{ {wide: wide} | tokenList }}" flex>
     
-    <div class="total-info">
-      <div>Total:</div>
-      <div class="big">{{user.score}}</div>
+      <div class="category-info">
+        <div>{{correct}} / {{scores.length}} correct!</div>
+        <div class="big">+{{pts}}</div>
+      </div>
+      
+      <div class="total-info">
+        <div>Total:</div>
+        <div class="big">{{user.score}}</div>
+      </div>
+      
     </div>
-    
-  </div>
-  
-  <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout>
-    <div>{{categoryName}}</div>
-    <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
+
+    <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout>
+      <div>{{categoryName}}</div>
+      <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}"></paper-fab>
+    </div>
+
   </div>
   
 </template>
