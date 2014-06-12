@@ -14,8 +14,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name="topeka-datasource" attributes="user categories url" noscript hidden>
 <template>
   
-  <firebase-login id="fbLogin" provider="anonymous" params='{"rememberMe": true}' location="https://polymer-tests.firebaseio.com" user="{{fbUser}}" statusKnown="{{statusKnown}}"></firebase-login>
-  <firebase-element id="fbUser" location="{{!offline && fbUser ? 'https://polymer-tests.firebaseio.com/users/' + fbUser.uid : null}}" priority="{{user.score}}" data="{{user}}"></firebase-element>
+  <firebase-login id="fbLogin" provider="anonymous" params='{"rememberMe": true}' location="https://polymer-topeka.firebaseio.com" user="{{fbUser}}" statusKnown="{{statusKnown}}"></firebase-login>
+  <firebase-element id="fbUser" location="{{!offline && fbUser ? 'https://polymer-topeka.firebaseio.com/users/' + fbUser.uid : null}}" priority="{{user.score}}" data="{{user}}"></firebase-element>
   <core-ajax auto handleAs="json" url="{{url}}" response="{{categories}}"></core-ajax>
 
 </template>
