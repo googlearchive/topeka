@@ -19,17 +19,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 64px;
       line-height: 64px;
       padding: 0 16px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
       font-size: 18px;
       box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
     }
     
     .bottom-bar.wide {
+      width: 512px;
+      margin: 0 auto;
       padding: 0 24px;
     }
     
     paper-fab {
       position: absolute;
-      bottom: 28px;
+      top: -28px;
       right: 16px;
       background-color: #fff;
       fill: #616161;
@@ -45,11 +49,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="bottom-bar theme-bg {{ {wide: wide} | tokenList }}" horizontal center layout hero-id="punch-bottom" hero>
     <div>{{category.name}}</div>
+    <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}" scale-up hero-id="fab" hero></paper-fab>
   </div>
 
   <div hero-id="quizzes-content" hero></div>
-
-  <paper-fab icon="av:play-arrow" on-tap="{{nextAction}}" scale-up hero-id="fab" hero></paper-fab>
 
 </template>
 <script>

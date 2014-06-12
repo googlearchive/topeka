@@ -25,6 +25,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     topeka-status-bar {
       box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
     }
+    
+    topeka-status-bar.wide {
+      width: 512px;
+      margin: 0 auto;
+    }
   
   </style>
   
@@ -35,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div hero-id="quizzes-content" hero?="{{selectedPage !== 'quizzes'}}"></div>
   </div>
 
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
+  <topeka-status-bar class="{{ {wide: wide} | tokenList }}" avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
   
 </template>
 </polymer-element>

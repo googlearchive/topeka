@@ -20,11 +20,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .card {
+  position: relative;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .quizzes-panel.wide > .card {
-  margin-top: 64px;
+  width: 512px;
+  margin: 64px auto 0;
 }
 
 .card > core-toolbar {
@@ -66,14 +68,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: block;
 }
 
-/* topeka-quiz-view {
-  padding: 0 16px;
-}
-
-.quizzes-panel.wide topeka-quiz-view {
-  padding: 0 24px 24px;
-} */
-
 paper-fab.check-button {
   position: absolute;
   top: 148px;
@@ -83,10 +77,14 @@ paper-fab.check-button {
 }
 
 .quizzes-panel.wide paper-fab.check-button {
-  top: 212px;
   right: 16px;
 }
 
 topeka-status-bar {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+topeka-status-bar.wide {
+  width: 512px;
+  margin: 0 auto;
 }

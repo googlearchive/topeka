@@ -41,13 +41,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </div>
       
+      <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
+      
     </div>
-
-    <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}" hero-id="fab" hero></paper-fab>
     
   </div>
 
-  <topeka-status-bar avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" slide-up></topeka-status-bar>
+  <topeka-status-bar class="{{ {wide: wide} | tokenList }}" avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" slide-up></topeka-status-bar>
   
 </template>
 <script>
