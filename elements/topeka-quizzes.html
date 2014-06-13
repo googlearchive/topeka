@@ -19,19 +19,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="stylesheet" href="topeka-quizzes.css">
 
-  <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}" slide-up?="{{selectedPage !== 'quizScore'}}">
+  <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}" slide-up>
   
     <div class="card {{ {answered: answered} | tokenList }}" flex?="{{!wide}}" vertical layout?="{{!wide}}" hero-p>
     
       <core-toolbar class="theme-bg" hero-id="punch-bottom" hero>
       
-        <div class="question">{{quiz.question}}</div>
+        <div class="question" cross-fade-delayed>{{quiz.question}}</div>
         
       </core-toolbar>
 
       <div class="quizzes-content" hidden?="{{!category}}" flex hero-id="quizzes-content" hero>
       
-        <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
+        <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}" cross-fade-delayed>
         
           <template repeat="{{category.quizzes}}">
             <topeka-quiz-view quiz="{{}}" on-quiz-answered="{{quizAnswered}}"></topeka-quiz-view>

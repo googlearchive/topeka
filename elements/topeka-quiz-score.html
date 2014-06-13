@@ -18,8 +18,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 176px;
       height: 176px;
       font-size: 76px;
-      margin: 100px auto;
+      margin: 100px auto 0;
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .dummy {
+      margin-bottom: 100px;
     }
     
     topeka-status-bar {
@@ -30,14 +34,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 512px;
       margin: 0 auto;
     }
-  
+
   </style>
   
   <div flex slide-down?="{{selectedPage === 'quizzes'}}">
     <div class="score theme-bg font-light" vertical center center-justified layout hero-id="punch-bottom" hero?="{{selectedPage !== 'quizzes'}}">
       <span cross-fade-delayed>+{{quizScore || 0}}</span>
     </div>
-    <div hero-id="quizzes-content" hero?="{{selectedPage !== 'quizzes'}}"></div>
+    <div class="dummy" hero-id="quizzes-content" hero?="{{selectedPage !== 'quizzes'}}"></div>
   </div>
 
   <topeka-status-bar class="{{ {wide: wide} | tokenList }}" avatar="{{avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
