@@ -14,6 +14,10 @@ html, body {
 body {
   margin: 0;
   background-color: #00bad2;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 512px;
+  background-image: url(images/category-0.svg);
   font-family: /* Roboto2, */sans-serif;
   color: #444;
   fill: #444;
