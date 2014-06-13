@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
         <topeka-status-bar avatar="{{user.avatar}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}"></topeka-status-bar>
       
-        <div class="main font-light" flex>
+        <div class="main font-light" flex layout vertical>
         
           <div class="category-info">
             <div>{{correct}} / {{scores.length}} correct!</div>
@@ -36,9 +36,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div>Total:</div>
             <div class="big">{{user.score}}</div>
           </div>
+
+          <div flex></div>
           
-        </div>
+          <div horizontal center layout>
+            <div flex></div>
+            <paper-fab id="check" icon="check" on-tap="{{nextAction}}"></paper-fab>
+          </div>
         
+        </div>
+
       </div>
   
     </div>

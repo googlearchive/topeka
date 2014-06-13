@@ -14,14 +14,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .main {
-  padding: 48px 16px;
+  padding: 48px 16px 24px;
   background-color: #eee;
   font-size: 20px;
   overflow: auto;
 }
 
 .wide .main {
-  padding: 48px 24px;
+  padding: 48px 24px 24px;
 }
 
 .main .big {
@@ -47,4 +47,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 512px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+#check {
+  width: 56px;
+  height: 56px;
+  background-color: lightgray;
+  fill: black;
 }
