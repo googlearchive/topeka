@@ -115,6 +115,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 .wide.category-list {
   padding: 4px 0;
   margin: 0 -4px;
+  /* need to avoid transitioning elemnents causing scrollbars to appear */
+  overflow-y: hidden;
 }
 
 .wide .category-item > .tile {
