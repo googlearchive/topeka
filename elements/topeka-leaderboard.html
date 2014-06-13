@@ -14,29 +14,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/firebase-element/firebase-element.html">
 <link rel="import" href="topeka-avatars.html">
 
-<polymer-element name="topeka-leaderboard" attributes="user" vertical layout>
+<polymer-element name="topeka-leaderboard" attributes="user wide limit tvmode columns disabled duration" vertical layout>
 <template>
 
   <style>
   
-    .hero {
-      background-color: #eee;
+    .card {
+      background-color: #f5f5f5;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .wide.card {
+      width: 512px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    .wide.card.multi-column {
+      width: 100%;
+      height: 100%;
+    }
+    .scroll {
+      overflow: auto;
+    }
+    .multi-column .list {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: column wrap;
+      flex-flow: column wrap;
+      -webkit-align-content: stretch;
+      align-content: stretch;
     }
     .item {
-      background-color: white;
+      background-color: #f5f5f5;
       height: 56px;
       padding: 8px 16px;
       border-radius: 3px;
       box-sizing: border-box;
       position: relative;
       font-size: 18pt;
+      max-width: 900px;
     }
     [animate] .item.rising {
-      box-shadow: 0px 2px 10px 0px rgba(50, 50, 50, 1);
+      box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.6);
       z-index: 10001 !important;
+      background-color: white;
     }
     [animate] .item.rising .rankNo {
       display: none;
+    }
+    .delta {
+      display: none;
+      padding-right: 32px;
+      color: #00bbd3;
+      font-weight: bold;
+    }
+    [animate] .item.rising .delta {
+      display: inline-block;
     }
     .arrow {
       display: none;
@@ -63,46 +95,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
 
-  <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-topeka.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="20"></firebase-element>
+  <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-topeka.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="{{limit}}"></firebase-element>
 
-  <div flex hero-id="leaderboard" hero class="hero">
-    <core-toolbar>
-      <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
-      <div>Leaderboard</div>
-    </core-toolbar>
+  <div flex center layout vertical hero-p>
+    <div flex hero-id="leaderboard" hero class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" vertical layout>
+      <core-toolbar>
+        <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
+        <div>Leaderboard</div>
+      </core-toolbar>
 
-    <core-animated-pages id="pages" selected="{{selected}}" on-core-animated-pages-transition-end="{{done}}" transitions="hero-transition">
+      <div class="scroll" layout vertical flex>
+        <core-animated-pages id="pages" selected="{{selected}}" on-core-animated-pages-transition-end="{{done}}" transitions="hero-transition" layout flex?="{{columns}}">
 
-      <section>
-        <template repeat="{{u,i in items1}}">
-          <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
-            <div class="rank">
-              <div class="rankNo">{{i+1}}</div>
-              <core-icon class="arrow" icon="arrow-back"></core-icon>
-            </div>
-            <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
-            <div layout flex class="name">{{u.name}}</div>
-            <div>{{u.score}}</div>
-          </div>
-        </template>
-      </section>
+          <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
+            <template repeat="{{u,i in items1}}">
+              <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
+                <div class="rank">
+                  <div class="rankNo">{{i+1}}</div>
+                  <core-icon class="arrow" icon="arrow-back"></core-icon>
+                </div>
+                <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+                <div layout flex class="name">{{u.name}}</div>
+                <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
+                <div>{{u.score}}</div>
+              </div>
+            </template>
+          </section>
 
-      <section>
-        <template repeat="{{u,i in items2}}">
-          <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
-            <div class="rank">
-              <div class="rankNo">{{i+1}}</div>
-              <core-icon class="arrow" icon="arrow-back"></core-icon>
-            </div>
-            <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
-            <div layout flex class="name">{{u.name}}</div>
-            <div>{{u.score}}</div>
-          </div>
-        </template>
-      </section>
+          <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
+            <template repeat="{{u,i in items2}}">
+              <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
+                <div class="rank">
+                  <div class="rankNo">{{i+1}}</div>
+                  <core-icon class="arrow" icon="arrow-back"></core-icon>
+                </div>
+                <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+                <div layout flex class="name">{{u.name}}</div>
+                <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
+                <div>{{u.score}}</div>
+              </div>
+            </template>
+          </section>
 
-    </core-animated-pages>
+        </core-animated-pages>
+      </div>
 
+    </div>
   </div>
 
 </template>
@@ -111,37 +149,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-leaderboard', {
 
     publish: {
-      active: false
+      disabled: false,
+      limit: 20,
+      columns: false,
+      tvmode: false,
+      duration: -1
     },
     
     selected: 0,
     offline: true,
     MAX: 1800,
 
+    names: ['James','John','Robert','Michael','William','David','Richard','Joseph','Charles','Thomas','Christopher','Daniel','Matthew','Donald','Anthony','Paul','Mark','George','Steven','Kenneth','Andrew','Edward','Joshua','Brian','Kevin','Ronald','Timothy','Jason','Jeffrey','Gary','Ryan','Nicholas','Eric','Jacob','Stephen','Jonathan','Larry','Frank','Scott','Justin','Brandon','Raymond','Gregory','Samuel','Benjamin','Patrick','Jack','Dennis','Jerry','Alexander','Tyler','Henry','Douglas','Peter','Aaron','Walter','Jose','Adam','Zachary','Harold','Nathan','Kyle','Carl','Arthur','Gerald','Roger','Lawrence','Keith','Albert','Jeremy','Terry','Joe','Sean','Willie','Jesse','Austin','Christian','Ralph','Billy','Bruce','Bryan','Roy','Eugene','Ethan','Louis','Wayne','Jordan','Harry','Russell','Alan','Juan','Philip','Randy','Dylan','Howard','Vincent','Bobby','Johnny','Phillip','Shawn','Mary','Patricia','Jennifer','Elizabeth','Linda','Barbara','Susan','Margaret','Jessica','Dorothy','Sarah','Karen','Nancy','Betty','Lisa','Sandra','Helen','Ashley','Donna','Kimberly','Carol','Michelle','Emily','Amanda','Melissa','Deborah','Laura','Stephanie','Rebecca','Sharon','Cynthia','Kathleen','Ruth','Anna','Shirley','Amy','Angela','Virginia','Brenda','Pamela','Catherine','Katherine','Nicole','Christine','Janet','Debra','Samantha','Carolyn','Rachel','Heather','Maria','Diane','Frances','Joyce','Julie','Emma','Evelyn','Martha','Joan','Kelly','Christina','Lauren','Judith','Alice','Victoria','Doris','Ann','Jean','Cheryl','Marie','Megan','Kathryn','Andrea','Jacqueline','Gloria','Teresa','Janice','Sara','Rose','Hannah','Julia','Theresa','Judy','Grace','Beverly','Denise','Marilyn','Mildred','Amber','Danielle','Brittany','Olivia','Diana','Jane','Lori','Madison','Tiffany','Kathy','Tammy','Crystal'],
+
     ready: function() {
       this.offline =
         window.location.search.indexOf('offline') >= 0 ||
         window.location.search.indexOf('test') >= 0;;
+        if (this.offline) {
+          this.generateLeaderboard();
+        }
+    },
+
+    limitChanged: function() {
       if (this.offline) {
-        this.leaderboard = {
-          u1: { name: "Matt M",    avatar: 1, score: 100},
-          u2: { name: "Frankie F", avatar: 2, score: 100},
-          u3: { name: "Steve O",   avatar: 3, score: 100},
-          u4: { name: "Scott M",   avatar: 4, score: 100},
-          u5: { name: "Kevin S",   avatar: 5, score: 100},
-          u6: { name: "Yvonne Y",  avatar: 6, score: 100},
-          u7: { name: "Susan O",   avatar: 7, score: 100},
-          u8: { name: "Timmy J",   avatar: 8, score: 100},
-          u9: { name: "Martin M",  avatar: 9, score: 100},
-          u10: { name: "Glenn B",   avatar: 10, score: 100},
-          u11: { name: "Sally S",   avatar: 11, score: 100},
-          u12: { name: "Michael J", avatar: 12, score: 100}
-        };
+        this.generateLeaderboard();
       }
     },
 
-    activeChanged: function() {
-      if (this.active) {
+    generateLeaderboard: function() {
+      var lb = {};
+      var n = this.names.slice();
+      for (var i=0; i<this.limit; i++) {
+        var f = Math.floor(Math.random()*n.length);
+        var l = Math.floor(Math.random()*26);
+        lb['u'+i] = { 
+          name: n.splice(f, 1)[0] + ' ' + String.fromCharCode(65 + l),
+          avatar: Math.floor(Math.random()*16)+1,
+          score: 0};
+      }
+      this.leaderboard = lb;
+      this.bumpScores();
+    },
+
+    disabledChanged: function() {
+      if (!this.disabled) {
         if (this.offline) {
           this.bumpScores();
         } else if (this.queuedItems) {
@@ -164,27 +216,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     bumpScores: function() {
       for (uid in this.leaderboard) {
         var u = this.leaderboard[uid];
-        if ((Math.random() > 0.7) && (!this.user || u.name != this.user.name)) {
-          u.score = Math.min(this.MAX, u.score + Math.round(Math.random() * 4) * 10);
+        if ((Math.random() > 0.9) && (!this.user || u.name != this.user.name)) {
+          u.score += 8;
         }
       }
       this.leaderboardChange();
       setTimeout(function() {
-        if (this.active) {
+        if (!this.disabled) {
           this.bumpScores();
         }
-      }.bind(this), Math.random() * 5000);
+      }.bind(this), Math.random() * 10000);
     },
 
+    lastScores: {},
     leaderboardChange: function() {
       var data = this.leaderboard;
-      var names = Object.keys(data);
-      var items = names.map(function(n) {
-        return { uid: n, name: data[n].name, avatar: data[n].avatar, score: data[n].score};
-      }).sort(function(a, b) {
+      var uids = Object.keys(data);
+      this.newScores = {};
+      var items = uids.map(function(u) {
+        this.newScores[u] = data[u].score;
+        return { uid: u, name: data[u].name, avatar: data[u].avatar, score: data[u].score};
+      }.bind(this)).sort(function(a, b) {
         return b.score - a.score;
       });
-      if (this.$.pages.transitioning.length || !this.active) {
+      if (this.$.pages.transitioning.length || this.disabled) {
         this.queuedItems = items;
       } else {
         this.flipPages(items);
@@ -197,7 +252,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this.lastOrder) {
         newItems.forEach(function(u, i) {
           if (this.lastOrder.indexOf(u.uid) > i) {
-            u.rising = true;
+            u.delta = this.newScores[u.uid] - this.lastScores[u.uid] || u.score;
+            if (u.delta > 0) {
+              u.rising = true;
+              u.delta = "+" + u.delta;
+            }
           }
         }.bind(this));
       }
@@ -211,6 +270,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.selected = this.selected ? 0 : 1;
     },
     done: function() {
+      this.lastScores = this.newScores;
       if (this.queuedItems) {
         this.flipPages(this.queuedItems);
         this.queuedItems = null;
@@ -224,6 +284,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     mainAction: function() {
       this.fire('main');
+    },
+    durationChanged: function() {
+      if (this.duration > 0) {
+        CoreStyle.g.transitions.duration = this.duration;
+      }
     }
     
   });
