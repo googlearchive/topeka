@@ -94,9 +94,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </core-selector>
       </div>
       <div horizontal center layout>
-        <paper-button on-tap="{{handleLogout}}" label="Sign out" raisedButton hidden?="{{!user || !user.exists}}"></paper-button>
+        <paper-button on-tap="{{handleLogout}}" label="Sign out" hidden?="{{!user || !user.exists}}"></paper-button>
         <div flex></div>
-        <paper-fab id="check" icon="check" disabled?="{{!$.first.value.length || !$.last.value.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+        <paper-fab id="check" icon="check" disabled?="{{!$.first.inputValue.length || !$.last.inputValue.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
       </div>
     </div>
   </div>
@@ -106,6 +106,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 
   Polymer('topeka-profile', {
+
+    ready: function() {
+      if (!this.user) {
+        this.selectRandomAvatar();
+      }
+    },
+
+    selectRandomAvatar: function() {
+      this.selectedAvatar = Math.floor(Math.random() * 16);
+    },
 
     userDefaultsChanged: function() {
       if (this.userDefaults) {
@@ -117,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       } else {
         this.$.first.value = '';
         this.$.last.value = '';
-        this.selectedAvatar = null;
+        this.selectRandomAvatar();
         this.score = 0;
       }
     },
