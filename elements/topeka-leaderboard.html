@@ -93,11 +93,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       text-overflow: ellipsis;
       padding-right: 16px;
     }
+    .main {
+      position: relative;
+    }
+    
+    .bg {
+      background-color: #00bad2;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 512px;
+      background-image: url(../images/category-0.svg);
+    }
   </style>
 
   <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-topeka.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="{{limit}}"></firebase-element>
 
-  <div flex center layout vertical hero-p>
+  <div class="bg" fit dummy></div>
+
+  <div class="main" flex center layout vertical hero-p>
     <div flex hero-id="leaderboard" hero class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" vertical layout>
       <core-toolbar>
         <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>

@@ -75,10 +75,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     paper-fab[disabled] {
       pointer-events: none;
     }
+    
+    .main {
+      position: relative;
+    }
+    
+    .bg {
+      background-color: #00bad2;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 512px;
+      background-image: url(../images/category-0.svg);
+    }
 
   </style>
+  
+  <div class="bg" fit dummy></div>
 
-  <div flex layout vertical hero-p>
+  <div class="main" flex layout vertical hero-p>
     <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical hero-id="profile" hero?="{{parentElement.selected === 'profile'}}" slide-up-offscreen?="{{parentElement.selected !== 'profile'}}">
       <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
       <paper-input label="First Name" id="first"></paper-input>
