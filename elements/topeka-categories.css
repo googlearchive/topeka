@@ -92,6 +92,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   background-color: #999;
 }
 
+.polymer-logo > .tile {
+  background-color: #ccc;
+}
+
 /* wide layout */
 .wide.category-list {
   padding: 4px 0;
