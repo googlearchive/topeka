@@ -16,7 +16,7 @@ function read(file, name) {
 
 function transmogrify($, name) {
   var node = $('svg');
-  var innerHTML = $.xml(node.find('*'));
+  var innerHTML = $.xml(node.children());
   // remove extraneous whitespace
   innerHTML = innerHTML.replace(/\t|\r|\n/g, ''); 
   var output = '<g id="' + name + '">' + innerHTML + '</g>';
