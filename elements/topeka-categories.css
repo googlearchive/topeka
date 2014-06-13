@@ -7,14 +7,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-:host {
-  background-color: #424242;
-}
-
 .categories-panel {
   position: relative;
   /* TODO(sjmiles): why is this necessary? */
   overflow-x: hidden;
+  background-color: #424242;
 }
 
 .categories-panel > core-toolbar {

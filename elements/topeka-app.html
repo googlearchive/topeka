@@ -13,16 +13,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="topeka-profile.html">
 <link rel="import" href="../components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../components/core-animated-pages/transitions/slide-up.html">
 <link rel="import" href="../components/core-animated-pages/transitions/scale-up.html">
+<link rel="import" href="../components/core-animated-pages/transitions/tile-cascade.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
 
 <polymer-element name="topeka-app" attributes="user categories" vertical layout>
 <template>
   
-  <core-animated-pages selected="{{selected}}" transitions="cross-fade scale-up hero-transition" flex>
+  <core-animated-pages selected="{{selected}}" transitions="cross-fade scale-up slide-up slide-up-offscreen slide-down tile-cascade hero-transition" flex>
     
-    <topeka-profile id="profile" name="profile" user="{{user}}" wide="{{wide}}"></topeka-profile>
-
     <topeka-categories id="categories" name="categories" user="{{user}}" allScores="{{allScores}}"
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
       on-core-activate="{{categorySelect}}"></topeka-categories>
@@ -30,6 +30,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <topeka-category id="category" name="category" user="{{user}}" category="{{category}}" allScores="{{allScores}}" wide="{{wide}}"></topeka-category>
       
     <topeka-leaderboard name="leaderboard" user="{{user}}" wide="{{wide}}"></topeka-leaderboard>
+
+    <topeka-profile id="profile" name="profile" user="{{user}}" wide="{{wide}}"></topeka-profile>
     
   </core-animated-pages>
   
@@ -48,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       'main': 'showCategories',
       'score-update': 'computeScore'
     },
-    
+
     showCategories: function() {
       this.selected = 'categories';
     },

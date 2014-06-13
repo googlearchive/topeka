@@ -19,9 +19,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="stylesheet" href="topeka-categories.css">
   <link rel="stylesheet" href="topeka-category-themes.css">
 
-  <div class="categories-panel" flex hero-p>
+  <div class="categories-panel" flex hero-p cross-fade?="{{parentElement.selected !== 'category' && parentElement.lastSelected !== 'category'}}">
   
-    <core-toolbar>
+    <core-toolbar slide-down?="{{parentElement.selected !== 'category' && parentElement.lastSelected !== 'category'}}">
     
       <core-icon icon="avatars:avatar-{{user.avatar}}" size="64" class="topeka-avatar"></core-icon>
       <div flex class="user-name">{{user.name}}</div>
@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
     </core-toolbar>
     
-    <core-selector class="category-list content {{ {wide: wide} | tokenList }}" selected="{{selected}}" hero-p>
+    <core-selector class="category-list content {{ {wide: wide} | tokenList }}" selected="{{selected}}" hero-p tile-cascade?="{{parentElement.selected !== 'category' && parentElement.lastSelected !== 'category'}}">
       
       <div class="category-item leaderboard" hero-id="leaderboard" hero?="{{category.name === 'leaderboard'}}" vertical layout>
         <div class="tile theme-bg-a" dummy fit></div>

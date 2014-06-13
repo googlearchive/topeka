@@ -78,8 +78,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
 
-  <div flex hero-id="profile" hero layout vertical>
-    <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical>
+  <div flex layout vertical hero-p>
+    <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical hero-id="profile" hero?="{{parentElement.selected === 'profile'}}" slide-up-offscreen?="{{parentElement.selected !== 'profile'}}">
       <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
       <paper-input label="First Name" id="first"></paper-input>
       <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
