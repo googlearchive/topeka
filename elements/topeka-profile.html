@@ -88,9 +88,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-image: url(../images/category-0.svg);
     }
 
+    :host([animate]:not(.core-selected)) .bg {
+      z-index: -1;
+    }
+
   </style>
   
-  <div class="bg" fit dummy></div>
+  <div class="bg" fit dummy cross-fade></div>
 
   <div class="main" flex layout vertical hero-p>
     <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical hero-id="profile" hero?="{{parentElement.selected === 'profile'}}" slide-up-offscreen?="{{parentElement.selected !== 'profile'}}">
