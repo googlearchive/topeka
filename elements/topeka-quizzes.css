@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 .quizzes-content {
   background-color: #eee;
   overflow: auto;
+  position: relative;
 }
 
 .quizzes-panel.wide .quizzes-content {

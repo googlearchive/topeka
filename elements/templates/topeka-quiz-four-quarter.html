@@ -16,29 +16,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <style>
   
+    :host-context(.wide) {
+      position: relative !important;
+      min-height: 256px;
+    }
+
     :host {
       display: block;
-      position: relative;
-      min-height: 256px;
+      position: absolute !important;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
 
     .item {
       width: 50%;
       height: 50%;
-      padding: 8px;
       box-sizing: border-box;
     }
     
     .item:nth-of-type(2n+1) {
-      border-right: 1px solid;
+      border-right: 1px solid gray;
     }
 
     .item:nth-of-type(1), .item:nth-of-type(2) {
-      border-bottom: 1px solid;
+      border-bottom: 1px solid gray;
     }
 
     paper-button {
       background-color: none;
+      border-radius: 0;
       -webkit-transition: background-color 1s, color 0.5s;
       transition: background-color 1s, color 0.5s;
     }
@@ -76,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div id="choices" fit horizontal wrap layout>
       
     <template repeat="{{quiz.options}}">
-      <div class="item theme-border-color" horizontal layout>
+      <div class="item" horizontal layout>
         <paper-button label="{{}}" flex></paper-button>
       </div>
     </template>
