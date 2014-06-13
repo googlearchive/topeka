@@ -18,10 +18,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../components/core-animated-pages/transitions/tile-cascade.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
 
-<polymer-element name="topeka-app" attributes="user categories" vertical layout>
+<polymer-element name="topeka-app" attributes="user categories statusKnown" vertical layout>
 <template>
+
+  <style>
+  
+    .splash {
+      background-color: #00bad2;
+    }
+  
+  </style>
   
   <core-animated-pages selected="{{selected}}" transitions="cross-fade cross-fade-delayed scale-up slide-up slide-up-offscreen slide-down tile-cascade hero-transition" flex>
+    
+    <div name="splash">
+      <span fit class="splash" cross-fade></span>
+    </div>
     
     <topeka-categories id="categories" name="categories" user="{{user}}" allScores="{{allScores}}"
       categories="{{categories}}" category="{{category}}" wide="{{wide}}" 
@@ -42,9 +54,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   Polymer('topeka-app', {
     
-    selected: 'profile',
+    selected: 'splash',
 
     responsiveWidth: '900px',
+    
+    statusKnown: false,
+    
+    minSplashTime: 1000,
+    
+    observe: {
+      'user statusKnown': 'startup'
+    },
+    
+    ready: function() {
+      this.readyTime = Date.now();
+    },
     
     eventDelegates: {
       'main': 'showCategories',
@@ -124,8 +148,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       return pts;
     },
-
-    userChanged: function() {
+    
+    startup: function() {
+      var elapsed = Date.now() - this.readyTime;
+      var t = this.minSplashTime - elapsed;
+      this.async('completeStartup', null, t > 0 ? t : 0);
+    },
+    
+    completeStartup: function() {
       if (this.user && this.user.exists) {
         this.loadScores();
         this.selected = 'categories';
