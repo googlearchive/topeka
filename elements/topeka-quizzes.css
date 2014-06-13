@@ -73,6 +73,10 @@ paper-fab.check-button {
   top: 148px;
   right: 8px;
   background-color: #f5f5f5;
+  fill: #cdcdcd;
+}
+
+.answered paper-fab.check-button {
   fill: #626262;
 }
 

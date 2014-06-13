@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="quizzes-panel {{ {wide: wide} | tokenList }}" flex vertical layout?="{{!wide}}" slide-up?="{{selectedPage !== 'quizScore'}}">
   
-    <div class="card" flex?="{{!wide}}" vertical layout?="{{!wide}}" hero-p>
+    <div class="card {{ {answered: answered} | tokenList }}" flex?="{{!wide}}" vertical layout?="{{!wide}}" hero-p>
     
       <core-toolbar class="theme-bg" hero-id="punch-bottom" hero>
       
@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}">
         
           <template repeat="{{category.quizzes}}">
-            <topeka-quiz-view quiz="{{}}"></topeka-quiz-view>
+            <topeka-quiz-view quiz="{{}}" on-quiz-answered="{{quizAnswered}}"></topeka-quiz-view>
           </template>
           
         </core-selector>
@@ -55,6 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer('topeka-quizzes', {
     
     wide: false,
+    answered: false,
     
     observe: {
       'scores category': 'update'
@@ -71,6 +72,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.scores[this.selected] = s;
       this.fire('quiz-done', {score: s});
       this.selected++;
+      this.answered = false;
+    },
+    
+    quizAnswered: function() {
+      this.answered = true;
     }
     
   });

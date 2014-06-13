@@ -32,12 +32,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer('topeka-quiz-base', {
       
+      eventDelegates: {
+        'down': 'answered'
+      },
+      
       isCorrect: function() {
         return this.value == this.quiz.answer;
       },
       
       getScore: function() {
         return this.isCorrect() ? (this.quiz.point || DEFAULT_POINT) : 0;
+      },
+      
+      answered: function() {
+        this.fire('quiz-answered');
       }
       
     });
