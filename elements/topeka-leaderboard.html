@@ -115,48 +115,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div class="bg" fit dummy cross-fade></div>
 
   <div class="main" flex center layout vertical hero-p>
-    <div flex hero-id="leaderboard" hero?="{{parentElement.selected === 'leaderboard'}}" slide-up-offscreen?="{{parentElement.selected !== 'leaderboard'}}" class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" vertical layout>
-      <core-toolbar>
-        <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
-        <div>Leaderboard</div>
-      </core-toolbar>
+    <div flex hero-id="leaderboard" hero?="{{parentElement.selected === 'leaderboard'}}" slide-up-offscreen?="{{parentElement.selected !== 'leaderboard'}}" class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" relative>
+      <div vertical layout fit cross-fade-delayed>
+        <core-toolbar>
+          <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
+          <div>Leaderboard</div>
+        </core-toolbar>
 
-      <div class="scroll" layout vertical flex>
-        <core-animated-pages id="pages" selected="{{selected}}" on-core-animated-pages-transition-end="{{done}}" transitions="hero-transition" layout flex?="{{columns}}">
+        <div class="scroll" layout vertical flex>
+          <core-animated-pages id="pages" selected="{{selected}}" on-core-animated-pages-transition-end="{{done}}" transitions="hero-transition" layout flex?="{{columns}}">
 
-          <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
-            <template repeat="{{u,i in items1}}">
-              <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
-                <div class="rank">
-                  <div class="rankNo">{{i+1}}</div>
-                  <core-icon class="arrow" icon="arrow-back"></core-icon>
+            <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
+              <template repeat="{{u,i in items1}}">
+                <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
+                  <div class="rank">
+                    <div class="rankNo">{{i+1}}</div>
+                    <core-icon class="arrow" icon="arrow-back"></core-icon>
+                  </div>
+                  <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+                  <div layout flex class="name">{{u.name}}</div>
+                  <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
+                  <div>{{u.score}}</div>
                 </div>
-                <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
-                <div layout flex class="name">{{u.name}}</div>
-                <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
-                <div>{{u.score}}</div>
-              </div>
-            </template>
-          </section>
+              </template>
+            </section>
 
-          <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
-            <template repeat="{{u,i in items2}}">
-              <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
-                <div class="rank">
-                  <div class="rankNo">{{i+1}}</div>
-                  <core-icon class="arrow" icon="arrow-back"></core-icon>
+            <section class="list {{ {tvmode: tvmode} | tokenList }}" layout>
+              <template repeat="{{u,i in items2}}">
+                <div hero hero-id="{{u.uid}}" class="item {{u.rising ? 'rising':''}}" layout horizontal center>
+                  <div class="rank">
+                    <div class="rankNo">{{i+1}}</div>
+                    <core-icon class="arrow" icon="arrow-back"></core-icon>
+                  </div>
+                  <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
+                  <div layout flex class="name">{{u.name}}</div>
+                  <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
+                  <div>{{u.score}}</div>
                 </div>
-                <core-icon size="40" class="avatar" icon="avatars:avatar-{{u.avatar}}"></core-icon>
-                <div layout flex class="name">{{u.name}}</div>
-                <div class="delta" xhidden?="{{!u.delta || !u.rising}}">{{u.delta}}</div>
-                <div>{{u.score}}</div>
-              </div>
-            </template>
-          </section>
+              </template>
+            </section>
 
-        </core-animated-pages>
+          </core-animated-pages>
+        </div>
       </div>
-
     </div>
   </div>
 

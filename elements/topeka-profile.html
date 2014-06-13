@@ -98,23 +98,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="main" flex layout vertical hero-p>
     <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical hero-id="profile" hero?="{{parentElement.selected === 'profile'}}" slide-up-offscreen?="{{parentElement.selected !== 'profile'}}">
-      <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
-      <paper-input label="First Name" id="first"></paper-input>
-      <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
-      <div class="header">Choose an Avatar</div>
-      <div id="avatarList" layout flex>
-        <core-selector selected="{{selectedAvatar}}">
-          <template repeat="{{i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}">
-            <div class="avatar-wrapper">
-              <core-icon size="60" icon="avatars:avatar-{{i}}" class="topeka-avatar"></core-icon>
-            </div>
-          </template>
-        </core-selector>
-      </div>
-      <div horizontal center layout>
-        <paper-button on-tap="{{handleLogout}}" label="Sign out" hidden?="{{!user || !user.exists}}"></paper-button>
-        <div flex></div>
-        <paper-fab id="check" icon="check" disabled?="{{!$.first.inputValue.length || !$.last.inputValue.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+      <div layout vertical flex cross-fade-delayed>
+        <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
+        <paper-input label="First Name" id="first"></paper-input>
+        <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
+        <div class="header">Choose an Avatar</div>
+        <div id="avatarList" layout flex>
+          <core-selector selected="{{selectedAvatar}}">
+            <template repeat="{{i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}">
+              <div class="avatar-wrapper">
+                <core-icon size="60" icon="avatars:avatar-{{i}}" class="topeka-avatar"></core-icon>
+              </div>
+            </template>
+          </core-selector>
+        </div>
+        <div horizontal center layout>
+          <paper-button on-tap="{{handlelogout}}" label="Sign Out" hidden?="{{!user || !user.exists}}"></paper-button>
+          <div flex></div>
+          <paper-fab id="check" icon="check" disabled?="{{!$.first.inputValue.length || !$.last.inputValue.length || selectedAvatar == undefined}}" on-tap="{{handleLogin}}"></paper-fab>
+        </div>
       </div>
     </div>
   </div>

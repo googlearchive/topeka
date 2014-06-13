@@ -15,8 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow: auto;
 }
 
-[animate] /deep/ .quizzes-panel {
-  overflow: inherit;
+:host([animate]) .quizzes-panel {
+  overflow: visible;
 }
 
 ::-webkit-scrollbar {
