@@ -28,3 +28,7 @@ body /deep/ .font-light {
 body /deep/ .font-medium {
   font-weight: 500;
 }
+
+topeka-app {
+  min-height: 450px;
+}
