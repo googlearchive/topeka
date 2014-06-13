@@ -21,7 +21,7 @@
             },
             {
                 "type": "multi-select",
-                "question": "What are the three ingredients in mead (spices exluded",
+                "question": "What are the three ingredients in mead (spices exluded)?",
                 "options": [
                     "Sugar",
                     "Honey",
