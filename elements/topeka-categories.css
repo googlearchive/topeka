@@ -52,6 +52,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   vertical-align: top;
   width: 50%;
   height: 224px;
+  /*
+   * TODO(dfreedm): force items to be layers until
+   * overflow scrolling renders correctly
+   */
+  will-change: transform;
 }
 
 .category-item.completed {
