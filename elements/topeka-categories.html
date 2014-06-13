@@ -8,6 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="topeka-avatars.html">
+<link rel="import" href="../images/iconset.html">
 <link rel="import" href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
 <link rel="import" href="../components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
@@ -33,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="category-item leaderboard" hero-id="leaderboard" hero?="{{category.name === 'leaderboard'}}" vertical layout>
         <div class="tile theme-bg-a" dummy fit layout vertical center center-justified>
-          <div class="category-tile-bg" style="background-image: url(images/category-0.svg)" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></div>
+          <core-icon size="" icon="topeka-icons:leaderboard" class="category-tile-bg" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></core-icon>
         </div>
         <div class="tile" flex vertical layout hero?="{{!category}}">
           <div flex></div>
@@ -47,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <template bind="{{allScores[cat.name] as scores}}">
           <div class="category-item {{cat.theme}}-theme {{ {completed: scores.length == cat.quizzes.length} | tokenList }}" vertical layout needZ?="{{category.name === cat.name}}">
             <div class="tile theme-bg-a" dummy fit layout vertical center center-justified hero-id="{{category.name === cat.name ? 'punch' : ''}}" hero?="{{category.name === cat.name}}">
-              <div class="category-tile-bg" style="background-image: url(images/{{cat.id}}-01.svg)" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></div>
+              <core-icon size="" class="category-tile-bg" icon="topeka-icons:{{cat.id}}" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></core-icon>
             </div>
             <div class="tile" flex vertical layout>
               <div flex></div>
@@ -61,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="category-item profile" vertical layout hero-id="profile" hero?="{{!category || category.name === 'profile'}}">
         <div class="tile theme-bg-a" dummy fit layout vertical center center-justified>
-          <div class="category-tile-bg" style="background-image: url(images/category-0.svg)" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></div>
+          <core-icon size="" icon="topeka-icons:profile" class="category-tile-bg" cross-fade?="{{parentElement.selected === 'category' || parentElement.lastSelected === 'category'}}" fit></core-icon>
         </div>
         <div class="tile" flex vertical layout>
           <div flex></div>

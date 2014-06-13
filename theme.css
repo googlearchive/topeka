@@ -41,4 +41,5 @@ body /deep/ .font-medium {
 
 topeka-app {
   min-height: 450px;
+  overflow: hidden;
 }

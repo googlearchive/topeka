@@ -77,9 +77,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .category-tile-bg {
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 50%;
+  /* must fit */
+  position: absolute !important;
   margin-bottom: 48px;
 }
 

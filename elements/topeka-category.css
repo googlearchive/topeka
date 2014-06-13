@@ -14,14 +14,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .category-bg {
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: contain;
+  position: absolute !important;
   margin-bottom: 64px;
 }
 
-.wide .category-bg {
-  background-size: 512px;
+.wide .category-bg > svg {
+  max-width: 512px;
+  margin: auto;
 }
 
 .wide > .main-button {
