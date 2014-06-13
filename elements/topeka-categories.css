@@ -59,6 +59,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   will-change: transform;
 }
 
+.category-item[needZ] {
+  z-index: 10000; /* need this for will-change */
+}
+
 .category-item.completed {
   pointer-events: none;
 }
