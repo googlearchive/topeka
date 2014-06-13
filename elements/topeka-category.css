@@ -13,6 +13,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: 8px;
 }
 
+.category-bg {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: contain;
+  margin-bottom: 64px;
+}
+
+.wide .category-bg {
+  background-size: 512px;
+}
+
 .wide > .main-button {
   top: 12px;
   left: 16px;

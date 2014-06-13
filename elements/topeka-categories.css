@@ -67,6 +67,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   opacity: 0.18;
 }
 
+.category-tile-bg {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 50%;
+  margin-bottom: 48px;
+}
+
 .cat-name {
   height: 48px;
   padding: 0 16px;
