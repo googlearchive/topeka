@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<ellipse opacity="0.1" fill="#444444" cx="186.6" cy="179.3" rx="18.3" ry="3.8"/>
+<ellipse opacity="0.1" fill="#444444" cx="103.6" cy="178.9" rx="46.5" ry="4.5"/>
+<g>
+	<path fill="#666666" d="M190.3,112.7l-5.4-0.6l1.1-10c0.5-4.9,4.6-10.1,9.3-11.8l13.1-4.7l1.9,5.1l-13.1,4.7
+		c-2.7,1-5.4,4.3-5.7,7.2L190.3,112.7z"/>
+	<circle fill="#FACB43" cx="103.6" cy="98.1" r="40.1"/>
+	<circle fill="#FACB43" cx="72.6" cy="80.5" r="12.1"/>
+	<circle fill="#FACB43" cx="137" cy="84.8" r="12.1"/>
+	<polygon fill="#FFFFFF" points="164.6,111.4 208.6,111.4 201,179.7 172.1,179.7 	"/>
+	<polygon fill="#4DBFD9" points="203.2,160 169.9,160 167,133 206.2,133 	"/>
+	<g>
+		<defs>
+			<polygon id="SVGID_1_" points="152.8,78.9 54.5,78.9 65.6,179.7 141.6,179.7 			"/>
+		</defs>
+		<use xlink:href="#SVGID_1_"  overflow="visible" fill="#FFFFFF"/>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<rect x="97.1" y="78.9" fill="#DB4437" width="13" height="100.7"/>
+	<polygon fill="#DB4437" points="129.8,179.7 116.7,179.7 127.6,78.9 140.6,78.9 	"/>
+	<polygon fill="#DB4437" points="77.4,179.7 90.5,179.7 79.6,78.9 66.5,78.9 	"/>
+	<path fill="#FFFFFF" d="M157.5,78H49.6c-2.1,0-3.8,1.7-3.8,3.8c0,2.1,1.7,3.8,3.8,3.8h107.9c2.1,0,3.8-1.7,3.8-3.8
+		C161.3,79.7,159.6,78,157.5,78z"/>
+	<path fill="#E6E6E6" d="M45.8,82.7c0,2.1,1.7,3.8,3.8,3.8h107.9c2.1,0,3.8-1.7,3.8-3.8"/>
+	<polygon fill="#E6E6E6" points="151.9,86.6 60.1,129.3 55.4,86.6 	"/>
+	<polygon fill="#E6E6E6" points="208.1,115.9 167.5,138.2 164.6,115.9 	"/>
+	<ellipse fill="#FACB43" cx="54.8" cy="182.3" rx="4.8" ry="4.7"/>
+	<ellipse fill="#FACB43" cx="52" cy="185.5" rx="3.4" ry="3.4"/>
+	<ellipse fill="#FACB43" cx="57.9" cy="185.5" rx="3.4" ry="3.4"/>
+	
+		<ellipse transform="matrix(-0.5547 0.8321 -0.8321 -0.5547 336.1516 206.0261)" fill="#FACB43" cx="112.9" cy="193" rx="4.8" ry="4.7"/>
+	
+		<ellipse transform="matrix(-0.5549 0.8319 -0.8319 -0.5549 331.015 200.6089)" fill="#FACB43" cx="111.8" cy="188.9" rx="3.4" ry="3.4"/>
+	
+		<ellipse transform="matrix(-0.5547 0.8321 -0.8321 -0.5547 330.0119 210.9344)" fill="#FACB43" cx="108.6" cy="193.8" rx="3.4" ry="3.4"/>
+	
+		<ellipse transform="matrix(0.9726 -0.2323 0.2323 0.9726 -37.6566 38.8463)" fill="#FACB43" cx="146.1" cy="179.3" rx="4.8" ry="4.7"/>
+	
+		<ellipse transform="matrix(0.9726 -0.2324 0.2324 0.9726 -38.5935 38.4989)" fill="#FACB43" cx="144.1" cy="183.1" rx="3.4" ry="3.4"/>
+	
+		<ellipse transform="matrix(0.9726 -0.2324 0.2324 0.9726 -37.7634 39.6422)" fill="#FACB43" cx="149.4" cy="180.1" rx="3.4" ry="3.4"/>
+</g>
+</svg>

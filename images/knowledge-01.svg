@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<g>
+	<path opacity="0.2" fill="#A1887F" d="M67.1,44.5c-0.2,0-0.4,0-0.6,0.1h-8.3v8.8v11.1v14.8v19.9v14.8v19.9v24.8l0,0
+		c0.2,4.7,4.1,8.4,8.8,8.4h7v16.9l8.2-5.7l7.5,5.7V167h55.8v-17.7h0v-15.5h0v-19.5v-0.5V99.1V79.2V64.4V44.5v-0.1H67.1z"/>
+	<rect x="102.7" y="113.9" fill="#FFF3E0" width="37.1" height="33.6"/>
+	<path fill="#FF6E40" d="M61.3,42.6c-4.9,0-8.9,4-8.9,8.9v105.3l52.4-9.3c13.1,0,35-15.6,35-35V42.6H61.3z"/>
+	<path fill="#C2C2C2" d="M61.3,147.5c-4.9,0-8.9,4-8.9,8.9c0,4.9,4,8.9,8.9,8.9h78.5v-17.7H61.3z"/>
+	<polygon fill="#BA68C8" points="68.3,157 68.3,182 70,182 76.3,176.3 82.7,182 84,182 84,157 	"/>
+	<g>
+		<defs>
+			<path id="SVGID_1_" d="M61.3,42.6c-4.9,0-8.9,4-8.9,8.9v105.3l52.4-9.3c13.1,0,35-15.6,35-35V42.6H61.3z"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<g>
+		<path fill="#FF3D00" d="M114.1,121.6c9.7,0.5,20-1.8,25.7-7.7c0.1,15.6-20.3,33.5-33.1,33.6C111.7,142.4,114.5,131.8,114.1,121.6z
+			"/>
+	</g>
+	<g>
+		<rect x="103.7" y="41.6" fill="#26C6DA" width="6.1" height="124.9"/>
+	</g>
+	<rect x="103.7" y="147.7" fill="#00ACC1" width="6.1" height="18.8"/>
+	<g>
+		<g>
+			<path fill="#F4B400" d="M128.3,187.8c-1.4,1.4-1.4,3.6,0,5l14.9,14.9c1.4,1.4,3.6,1.4,5,0l50.9-50.9c1.4-1.4,1.4-3.6,0-5
+				L184.1,137c-1.4-1.4-3.6-1.4-5,0L128.3,187.8z"/>
+		</g>
+		<g>
+			<path fill="#E57368" d="M124,192.1c-1.4,1.4-1.4,3.6,0,5l14.9,14.9c1.4,1.4,3.6,1.4,5,0l6-6c1.4-1.4,1.4-3.6,0-5L135,186.1
+				c-1.4-1.4-3.6-1.4-5,0L124,192.1z"/>
+		</g>
+		
+			<rect x="136.4" y="182" transform="matrix(-0.7072 0.707 -0.707 -0.7072 377.4757 235.6966)" fill="#E57368" width="7" height="28.1"/>
+		
+			<rect x="141.1" y="177.6" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 381.9057 224.9842)" fill="#F0F0F0" width="6.5" height="28.1"/>
+		<polygon fill="#FBD199" points="181.6,134.5 203.6,132.4 201.5,154.3 		"/>
+		<polygon fill="#4D4D4D" points="195.4,133.2 203.6,132.4 202.8,140.6 		"/>
+		<g>
+			<polygon fill="#FBD199" points="184.1,137 181.6,134.5 177.9,138.2 			"/>
+			<polygon fill="#FBD199" points="187.8,148.1 191.5,144.4 189.1,141.9 			"/>
+			<polygon fill="#FBD199" points="189.1,141.9 186.6,139.4 182.8,143.2 			"/>
+			<polygon fill="#FBD199" points="184.1,137 186.6,139.4 182.8,143.2 			"/>
+			<polygon fill="#FBD199" points="194,146.9 191.5,144.4 187.8,148.1 			"/>
+			<polygon fill="#FBD199" points="197.7,158.1 201.5,154.3 199,151.8 			"/>
+			<polygon fill="#FBD199" points="199,151.8 196.5,149.4 192.8,153.1 			"/>
+			<polygon fill="#FBD199" points="194,146.9 196.5,149.4 192.8,153.1 			"/>
+		</g>
+		<path opacity="0.1" fill="#424242" d="M203.6,132.4l-72.1,72.1l7.4,7.4c1.4,1.4,3.6,1.4,5,0l57.6-57.6L203.6,132.4z"/>
+	</g>
+</g>
+</svg>
