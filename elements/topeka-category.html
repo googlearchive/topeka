@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <topeka-quiz-score name="quizScore" selectedPage="{{selected}}" scores="{{scores}}" category="{{category}}" avatar="{{user.avatar}}" wide="{{wide}}" quizScore="{{quizScore}}"></topeka-quiz-score>
       
-      <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" on-next="{{mainAction}}"></topeka-user-score>
+      <topeka-user-score name="score" user="{{user}}" scores="{{scores}}" category="{{category}}" wide="{{wide}}" on-next="{{mainAction}}" cross-fade?="{{parentElement.selected === 'categories'}}"></topeka-user-score>
       
     </core-animated-pages>
     
@@ -86,10 +86,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.showQuizzes();
           }
         }, null, 1200);
-      } else if (this.selected === 'score') {
-        this.async(function() {
-          this.mainAction();
-        }, null, 1500);
       }
     },
     
