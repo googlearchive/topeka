@@ -104,14 +104,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-size: 512px;
       background-image: url(../images/category-0.svg);
     }
+
+    :host([animate]:not(.core-selected)) .bg {
+      z-index: -1;
+    }
   </style>
 
   <firebase-element id="fbLeaderboard" location="{{offline ? null : 'https://polymer-topeka.firebaseio.com/users'}}" on-data-change="{{leaderboardChange}}" data="{{leaderboard}}" limit="{{limit}}"></firebase-element>
 
-  <div class="bg" fit dummy></div>
+  <div class="bg" fit dummy cross-fade></div>
 
   <div class="main" flex center layout vertical hero-p>
-    <div flex hero-id="leaderboard" hero class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" vertical layout>
+    <div flex hero-id="leaderboard" hero?="{{parentElement.selected === 'leaderboard'}}" slide-up-offscreen?="{{parentElement.selected !== 'leaderboard'}}" class="card {{ {wide: wide, 'multi-column': columns} | tokenList }}" vertical layout>
       <core-toolbar>
         <paper-icon-button icon="arrow-back" on-tap="{{mainAction}}"></paper-icon-button>
         <div>Leaderboard</div>
