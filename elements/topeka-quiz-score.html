@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div flex slide-down?="{{selectedPage === 'quizzes'}}">
     <div class="score theme-bg font-light" vertical center center-justified layout hero-id="punch-bottom" hero?="{{selectedPage !== 'quizzes'}}">
-      <span cross-fade>+{{quizScore || 0}}</span>
+      <span cross-fade-delayed>+{{quizScore || 0}}</span>
     </div>
     <div hero-id="quizzes-content" hero?="{{selectedPage !== 'quizzes'}}"></div>
   </div>
