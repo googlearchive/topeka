@@ -15,11 +15,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .category-bg {
   position: absolute !important;
-  margin-bottom: 64px;
+  margin-bottom: 128px;
 }
 
 .wide .category-bg > svg {
-  max-width: 512px;
   margin: auto;
 }
 
