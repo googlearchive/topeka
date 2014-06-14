@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <core-selector id="quizViews" notap selected="{{selected}}" selectedModel="{{quiz}}" selectedItem="{{quizView}}" cross-fade-delayed>
         
           <template repeat="{{category.quizzes}}">
-            <topeka-quiz-view quiz="{{}}" on-quiz-answered="{{quizAnswered}}"></topeka-quiz-view>
+            <topeka-quiz-view quiz="{{}}" on-quiz-answered="{{quizAnswered}}" on-quiz-next="{{quizDone}}"></topeka-quiz-view>
           </template>
           
         </core-selector>

@@ -33,7 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer('topeka-quiz-base', {
       
       eventDelegates: {
-        'down': 'answered'
+        down: 'answered',
+        keypress: 'keyPress'
       },
       
       isCorrect: function() {
@@ -46,6 +47,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       answered: function() {
         this.fire('quiz-answered');
+      },
+      
+      keyPress: function(e) {
+        // enter key
+        if (e.keyCode === 13) {
+          this.fire('quiz-next');
+          e.preventDefault();
+        }
       }
       
     });
