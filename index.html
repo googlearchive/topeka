@@ -47,6 +47,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="elements/topeka-datasource.html">
   <link rel="import" href="elements/topeka-app.html">
 
+  <script>
+    if (navigator.serviceWorker) {
+      // Register our ServiceWorker
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+
 </head>
 <body unresolved>
 
