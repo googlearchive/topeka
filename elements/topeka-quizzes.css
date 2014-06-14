@@ -101,6 +101,10 @@ paper-fab.check-button {
   transform: none;
 }
 
+:host([animate]) .fab-container {
+  visibility: hidden;
+}
+
 .quizzes-panel.wide .fab-container {
   right: 16px;
 }
