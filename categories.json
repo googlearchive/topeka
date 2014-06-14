@@ -46,7 +46,7 @@
                 "answer": 2
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "What vegetable did Mark Twain describe as “Cabbage with a college education”?",
                 "options": [
                     "Spinach",
@@ -156,7 +156,7 @@
                 "answer": "2"
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "Which 1971 film, known for its violence was the first to use Dolby sound?",
                 "options": [
                     "Straw Dogs",
@@ -219,7 +219,7 @@
                 "answer": "Light"
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "What U.S. President committed an unpardonable sin by kissing the Queen Mother on the lips?",
                 "options": [
                     "George W. Bush",
@@ -376,7 +376,7 @@
                 "answer": "Morocco"
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "In which city were the 1992 Olympics?",
                 "options": [
                     "Atlanta",
@@ -429,7 +429,7 @@
                 "answer": "Mantle"
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "What is the only bird that can fly backwards?",
                 "options": [
                     "Crow",
@@ -692,7 +692,7 @@
                 "answer": "The Clash"
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "Frank Sinatra covered this song made famous by a popular Jim Henson character.",
                 "options": [
                     "Welcome to Sesame Street",
@@ -738,7 +738,7 @@
                 "answer": 1
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": "After Simeon Oliver Coxe III incorporated a 1940’s audio oscillator his band was renamed this, after a William Butler Yeats poem.",
                 "options": [
                     "Silver Apples",
@@ -923,7 +923,7 @@
                 "answer": 1
             },
             {
-                "type": "single-select",
+                "type": "single-select-item",
                 "question": " What do you call a stadium used for cycling events?",
                 "options": [
                     "Cycleplex",
