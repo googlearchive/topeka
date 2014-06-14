@@ -109,7 +109,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .polymer-logo > .tile {
-  background-color: #ccc;
+  background-color: #00bad2;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../images/splash.svg);
 }
 
 /* wide layout */
