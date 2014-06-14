@@ -212,12 +212,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     disabledChanged: function() {
       if (!this.disabled) {
+        this.holdoff = true;
+        setTimeout(function() {
+          this.holdoff = false;
+        }.bind(this), 2000);
         if (this.offline) {
           this.bumpScores();
         } else if (this.queuedItems) {
-          this.flipPages(this.queuedItems);
+          this.items1 = this.items2 = this.queuedItems;
           this.queuedItems = null;
         }
+      } else {
+        this.selected = 0;
       }
     },
 
@@ -257,7 +263,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }.bind(this)).sort(function(a, b) {
         return b.score - a.score;
       });
-      if (this.$.pages.transitioning.length || this.disabled) {
+      if (this.holdoff) {
+        if (!this.items1) {
+          this.items1 = items;
+        } else {
+          this.items2 = items;
+        }
+      } else if (this.$.pages.transitioning.length || this.disabled) {
         this.queuedItems = items;
       } else {
         this.flipPages(items);
@@ -269,10 +281,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
       if (this.lastOrder) {
         newItems.forEach(function(u, i) {
-          if (this.lastOrder.indexOf(u.uid) > i) {
-            u.delta = this.newScores[u.uid] - this.lastScores[u.uid] || u.score;
+          var idx = this.lastOrder.indexOf(u.uid);
+          if (idx < -1 || idx > i) {
+            u.delta = this.newScores[u.uid] - this.lastScores[u.uid] || 0;
+            u.rising = true;
             if (u.delta > 0) {
-              u.rising = true;
               u.delta = "+" + u.delta;
             }
           }
