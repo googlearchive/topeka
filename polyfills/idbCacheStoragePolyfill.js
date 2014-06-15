@@ -8,8 +8,28 @@
 // See https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-storage
 
 (function(global) {
+    "use strict";
+
     var log = console.log.bind(console);
     var err = console.error.bind(console);
+
+    // FIXME(slightlyoff):
+    //      Now that we're backed by IDB, we run the very real risk of
+    //      the initialization code happening before we've populated the
+    //      cache name list. Need to add some locking to the mutation
+    //      operations to delay them until construction is really finished.
+    //
+    //      NOTE that because we're using the in-memory cachesByName for a few
+    //      things, we're not going to work if there is more than one  client
+    //      for the polyfill (e.g., a SW and a foreground window both trying to
+    //      modify the set of caches). In particular, if a Cache object is
+    //      removed or added in one context, it won't show up in the other
+    //      today. We can fix this by going back to the DB for everything all
+    //      the time, but for the sake of speed we're omitting this for now.
+    //
+    //      Lastly, the schema (list of caches vs. cache stores) is roughly
+    //      defined in idbCacheUtils.js and not here. Probably a bug and not a
+    //      feature.
 
     var CacheStorage = function() {
         // log("custom cache storage");
@@ -18,7 +38,8 @@
         // objects for them here.
         idbCacheUtils.getAllCacheNames().then(function(names) {
             names.forEach(function(name) {
-                caches[name] = new Cache(name);
+                caches[name] = new Cache();
+                caches[name]._name = name;
             });
         }, err);
     };
@@ -41,9 +62,9 @@
 
     // FIXME: Engage standardization on adding this method to the spec.
     CacheStorage.prototype.create = function(key) {
-        // log("CacheStorage::create", key);
         if (!this.cachesByName[key]) {
-            this.cachesByName[key] = new Cache();
+            this.cachesByName[key] = new Cache(key);
+            this.cachesByName[key]._name = key;
             idbCacheUtils.addCacheToList(key);
         }
 
@@ -57,22 +78,23 @@
         }
         this.cachesByName[toKey] = this.cachesByName[fromKey];
         delete this.cachesByName[fromKey];
-
+        // FIXME(slightlyoff):
+        //   need to rename in the stores and udpdate all records with new name
         return Promise.resolve();
     };
 
     CacheStorage.prototype.clear = function() {
         this.cachesByName = {};
-
-        return Promise.resolve();
+        return idbCacheUtils.clearAll();
     };
 
     CacheStorage.prototype.delete = function(key) {
         delete this.cachesByName[key];
-
-        return Promise.resolve();
+        return Promise.all([idbCacheUtils.clear(key),
+                            idbCacheUtils.removeCacheFromList(key)]);
     };
 
+    // FIXME(slightlyoff): nonsensical
     CacheStorage.prototype.forEach = function(callback, thisArg) {
         Object.keys(this.cachesByName).map(function(key) {
             thisArg.callback(this.cachesByName[key], key, this);

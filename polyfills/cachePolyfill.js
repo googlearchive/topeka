@@ -11,6 +11,11 @@
 // FIXME: Serialize the cache.
 // FIXME: Bind all function references.
 (function(global) {
+    "use strict";
+
+    var log = console.log.bind(console);
+    var err = console.error.bind(console);
+
     var _castToRequest = function(item) {
         if (typeof item === 'string') {
             var r = new Request({
@@ -27,100 +32,75 @@
         }
     };
 
-    var Cache = function(name) {
-        // An object containing a property for each HTTP fetch method. Those
-        // referenced objects contain a property for each URL, which is the
-        // Response.
-        this.entriesByMethod = {};
-        console.log("making cache", name);
+    var _key = function(cn, request) {
+        return cn + ":" + request.method + ":" + request._url;
+    };
+
+    var Cache = function() {
+        this._name = "";
     };
 
     // FIXME: Should this be in the spec?
     Cache.prototype.keys = function() {
-        var that = this;
-
-        var flatten = Array.prototype.concat.apply.bind(Array.prototype.concat, []);
-
-        return Promise.resolve(flatten(
-            Object.keys(this.entriesByMethod).map(function(method) {
-                return Object.keys(that.entriesByMethod[method]).map(function(url) {
-                    return new Request({method: method, url: url});
+        // FIXME(slightlyoff): we're losing the method differentiation here = \
+        return idbCacheUtils.getAllItemsInCache(this._name).then(
+            function(items) {
+                return items.map(function(i) {
+                    return new Request({ url: i.url });
                 });
-            })));
+            },
+            err
+        );
     };
 
     // FIXME: Implement this.
-    Cache.prototype.each = Promise.reject.bind(Promise, 'Cache.prototype.each() not implemented.');
+    Cache.prototype.each = function(callback, scope) {
+        var that = this;
+        return idbCacheUtils.getAllItemsInCacheAsResponses(this._name).then(
+            function(responses) {
+                return Promise.all(responses.map(function(response) {
+                    var key = new Request({ url: response._url });
+                    var value = response;
+                    return callback.call(scope||global, value, key, that);
+                }));
+            }
+        );
+    };
 
     Cache.prototype.put = function(request, response) {
-        var that = this;
-
-        return new Promise(function(resolve, reject) {
-            request = _castToRequest(request);
-
-            if (!that.entriesByMethod.hasOwnProperty(request.method)) {
-                that.entriesByMethod[request.method] = {};
-            }
-
-            var entriesByUrl = that.entriesByMethod[request.method];
-            entriesByUrl[request.url] = response;
-
-            resolve();
-        });
+        request = _castToRequest(request);
+        var cache = this._name;
+        return idbCacheUtils.writeResponseTo(cache,
+                                             _key(cache, request),
+                                             response);
     };
 
     Cache.prototype.add = function(request) {
-        var that = this;
-        // request = _castToRequest(request);
-        return new Promise(function (resolve, reject) {
-            fetch(request).then(
-                function(response) {
-                    that.put(request, response).then(resolve);
-                },
-                reject);
-        });
+        request = _castToRequest(request);
+        var put = this.put.bind(this);
+        return fetch(request).then(
+            function(response) { return put(request, response); },
+            err
+        );
     };
 
     // FIXME: Add QueryParams argument.
     Cache.prototype.delete = function(request) {
-        request = _castToRequest(request);
-
-        var that = this;
-        return new Promise(function(resolve, reject) {
-            if (that.entriesByMethod.hasOwnProperty(request.method)) {
-                var entriesByUrl = that.entriesByMethod[request.method];
-                delete entriesByUrl[request.url];
-            }
-            resolve();
-        });
+        return idbCacheUtils.delete(_key(this._name, _castToRequest(request)));
     };
 
     // FIXME: Add QueryParams argument.
     Cache.prototype.match = function(request) {
-        var that = this;
-
-        return new Promise(function(resolve, reject) {
-            request = _castToRequest(request);
-
-            if (!that.entriesByMethod.hasOwnProperty(request.method)) {
-                reject('not found');
-                return;
-            }
-
-            var entriesByUrl = that.entriesByMethod[request.method];
-
-            if (!entriesByUrl.hasOwnProperty(request.url)) {
-                reject('not found');
-                return;
-            }
-
-            var entry = entriesByUrl[request.url];
-            resolve(entry);
-        });
+        return idbCacheUtils.getAsResponse(
+            _key(this._name, _castToRequest(request))
+        );
     };
 
     // FIXME: Implement this.
     Cache.prototype.matchAll = Promise.reject.bind(Promise, 'Cache.prototype.matchAll not implemented.');
 
-    global.Cache = global.Cache || Cache;
-}(self));  // window or worker global scope.
+    if (!global.Cache ||
+         global.Cache.toString().indexOf("{} [native code] }") == -1) {
+        global.Cache = Cache;
+    }
+}(this));  // window or worker global scope.

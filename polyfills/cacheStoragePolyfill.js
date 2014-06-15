@@ -8,6 +8,11 @@
 // See https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-storage
 
 (function(global) {
+    "use strict";
+
+    var log = console.log.bind(console);
+    var err = console.error.bind(console);
+
     var CacheStorage = function() {
         this.cachesByName = {};
     };

@@ -5,10 +5,13 @@
 (function(global) {
     "use strict";
 
+    var log = console.log.bind(console);
+    var err = console.error.bind(console);
+
     var noop = function() {};
 
     var DB_NAME = "cache_polyfill";
-    var DB_VERSION = 4.0;
+    var DB_VERSION = 5;
     // Only dealing in a single object store here for simplicity. Don't really
     // want to deal with version upgrades which would be required for putting
     // each cache in their own store (the obvious model).
@@ -33,9 +36,7 @@
     };
 
     var _makeObjectStores = function(db) {
-        var cacheStore = db.createObjectStore(CACHE_STORE_NAME, {
-            keyPath: "url"
-        });
+        var cacheStore = db.createObjectStore(CACHE_STORE_NAME);
         var cacheIndex = cacheStore.createIndex("by_cache", "cache");
         // FIXME: add indexes for URL, method, etc.
         var cacheListStore = db.createObjectStore(CACHE_LIST_STORE_NAME);
@@ -65,8 +66,8 @@
         policy = policy || "readonly";
         return ensureOpen().then(function(db) {
             return function() {
-                var trans = db.transaction([storeName], policy);
-                return trans.objectStore(storeName);
+                return db.transaction([storeName], policy).
+                          objectStore(storeName);
             }
         });
     };
@@ -126,10 +127,22 @@
 
     var writeTo = function(cacheName, key, obj) {
         return _openStore("readwrite").then(function(store) {
-            var s = store();
             obj.cache = cacheName;
-            s.put(obj, key);
-            return resolveWithTransaction(s.transaction);
+            var s = store();
+            var req = s.put(obj, key);
+            req.onerror = err;
+            log("have put", obj, "at", key);
+
+
+            return new Promise(function(resolve, reject) {
+                log(s.transaction);
+                s.transaction.oncomplete = function(e) {
+                    log(e);
+                    log("writeTo completed", e);
+                    resolve();
+                }
+                s.transaction.onabort = s.transaction.onerror = reject;
+            });
         });
     };
 
@@ -144,8 +157,8 @@
         });
     };
 
-    // FIXME(slightlyoff): do we need to deal with cacheName here?
     var get = function(key, storeName) {
+        var storeName = storeName || CACHE_STORE_NAME;
         return _openStore("readonly", storeName).then(function(store) {
             return new Promise(function(resolve, reject) {
                 var request = store().get(key);
@@ -168,7 +181,7 @@
             var s = store();
             return new Promise(function(resolve, reject) {
                 var index = s.index("by_cache");
-                var request = index.openCursor(IDBKeyRange.only(cacheName));
+                var request = index.openCursor(IDBKeyRange.only(key));
                 request.onabort = request.onerror = reject;
                 request.onsuccess = function(e) {
                     var cursor = e.target.result;
@@ -183,15 +196,22 @@
         });
     };
 
-    var iterateOver = function(cacheName, func, scope, mode) {
+    var _delete = function(key) {
+        return _openStore("readwrite").then(function(store) {
+            var request = store().delete(key);
+            return resolveWithTransaction(request.transaction);
+        });
+    };
+
+    var iterateOver = function(cacheName, func, scope, mode, value) {
         func = func || noop;
         scope = scope || global;
+        mode = mode || "readonly";
         return ensureOpen().then(function(db) {
             return new Promise(function(resolve, reject) {
-                var trans = db.transaction([OBJ_STORE_NAME],
-                                           mode||"readonly");
+                var trans = db.transaction([CACHE_STORE_NAME], mode);
                 trans.onabort = trans.onerror = reject;
-                var store = trans.objectStore(OBJ_STORE_NAME);
+                var store = trans.objectStore(CACHE_STORE_NAME);
                 var index = store.index("by_cache");
                 var iterateRequest = index.openCursor(
                                         IDBKeyRange.only(cacheName));
@@ -199,32 +219,54 @@
                 iterateRequest.onsuccess = function(e) {
                     var cursor = e.target.result;
                     if (!cursor) {
-                        resolve();
+                        resolve(value);
                     }
-                    func.call(scope, cursor.key, cursor.value,
-                                     db, store, cursor);
+                    func.call(scope, cursor, cursor.key, cursor.value,
+                                     db, store);
                 };
             });
         });
     };
 
-    var _clearItem = function(key, value, db, store, cursor) {
-        store.delete(key);
-        cursor.continue();
+    var clear = function(cacheName) {
+        return iterateOver(
+            cacheName,
+            function(cursor, key, value, db, store) {
+                store.delete(key);
+                cursor.continue();
+            },
+            this,
+            "readwrite"
+        );
     };
 
-    var clear = function(cacheName) {
-        return iterateOver(cacheName, _clearItem, this, "readwrite");
+    var getAllItemsInCache = function(cacheName) {
+        var items = [];
+        return iterateOver(
+            cacheName,
+            function(cursor, key, value) {
+                if (value.cache != cacheName) {
+                    log("getAllItemsInCache error:", value.cache, cacheName);
+                }
+                items.push(value);
+                cursor.continue();
+            },
+            null,
+            null,
+            items
+        );
+    };
+
+    var clearAll = function() {
+        return getAllCacheNames().then(function(names) {
+            return Promise.all(
+                names.map(clear).concat(names.map(removeCacheFromList)));
+        });
     };
 
     var clobber = function() {
-        return new Promise(function(resolve, reject) {
-            var req = indexedDB.deleteDatabase(DB_NAME);
-            req.onsuccess = function(e) {
-                resolve(e);
-            };
-            req.onerror = reject;
-        });
+        var req = indexedDB.deleteDatabase(DB_NAME);
+        return resolveWithTransaction(req);
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -234,7 +276,10 @@
         writeBatchTo: writeBatchTo,
         get: get,
         getAll: getAll,
+        getAllItemsInCache: getAllItemsInCache,
+        "delete": _delete,
         clear: clear,
+        clearAll: clearAll,
         clobber: clobber,
         addCacheToList: addCacheToList,
         removeCacheFromList: removeCacheFromList,
@@ -242,56 +287,75 @@
         getAllCacheNames: getAllCacheNames,
     };
 
-    if (typeof Response != "undefined") {
-        var objToResponse = function(obj) {
-            var headers = new HeaderMap();
-            Object.keys(obj.headers).forEach(function(k) {
-                headers.set(k, obj.headers[k]);
-            });
-            var response = new Response(obj.blob ,{
-                status: obj.status,
-                statusText: obj.statusText,
-                headers: headers,
-            });
-            // Workaround for property swallowing
-            response._url = obj.url;
-            response.toBlob = function() {
-                return Promise.resolve(obj.blob);
+    // Don't bother with Response coercion if we're in an env that can't hack
+    // it.
+    if (typeof Response == "undefined") { return; }
+
+    var objToResponse = function(obj) {
+        var headers = new HeaderMap();
+        Object.keys(obj.headers).forEach(function(k) {
+            headers.set(k, obj.headers[k]);
+        });
+        var response = new Response(obj.blob ,{
+            status: obj.status,
+            statusText: obj.statusText,
+            headers: headers,
+        });
+        // Workaround for property swallowing
+        response._url = obj.url;
+        response.toBlob = function() {
+            return Promise.resolve(obj.blob);
+        };
+        return response;
+    };
+
+    var objFromResponse = function(response) {
+        var headers = {};
+        response.headers.forEach(function(v, k) {
+            headers[k] = v;
+        });
+        return response.toBlob().then(function(blob) {
+            return {
+                url: response._url,
+                blob: blob,
+                status: response.status,
+                statusText: response.statusText,
+                headers: headers
             };
-            return response;
-        };
+        });
+    };
 
-        var objFromResponse = function(response) {
-            var headers = {};
-            response.headers.forEach(function(k, v) {
-                headers[k] = v;
-            });
-            return response.toBlob().then(function(blob) {
-                return {
-                    url: response._url,
-                    blob: blob,
-                    status: response.status,
-                    statusText: response.statusText,
-                    headers: headers
-                };
-            });
-        };
+    var getAsResponse = function() {
+        return get.apply(this, arguments).then(objToResponse);
+    };
 
-        var getAsResponse = function() {
-            return get.apply(this, arguments).then(objToResponse);
-        };
+    var getAllAsResponses = function() {
+        return getAll.apply(this, arguments).then(function(objs) {
+            return Promise.all(objs.map(objToResponse));
+        });
+    };
 
-        var getAllAsResponses = function() {
-            return getAll.apply(this, arguments).then(function(objs) {
+    var getAllItemsInCacheAsResponses = function() {
+        return getAllItemsInCache.apply(this, arguments).then(
+            function(objs) {
                 return Promise.all(objs.map(objToResponse));
-            });
-        };
+            }
+        );
+    };
 
-        ///////////////////////////////////////////////////////////////////////
-        // Export
-        global.idbCacheUtils.objToResponse = objToResponse;
-        global.idbCacheUtils.objFromResponse = objFromResponse;
-        global.idbCacheUtils.getAsResponse = getAsResponse;
-        global.idbCacheUtils.getAllAsResponses = getAllAsResponses;
-    }
+    var writeResponseTo = function(cacheName, key, response) {
+        return objFromResponse(response).then(function(obj) {
+            return writeTo(cacheName, key, obj);
+        });
+    };
+
+    ///////////////////////////////////////////////////////////////////////
+    // Export
+    global.idbCacheUtils.objToResponse = objToResponse;
+    global.idbCacheUtils.objFromResponse = objFromResponse;
+    global.idbCacheUtils.getAsResponse = getAsResponse;
+    global.idbCacheUtils.getAllAsResponses = getAllAsResponses;
+    global.idbCacheUtils.writeResponseTo = writeResponseTo;
+    global.idbCacheUtils.getAllItemsInCacheAsResponses =
+                                            getAllItemsInCacheAsResponses;
 })(this);
