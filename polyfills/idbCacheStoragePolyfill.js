@@ -8,8 +8,19 @@
 // See https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-storage
 
 (function(global) {
+    var log = console.log.bind(console);
+    var err = console.error.bind(console);
+
     var CacheStorage = function() {
-        this.cachesByName = {};
+        // log("custom cache storage");
+        var caches = this.cachesByName = {};
+        // Fetch a listing of all the cache objects and create front
+        // objects for them here.
+        idbCacheUtils.getAllCacheNames().then(function(names) {
+            names.forEach(function(name) {
+                caches[name] = new Cache(name);
+            });
+        }, err);
     };
 
     CacheStorage.prototype.get = function(key) {
@@ -30,7 +41,11 @@
 
     // FIXME: Engage standardization on adding this method to the spec.
     CacheStorage.prototype.create = function(key) {
-        this.cachesByName[key] = new Cache();
+        // log("CacheStorage::create", key);
+        if (!this.cachesByName[key]) {
+            this.cachesByName[key] = new Cache();
+            idbCacheUtils.addCacheToList(key);
+        }
 
         return Promise.resolve(this.cachesByName[key]);
     };
@@ -89,5 +104,10 @@
         });
     };
 
-    global.caches = global.caches || new CacheStorage();
+    if (!global.caches ||
+        !global.caches.constructor ||
+         global.caches.constructor.
+            toString().indexOf("{} [native code] }") == -1) {
+        global.caches = new CacheStorage();
+    }
 }(self));  // window or worker global scope.

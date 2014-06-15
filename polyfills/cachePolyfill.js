@@ -13,18 +13,26 @@
 (function(global) {
     var _castToRequest = function(item) {
         if (typeof item === 'string') {
-            item = new Request({
+            var r = new Request({
                 url: item,
             });
+            // Workaround for property swallowing
+            r._url = item.toString();
+            return r;
+        } else {
+            if (item.url) {
+                item._url = item.url;
+            }
+            return item;
         }
-        return item;
     };
 
-    var Cache = function() {
+    var Cache = function(name) {
         // An object containing a property for each HTTP fetch method. Those
         // referenced objects contain a property for each URL, which is the
         // Response.
         this.entriesByMethod = {};
+        console.log("making cache", name);
     };
 
     // FIXME: Should this be in the spec?
@@ -63,7 +71,7 @@
 
     Cache.prototype.add = function(request) {
         var that = this;
-        request = _castToRequest(request);
+        // request = _castToRequest(request);
         return new Promise(function (resolve, reject) {
             fetch(request).then(
                 function(response) {

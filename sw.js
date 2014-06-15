@@ -1,8 +1,9 @@
 "use strict";
 
+importScripts("polyfills/idbCacheUtils.js");
 importScripts("polyfills/fetchPolyfill.js");
 importScripts("polyfills/cachePolyfill.js");
-importScripts("polyfills/cacheStoragePolyfill.js");
+importScripts("polyfills/idbCacheStoragePolyfill.js");
 
 var debug = false;
 

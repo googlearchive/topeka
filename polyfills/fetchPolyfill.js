@@ -8,40 +8,58 @@
 // See http://fetch.spec.whatwg.org/#fetch-method
 
 (function (global) {
-    var _castToRequest = function (item) {
+    "use strict";
+
+    var _castToRequest = function(item) {
         if (typeof item === 'string') {
-            item = new Request({
-                url: item
+            var r = new Request({
+                url: item,
             });
+            // Workaround for property swallowing
+            r._url = item.toString();
+            return r;
+        } else {
+            if (item.url) {
+                item._url = item.url;
+            }
+            return item;
         }
-        return item;
     };
 
     // FIXME: Support init argument to fetch.
     var fetch = function(request) {
         request = _castToRequest(request);
+        var url = request._url;
 
         return new Promise(function(resolve, reject) {
             // FIXME: Use extra headers from |request|.
             var xhr = new XMLHttpRequest();
             xhr.responseType = "blob";
-            xhr.open(request.method, request.url, true /* async */);
+            xhr.open(request.method, url, true /* async */);
             xhr.send(null);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState !== 4) return;
 
                 var headers = new HeaderMap();
-                // FIXME: Fill out response.headers.
-                headers.set("Content-Type",
-                            xhr.getResponseHeader("Content-Type"));
+                xhr.getAllResponseHeaders().split("\n").forEach(function(h) {
+                    if (!h || h.indexOf(":") <= 0) { return; }
+                    var hn = h.split(":")[0];
+                    headers.set(hn, xhr.getResponseHeader(hn));
+                });
                 var response = new Response(xhr.response ,{
                     status: xhr.status,
                     statusText: xhr.statusText,
                     headers: headers,
-                    // FIXME: Set response.method when available.
+                    url: url,
                     // FIXME: Set response.url when available.
+                    // FIXME: Set response.method when available.
                     // FIXME: Set response.body when available.
                 });
+                // FIXME(slightlyoff): is this wrong WRT to redirect logic?
+                response._url = url;
+                response.toBlob = function() {
+                    return Promise.resolve(xhr.response);
+                };
 
                 if (xhr.status === 200) {
                     resolve(response);
@@ -52,7 +70,8 @@
         });
     };
 
-    if (global.fetch.toString() != "function toString() { [native code] }") {
+    if (!global.fetch ||
+         global.fetch.toString().indexOf("{} [native code] }") == -1) {
         global.fetch = fetch;
     }
-}(self));  // window or worker global scope
+}(this));  // window or worker global scope
