@@ -24,21 +24,6 @@ body {
   font-weight: 400;
 }
 
-body /deep/ core-toolbar {
-  background-color: #00bad2;
-  color: #fff;
-  fill: #fff;
-  font-size: 24px;
-}
-
-body /deep/ .font-light {
-  font-weight: 300;
-}
-
-body /deep/ .font-medium {
-  font-weight: 500;
-}
-
 topeka-app {
   min-height: 450px;
   overflow: hidden;
