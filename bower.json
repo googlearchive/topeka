@@ -14,22 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "core-animated-pages": "Polymer/core-animated-pages#master",
-    "core-drawer-panel": "Polymer/core-drawer-panel#master",
-    "core-icon-button": "Polymer/core-icon-button#master",
-    "core-icons": "Polymer/core-icons#master",
-    "core-scroll-header-panel": "Polymer/core-scroll-header-panel#master",
-    "core-style": "Polymer/core-style#master",
-    "font-roboto2": "Polymer/font-roboto2#master",
-    "paper-checkbox": "Polymer/paper-checkbox#master",
-    "paper-item": "Polymer/paper-item#master",
-    "paper-radio-button": "Polymer/paper-radio-button#master",
-    "paper-radio-group": "Polymer/paper-radio-group#master",
-    "paper-sampler": "Polymer/paper-sampler#master",
-    "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master",
-    "firebase-element": "Polymer/firebase-element#master",
-    "firebase": "*",
-    "firebase-simple-login": "*"
+    "topeka-elements": "Polymer/topeka-elements#master"
   }
 }
