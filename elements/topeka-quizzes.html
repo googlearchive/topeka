@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
       
       <div class="fab-container">
-        <paper-fab class="bottom check-button" icon="check" on-tap="{{quizDone}}"></paper-fab>
+        <paper-fab class="bottom check-button {{ {correct: scores[selected] > 0, incorrect: scores[selected] === 0} | tokenList }}" icon="{{icon}}" on-tap="{{quizDone}}"></paper-fab>
       </div>
       
     </div>
@@ -58,9 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     wide: false,
     answered: false,
+    icon: 'check',
     
     observe: {
-      'scores category': 'update'
+      'category': 'update'
     },
     
     update: function() {
@@ -71,10 +72,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     quizDone: function() {
       var s = this.quizView.getScore();
+      if (s > 0) {
+        this.icon = 'social:mood';
+      } else {
+        this.icon = 'close';
+      }
       this.scores[this.selected] = s;
-      this.fire('quiz-done', {score: s});
-      this.selected++;
-      this.answered = false;
+
+      this.async(function() {
+        this.fire('quiz-done', {score: s});
+        this.selected++;
+        this.answered = false;
+        this.icon = 'check';
+      }, null, 1000);
     },
     
     quizAnswered: function() {

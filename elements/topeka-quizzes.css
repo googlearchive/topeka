@@ -76,8 +76,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 paper-fab.check-button {
+  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: #f5f5f5;
   fill: #cdcdcd;
+}
+
+.answered paper-fab.check-button.correct {
+  background-color: #00c853;
+  fill: #fff;
+}
+
+.answered paper-fab.check-button.incorrect {
+  background-color: #dd2c00;
+  fill: #fff;
 }
 
 .answered paper-fab.check-button {
