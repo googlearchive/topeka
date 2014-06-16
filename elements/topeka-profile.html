@@ -96,9 +96,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <div class="bg" fit dummy cross-fade></div>
 
-  <div class="main" flex layout vertical hero-p>
+  <div class="main" flex layout vertical hero-p?="{{parentElement.lastSelected !== 'splash'}}" cross-fade-delayed?="{{parentElement.lastSelected === 'splash'}}">
     <div class="card {{ {wide: wide} | tokenList }}" flex layout vertical hero-id="profile" hero?="{{parentElement.selected === 'profile'}}" slide-up-offscreen?="{{parentElement.selected !== 'profile'}}">
-      <div layout vertical flex cross-fade-delayed>
+      <div layout vertical flex cross-fade-delayed?="{{parentElement.lastSelected !== 'splash'}}">
         <div class="header">{{userDefaults ? 'Your Profile' : 'Sign In'}}</div>
         <paper-input label="First Name" id="first"></paper-input>
         <paper-input label="Last Initial" id="last" maxlength="1"></paper-input>
