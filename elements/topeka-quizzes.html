@@ -41,9 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </div>
       
-      <div class="fab-container">
-        <paper-fab class="bottom check-button {{ {correct: scores[selected] > 0, incorrect: scores[selected] === 0} | tokenList }}" icon="{{icon}}" on-tap="{{quizDone}}"></paper-fab>
-      </div>
+      <paper-fab class="bottom check-button {{ {correct: scores[selected] > 0, incorrect: scores[selected] === 0} | tokenList }}" icon="{{icon}}" on-tap="{{quizDone}}"></paper-fab>
       
     </div>
     

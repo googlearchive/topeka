@@ -76,9 +76,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 paper-fab.check-button {
-  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 148px;
+  right: 8px;
   background-color: #f5f5f5;
   fill: #cdcdcd;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms, background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+:host([animate]) paper-fab {
+  visibility: hidden;
+}
+
+.quizzes-panel.wide paper-fab.check-button {
+  right: 16px;
+}
+
+.answered paper-fab.check-button {
+  -webkit-transform: none;
+  transform: none;
 }
 
 .answered paper-fab.check-button.correct {
@@ -93,31 +114,6 @@ paper-fab.check-button {
 
 .answered paper-fab.check-button {
   fill: #626262;
-}
-
-.fab-container {
-  position: absolute;
-  top: 148px;
-  right: 8px;
-  -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms;
-  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 500ms;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-}
-
-.answered .fab-container {
-  -webkit-transform: none;
-  transform: none;
-}
-
-:host([animate]) .fab-container {
-  visibility: hidden;
-}
-
-.quizzes-panel.wide .fab-container {
-  right: 16px;
 }
 
 topeka-status-bar {
