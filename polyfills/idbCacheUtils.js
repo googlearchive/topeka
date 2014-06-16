@@ -131,16 +131,10 @@
             var s = store();
             var req = s.put(obj, key);
             req.onerror = err;
-            log("have put", obj, "at", key);
 
 
             return new Promise(function(resolve, reject) {
-                log(s.transaction);
-                s.transaction.oncomplete = function(e) {
-                    log(e);
-                    log("writeTo completed", e);
-                    resolve();
-                }
+                s.transaction.oncomplete = resolve;
                 s.transaction.onabort = s.transaction.onerror = reject;
             });
         });
