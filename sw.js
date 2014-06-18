@@ -154,6 +154,8 @@ this.addEventListener("fetch", function(e) {
         // we didn't have it in the cache, so add it to the cache and return it
         return caches.get("core").then(
           function(core) {
+            console.log("runtime caching:", request.url);
+
             // FIXME(slighltyoff): add should take/return an array
             return core.add(request).then(
               function(response) {
