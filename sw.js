@@ -51,6 +51,7 @@ this.addEventListener("install", function(e) {
       "components/firebase-element/firebase-simple-login-import.html",
       "components/firebase-simple-login/firebase-simple-login.js",
       "components/firebase/firebase.js",
+      "components/font-roboto/roboto.html",
       "components/paper-button/paper-button.css",
       "components/paper-button/paper-button.html",
       "components/paper-checkbox/paper-checkbox.css",
@@ -92,6 +93,7 @@ this.addEventListener("install", function(e) {
       "components/topeka-elements/templates/topeka-quiz-fill-two-blanks.html",
       "components/topeka-elements/templates/topeka-quiz-four-quarter.html",
       "components/topeka-elements/templates/topeka-quiz-multi-select.html",
+      "components/topeka-elements/templates/topeka-quiz-picker.css",
       "components/topeka-elements/templates/topeka-quiz-picker.html",
       "components/topeka-elements/templates/topeka-quiz-single-select-item.html",
       "components/topeka-elements/templates/topeka-quiz-single-select.html",
@@ -114,6 +116,8 @@ this.addEventListener("install", function(e) {
       "components/topeka-elements/topeka-quiz-view.html",
       "components/topeka-elements/topeka-quizzes.css",
       "components/topeka-elements/topeka-quizzes.html",
+      "components/topeka-elements/topeka-results.css",
+      "components/topeka-elements/topeka-results.html",
       "components/topeka-elements/topeka-status-bar.html",
       "components/topeka-elements/topeka-user-score.css",
       "components/topeka-elements/topeka-user-score.html",
@@ -129,6 +133,7 @@ this.addEventListener("install", function(e) {
       "polyfills/fonts/Roboto2-Thin.woff2",
       "polyfills/fonts/roboto2.html",
       "theme.css",
+      "vulcanized.html",
     ];
 
     return Promise.all(resourceUrls.map(function(relativeUrl) {
