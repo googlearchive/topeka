@@ -11,6 +11,7 @@ this.addEventListener("install", function(e) {
   e.waitUntil(caches.create("core").then(function(core) {
     var resourceUrls = [
       "",
+      "?offline",
       "components/core-ajax/core-ajax.html",
       "components/core-ajax/core-xhr.html",
       "components/core-animated-pages/core-animated-pages.css",
@@ -125,13 +126,14 @@ this.addEventListener("install", function(e) {
       "images/splash.svg",
       "index.html",
       "polyfills/fonts/fonts.css",
+      "polyfills/fonts/roboto.html",
       "polyfills/fonts/RobotoDraft-Black.woff2",
       "polyfills/fonts/RobotoDraft-Bold.woff2",
       "polyfills/fonts/RobotoDraft-BoldItalic.woff2",
       "polyfills/fonts/RobotoDraft-Light.woff2",
       "polyfills/fonts/RobotoDraft-Medium.woff2",
+      "polyfills/fonts/RobotoDraft-Regular.woff2",
       "polyfills/fonts/RobotoDraft-Thin.woff2",
-      "polyfills/fonts/roboto.html",
       "theme.css",
       "vulcanized.html",
     ];
