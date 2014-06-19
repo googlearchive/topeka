@@ -5,6 +5,9 @@ importScripts("polyfills/fetchPolyfill.js");
 importScripts("polyfills/idbCachePolyfill.js");
 importScripts("polyfills/idbCacheStoragePolyfill.js");
 
+var log = console.log.bind(console);
+var err = console.error.bind(console);
+
 var baseUrl = this.scope.split("*")[0];
 
 this.addEventListener("install", function(e) {
@@ -161,7 +164,7 @@ this.addEventListener("fetch", function(e) {
         // we didn't have it in the cache, so add it to the cache and return it
         return caches.get("core").then(
           function(core) {
-            console.log("runtime caching:", request.url);
+            log("runtime caching:", request.url);
 
             // FIXME(slighltyoff): add should take/return an array
             return core.add(request).then(
@@ -174,4 +177,8 @@ this.addEventListener("fetch", function(e) {
       }
     )
   );
+});
+
+this.addEventListener("sync", function(e) {
+  this.clients.getServiced().then(log, err);
 });
