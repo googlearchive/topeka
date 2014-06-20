@@ -27,10 +27,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <meta name="application-name" content="Quiz App">
 
+  <!--
+  Chrome 35 has old :host behavior before :host-context addition.
+  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
+  to force the ShadowDOM Polyfill.
+  -->
+  <script>
+    if (!('import' in document.createElement('link'))) {
+      var Platform = {flags: {shadow: true}};
+    }
+  </script>
+
   <script src="components/platform/platform.js"></script>
 
   <link rel="stylesheet" href="theme.css" shim-shadowdom>
-
 
   <!--
   <link rel="import" href="components/font-roboto/roboto.html">
@@ -54,7 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body>
 
   <template is="auto-binding">
-
     <topeka-datasource url="components/topeka-elements/categories.json" user="{{user}}" categories="{{categories}}" connected="{{connected}}"></topeka-datasource>
     <topeka-app fit user="{{user}}" categories="{{categories}}" connected="{{connected}}" touch-action="auto"></topeka-app>
   </template>
