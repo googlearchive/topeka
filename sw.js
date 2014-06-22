@@ -7,8 +7,18 @@ importScripts("polyfills/idbCacheStoragePolyfill.js");
 
 var log = console.log.bind(console);
 var err = console.error.bind(console);
+this.onerror = err;
 
-var baseUrl = this.scope.split("*")[0];
+var notify = function() {
+  if (self.Notification && self.Notification.permission == "granted") {
+    new self.Notification(arguments[0]);
+  } else {
+    log.apply(arguments)
+  }
+};
+
+var baseUrl = (new URL("./", this.location.href) + "");
+notify(baseUrl);
 
 this.addEventListener("install", function(e) {
   e.waitUntil(caches.create("core").then(function(core) {
