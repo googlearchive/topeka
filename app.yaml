@@ -1,0 +1,49 @@
+application: polymer-topeka
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /
+  static_files: build.html
+  upload: build.html
+
+- url: /build.js
+  static_files: build.js
+  upload: build.js
+
+- url: /leaderboard.html
+  static_files: leaderboard.html
+  upload: leaderboard.html
+
+- url: /sw.js
+  static_files: sw.js
+  upload: sw.js
+
+- url: /theme.css
+  static_files: theme.css
+  upload: theme.css
+
+- url: /favicon.ico
+  static_files: theme.css
+  upload: theme.css
+
+- url: /components/(.*)
+  static_files: components/\1
+  upload: components/.*
+
+- url: /images/(.*)
+  static_files: images/\1
+  upload: images/.*
+
+- url: /icons/(.*)
+  static_files: icons/\1
+  upload: icons/.*
+
+- url: /polyfills/(.*)
+  static_files: polyfills/\1
+  upload: polyfills/.*
+
+skip_files:
+- ^(.*/)?node_modules/.*
