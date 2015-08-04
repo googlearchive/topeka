@@ -28,15 +28,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="application-name" content="Quiz App">
 
   <!--
-  Chrome 35 has old :host behavior before :host-context addition.
-  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
-  to force the ShadowDOM Polyfill.
+  Force the ShadowDOM Polyfill. Doing so removes console exceptions in Chrome,
+  but styling is off on paper-fabs.
   -->
-  <script>
-    if (!('import' in document.createElement('link'))) {
-      var Platform = {flags: {shadow: true}};
-    }
-  </script>
+  <!-- <script>
+    var WebComponents= {flags: {shadow: true}};
+  </script> -->
 
   <script src="components/webcomponentsjs/webcomponents.js"></script>
 

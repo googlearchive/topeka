@@ -64,9 +64,7 @@ this.addEventListener("install", function(e) {
       var resourceUrls = [
         "",
         "?offline",
-        "build.html",
         "build.js",
-        "components/topeka-elements/",
         "components/topeka-elements/categories.json",
         "components/topeka-elements/images/splash.svg",
         "favicon.ico",
