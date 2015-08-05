@@ -1,3 +1,4 @@
 .DS_Store
 .d8_history
 components/*
+node_modules
